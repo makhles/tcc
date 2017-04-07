@@ -54,6 +54,7 @@
 \usepackage{graphicx}			    % Inclusão de gráficos
 \usepackage{microtype} 			  % Para melhorias de justificação
 \usepackage[final]{pdfpages}
+\usepackage{listings}         % Para incluir código fonte com formatação
 
 %\usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
 %\usepackage{adjustbox}        % Permite o escalonamento do conteúdo que não cabe em uma página
@@ -130,6 +131,42 @@
 % Caminho para as imagens
 % ---
 \graphicspath{{./img/}}
+% ---
+% Listings
+% ---
+\renewcommand{\lstlistingname}{Algoritmo}% Listing -> Algoritmo
+\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}% List of Listings -> Lista de Algoritmos
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color;
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Java,                   % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                     % sets default tabsize to 2 spaces
+  title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
+  numberbychapter=false            % number lists by chapter or sequentially from the beginning of the document
+}
 
 % ----------------------------------------------------------
 % PREÂMBULO
@@ -393,19 +430,94 @@ O objetivo principal deste Trabalho de Conclusão é desenvolver um sistema para
 
 As \textbf{aplicações empresariais} têm o propósito de fornecer a \emph{lógica do negócio} de uma empresa. O seu gerenciamento é feito de forma centralizada e é comum a sua interação com outros softwares empresariais. A plataforma Java, Edição Empresarial (Java EE), é um conjunto de tecnologias Java que são utilizadas para o desenvolvimento de aplicações empresariais. O objetivo da plataforma é fornecer aos desenvolvedores um conjunto de especificações / APIs que permitam a diminuição do tempo de desenvolvimento, a redução da complexidade e o aumento do desempenho de aplicações empresariais\cite{javaee7}. Tais especificações são \emph{contratos} que são implementados por diversos fornecedores, \emph{e.g.}, GlassFish, Oracle WebLogic, Apache TomEE, etc.
 
-Segundo o modelo Java EE, as aplicações são distribuídas em multi-camadas (\emph{tiered design})\footnote{Os termos \emph{tier} e \emph{layer} são ambos traduzidos para o português como ``camada''. No entanto, uma \emph{tier} representa uma unidade física, na qual um código ou processo é executado. Uma \emph{layer}, por sua vez, representa uma unidade lógica, responsável pela organização lógica do código através da abstração dos dados. Diversas \emph{layers} podem existir em computadores diferentes, ou em processos diferentes em um único computador, ou ainda em um único processo em um único computador.\cite{lhotka}}. Define-se, desta forma, responsabilidades distintas para as diferentes partes do sistema, \emph{i.e.}, para os diferentes componentes que compõem uma aplicação Java EE.
+% ---
+\subsection{Aplicações Multi-Camadas}
+% ---
+
+Segundo o modelo Java EE, as aplicações são distribuídas em camadas (\emph{tiered design})\footnote{Os termos \emph{tier} e \emph{layer} são ambos traduzidos para o português como ``camada''. No entanto, uma \emph{tier} representa uma unidade física, na qual um código ou processo é executado. Uma \emph{layer}, por sua vez, representa uma unidade lógica, responsável pela organização lógica do código através da abstração dos dados. Diversas \emph{layers} podem existir em computadores diferentes, ou em processos diferentes em um único computador, ou ainda em um único processo em um único computador.\cite{lhotka}}. Define-se, desta forma, responsabilidades distintas para as diferentes partes do sistema, \emph{i.e.}, para os diferentes componentes que compõem uma aplicação Java EE (vide Figura~\ref{fig:multitiered_app}) e que são distribuídos nas camadas Cliente, Web, Negócio e EIS.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:multitiered_app}Diversas camadas de uma aplicação multi-camadas.}
+  \caption{\label{fig:multitiered_app}Componentes Java EE distribuídos nas diversas camadas de duas aplicações Web.}
   \begin{center}
     \includegraphics[width=0.75\textwidth]{multitiered_applications.png}
   \end{center}
   \fonte{adaptado de \citetext{javaee7}}
 \end{figure}
 
+% ---
+\subsubsection{Camada Cliente}
+% ---
+
+Esta camada é composta de clientes aplicativos que acessam o servidor Java EE e que geralmente se localizam em máquinas diferentes da máquina do servidor:
+
+\begin{itemize}
+  \item Clientes Web - também chamados de \emph{clientes magros}, são compostos de páginas dinâmicas (\emph{e.g.}, XHTML) geradas na camada Web e por um navegador responsável por renderizá-las.
+  \item Clientes Aplicativos - quando os usuários necessitam realizar atividades que requerem uma interface mais rica do que a disponibilizada por linguagens de marcação, utilizam-se clientes aplicativos baseados nas APIs Swing ou AWT (\emph{Abstract Window Toolkit})\footnote{Não obstante, pode-se utilizar uma interface em linha de comando.}. Embora seja possível o estabelecimento de uma conexão HTTP com um \emph{servlet} na camada Web, clientes aplicativos costumam acessar diretamente os \emph{beans} gerenciais da camada de negócio.
+  \item \emph{Applets} - componentes embarcados que são incluídos nas páginas web. São escritos em Java e, portanto, necessitam da máquina virtual Java instalada no navegador web do cliente (e provavelmente do \emph{plugin} Java e de um arquivo de política de segurança).
+\end{itemize}
 
 % ---
-\subsection{JavaServer Faces}
+\subsubsection{Camada Web}
+% ---
+
+É a camada responsável pela interação entre os clientes e a camada de negócios. Suas principais funções são:
+\begin{itemize}
+  \item Gerar, dinamicamente, conteúdo para o cliente em diversos formatos.
+  \item Obter as entradas (dados e ações) da interface com o cliente e retornar os resultados dos componentes da camada de negócios.
+  \item Controlar o fluxo das páginas no cliente.
+  \item Manter o estado dos dados da sessão do usuário.
+  \item Executar um pouco de lógica simples e armazenar dados em componentes JavaBeans temporariamente.
+\end{itemize}
+
+\emph{Servlets} e páginas web criadas com a tecnologia \emph{JavaServer Faces} (vide seção~\ref{sec:jsf}) são os componentes desta camada. \emph{Servlets} são classes Java que possuem métodos adequados a receber requisições e construir respostas às tais requisições dinamicamente. O trecho de código\cite{javaservlet} a seguir (vide \lstlistingname~\ref{alg:servlet}) representa um \texttt{HttpServlet}, que atende a requisições HTTP do tipo GET através da sobrescrita do método \texttt{doGet()}. Os parâmetros \texttt{HttpServletRequest} e \texttt{HttpServletResponse} representam, respectivamente, a requisição feita pelo cliente e a resposta do servidor.
+%
+\begin{lstlisting}[language=Java, caption={Um \emph{servlet} que imprime ``\emph{Hello World}''.}, label={alg:servlet}]
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class HelloWorld extends HttpServlet {
+  public void doGet(HttpServletRequest req,
+                    HttpServletResponse res)
+      throws ServletException, IOException {
+    res.setContentType("text/html");
+    PrintWriter out = res.getWriter();
+    out.println("<html>");
+    out.println("<head><title>Hello World</title></head>");
+    out.println("<body>");
+    out.println("<big>Hello World</big>");
+    out.println("</body></html>");
+  }
+}
+\end{lstlisting}
+
+Um \emph{servlet} HTTP pode, além do método \texttt{doGet()}, sobreescrever outros métodos, tais como \texttt{doPut()}, \texttt{doDelete()}, etc, que representam requisições HTTP do tipo PUT, DELETE, etc, respectivamente.
+
+
+% ---
+\subsubsection{Camada de Negócio}
+% ---
+A camada de negócios possui componentes que provêm a lógica do negócio da aplicação, ou seja, código que provê funcionalidades para um determinado domínio do negócio. As tecnologias utilizadas nessa camada são as seguintes:
+\begin{itemize}
+  \item Componentes Enterprise JavaBeans (EJB), que fornecem funcionalidades como gerenciamento de sessão, segurança, gerenciamento de transações, etc.
+  \item \emph{Web services} (JAX-RS, JAX-WS).
+  \item Entidades de persistência - Java Persistence API (JPA).
+\end{itemize}
+
+
+% ---
+\subsubsection{Camada EIS}
+% ---
+
+A camada EIS consiste de servidores de bancos de dados, sistemas de planejamento de recursos empresariais e outras fontes de dados legados. Esses recursos geralmente se localizam em suas próprias máquinas e são acessados pela camada de negócios. As tecnologias utilizadas nessa camada são:
+\begin{itemize}
+  \item Java Database Connetivity API (JDBC) - uma interface que permite a conexão às bases de dados.
+  \item Java Persistence API (JPA).
+  \item Java Transaction API (JTA) - uma interface para a realização de transações.
+\end{itemize}
+
+% ---
+\subsection{JavaServer Faces}\label{sec:jsf}
 % ---
 Apenas testando:
 
