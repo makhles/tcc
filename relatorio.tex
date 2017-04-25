@@ -519,30 +519,77 @@ A camada EIS consiste de servidores de bancos de dados, sistemas de planejamento
 % ---
 \subsection{JavaServer Faces}\label{sec:jsf}
 % ---
-Apenas testando:
 
-\begin{table}[!htb]
-  \IBGEtab{%
-    \caption{Um Exemplo de tabela alinhada que pode ser longa ou curta, conforme padrão IBGE.}%
-    \label{tabela-ibge}
-  }{%
-    \begin{tabular}{ccc}
-      \toprule
-      Nome & Nascimento & Documento \\
-      \midrule \midrule
-      Maria da Silva & 11/11/1111 & 111.111.111-11 \\
-      \bottomrule
-    \end{tabular}%
-  }{%
-    \fonte{Produzido pelos autores}%
-    \nota{Esta éuma nota, que diz que os dados são baseados na regressão linear.}%
-    \nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
-  }
-\end{table}
+A tecnologia JavaServer Faces (JSF) é uma \emph{especificação} de uma API Java utilizada para a criação de interfaces de usuário em aplicações web. Com essa API, é possível:
+%
+\begin{itemize}
+  \item Representar componentes e o gerenciamento dos seus estados;
+  \item Fazer o controle de eventos;
+  \item Realizar a validação e a conversão de dados no lado do servidor;
+  \item Definir regras para a navegação entre páginas;
+  \item Prover o suporte à internacionalização e acessibilidade;
+\end{itemize}
+%
+Além da API, bibliotecas de \emph{tags} são utilizadas para adicionar os componentes às páginas web e para conectá-los aos objetos do servidor. Componentes, ou \emph{widgets}, são entidades autônomas e reutilizáveis da interface de usuário.
+
+Existem duas implementações principais: Apache MyFaces e Oracle Mojarra. Ambas contêm pelo menos os componentes padrões, ou seja, os componentes responsáveis por gerar qualquer um dos elementos HTML básicos (tabelas, caixas de entrada de texto, botões, seletores, etc). Bibliotecas de componentes\footnote{Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces.} oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas (vide Figura~\ref{fig:primefaces_datatable}).
+
+\begin{figure}[!ht]
+  \caption{\label{fig:primefaces_datatable}Componente DataTable da biblioteca PrimeFaces. Evidencia-se o uso de um \emph{paginator} no topo da tabela e o uso do tema \emph{bluesky}.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/primefaces/datatable.png}
+  \end{center}
+  \fonte{PrimeFaces. Disponível em \url{https://www.primefaces.org/showcase/}}
+\end{figure}
+
+ 
+\subsubsection{Arquitetura do \emph{Framework}}
+
+O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitetural expressa um esquema de organização estrutural para sistemas baseados em \emph{software}. O padrão provê um conjunto de subsistemas predefinidos, especifica suas responsabilidades, e inclui regras e diretrizes para organizar a relação entre eles.\cite{buschmann96}} MVC baseado em componentes. A grande vantagem desse padrão é a separação entre apresentação e comportamento (lógica) da aplicação:
+
+\begin{description}
+  \item[Visão] - fornece a representação da informação para o usuário da aplicação. Pode-se ter diversas visões do mesmo modelo. A tecnologia padrão utilizada pelo JSF é a Facelets (vide Seção~\ref{sec:facelets}).
+  \item[Modelo] - representa o comportamento da aplicação em termos do domínio do problema, e independe da visão.
+  \item[Controlador] - converte entradas/eventos em comandos para a visão ou para o modelo.
+\end{description}
+
+Todas as requisições feitas à aplicação devem passar primeiramente pelo controlador através do \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Ou seja, o próprio \emph{framework} JSF assume o papel de controlador no padrão MVC. Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate}\footnote{A implementação de diversos controladores para diferentes tipos de requisições é utilizada em \emph{action-based frameworks}, tais como o SpringMVC, Struts e ASP.NET.} tal como o do Algoritmo~\ref{alg:servlet}.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mvc}Comparação entre os dois tipos de padrão MVC. Em (A), tem-se o \emph{framework} baseado em componentes. Em (B), o baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/mvc/mvc.png}
+  \end{center}
+  \fonte{Caelum. Adaptado de \citetext{caelum}}
+\end{figure}
+
+%O JSF é dito ser um \emph{framework} baseado em componentes (ou \emph{MVC pull}) pelo fato de 
+
+%
+%Apenas testando:
+%
+%\begin{table}[!htb]
+%  \IBGEtab{%
+%    \caption{Um Exemplo de tabela alinhada que pode ser longa ou curta, conforme padrão IBGE.}%
+%    \label{tabela-ibge}
+%  }{%
+%    \begin{tabular}{ccc}
+%      \toprule
+%      Nome & Nascimento & Documento \\
+%      \midrule \midrule
+%      Maria da Silva & 11/11/1111 & 111.111.111-11 \\
+%      \bottomrule
+%    \end{tabular}%
+%  }{%
+%    \fonte{Produzido pelos autores}%
+%    \nota{Esta éuma nota, que diz que os dados são baseados na regressão linear.}%
+%    \nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
+%  }
+%\end{table}
 
 
 % ---
-\subsection{Facelets}
+\subsection{Facelets}\label{sec:facelets}
 % ---
 
 % ---
