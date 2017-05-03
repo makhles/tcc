@@ -554,7 +554,7 @@ No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\
 
 %, tais como o 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
   \caption{\label{fig:mvc}Comparação entre os dois tipos de padrão MVC. Em (A), tem-se o \emph{framework} baseado em componentes. Em (B), o baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
   \begin{center}
     \includegraphics[width=0.75\textwidth]{/mvc/mvc.png}
@@ -591,7 +591,30 @@ No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\
 % ---
 \emph{Facelets} é uma tecnologia de apresentação utilizada em aplicações baseadas em JSF. Atualmente, é também a tecnologia definida na especificação do JSF, substituindo assim a descontinuada JSP (JavaServer Pages).
 
-Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. Dentre suas vantagens, destacam-se:
+Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. No Algoritmo~\ref{alg:tags}, por exemplo, utiliza-se as \emph{tags} \texttt{<h:inputText>} e \texttt{<f:validateLongRange>}, das bibliotecas  JSF HTML e Core, respectivamente.
+
+\begin{lstlisting}[language=html, caption={Utilização de \emph{tags} em um arquivo XHTML.}, label={alg:tags}]
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+  <h:form>
+    <h:inputText id="userNumber"
+                 title="Insira um numero entre 0 e 10:"
+                 value="#{aBean.userNumber}">
+      <f:validateLongRange minimum="#{aBean.minimum}"
+                           maximum="#{aBean.maximum}"/>
+    </h:inputText>
+    <h:commandButton id="submit"
+                     value="Submit"
+                     action="response"/>
+  </h:form>
+</h:body>
+\end{lstlisting}
+
+
+Dentre suas vantagens, destacam-se:
 \begin{itemize}
   \item Reuso de código através de \emph{templates} e da composição de componentes.
   \item Redução do tempo de compilação.
