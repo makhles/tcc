@@ -657,8 +657,38 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 % ---
 
 % ---
-\subsection{Elicitação e Análise de Requisitos}
+\subsection{Análise e Definição de Requisitos}
 % ---
+
+O desenvolvimento de um softare/sistema segundo o modelo em cascata pode ser dividido em diversas etapas ou estágios. A primeira delas consiste na análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, colocar um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não obstante, evita a implementação de funcionalidades desnecessárias.
+
+A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto aos \emph{stakeholders} do sistema. Dessa forma, pôde-se obter uma melhor compreensão das necessidades.
+
+Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
+
+\subsubsection{Requisitos Funcionais}
+
+Os requisitos funcionais descrevem o que o sistema deve fazer. A sua descrição é feita aqui de forma abstrata.
+
+\begin{description}
+\item[Requisito 1 - Visualizar programas oferecidos.] O usuário poderá visualizar a lista de programas de pós-graduação oferecidos pela UFSC sem a necessidade de realizar \emph{login} no sistema.
+\item[Requisito 2 - Realizar cadastro no CAS.] O usuário poderá se cadastrar no Sistema de Autenticação Centralizada a partir da página inicial do sistema.
+\item[Requisito 3 - Acessar o sistema.] O usuário poderá acessar o sistema fazendo \emph{login} através do CAS. O acesso ao sistema não será restrito a nenhum período de inscrição.
+\item[Requisito 4 - Sair do sistema.] O usuário poderá sair do sistema a qualquer momento fazendo \emph{logout}.
+\item[Requisito 5 - Salvar a inscrição.] O usuário poderá salvar as informações inseridas no formulário para um acesso futuro.
+\item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição para o programa selecionado.
+\item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, o usuário receberá um número de inscrição e os dados inseridos não poderão mais ser modificados.
+\item[Requisito 8 - Imprimir um comprovante de inscrição.] Após finalizada a inscrição, o usuário poderá imprimir um comprovante de inscrição.
+\item[Requisito 9 - Importar dados do CAS.] O usuário poderá importar os dados que foram utilizados para fazer o cadastro no CAS.
+\item[Requisito 10 - Importar dados de inscrições anteriores.] O usuário poderá importar alguns dados de inscrições anteriores ao iniciar uma nova inscrição. Os dados que poderão ser importados serão definidos pela PROPG.
+\item[Requisito 11 - Fazer \emph{upload} de arquivos.] O usuário poderá fazer o \emph{upload} de arquivos solicitados pelo programa escolhido.
+\item[Requisito 12 - Importar arquivos.] O usuário poderá importar arquivos utilizados em inscrições anteriores.
+\item[Requisito 13 - Visualizar inscrição.] O usuário poderá visualizar os dados de sua inscrição em uma página única antes de decidir-se por finalizar a inscrição.
+\item[Requisito 14 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados à PROPG na reunião de definição dos requisitos.
+\end{description}
+
+
+\subsubsection{Requisitos Não-Funcionais}
 % ---
 \subsection{Diagramas de Classes}
 % ---
@@ -676,39 +706,39 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 % ---
 
 % ---
-\section{Módulo Administrativo}
-% ---
-
-% ---
-\subsection{Elicitação e Análise de Requisitos}
-% ---
-% ---
-\subsection{Diagramas de Classes}
-% ---
-% ---
-\subsection{Diagramas de Casos de Uso}
-% ---
-% ---
-\subsection{Diagramas de Atividades}
-% ---
-% ---
-\subsection{Diagramas de Seqüência}
-% ---
-% ---
-\subsection{Mock-Ups}
-% ---
-
-
-\chapter{Implementação e Testes}
+%\section{Módulo Administrativo}
+%% ---
+%
+%% ---
+%\subsection{Elicitação e Análise de Requisitos}
+%% ---
+%% ---
+%\subsection{Diagramas de Classes}
+%% ---
+%% ---
+%\subsection{Diagramas de Casos de Uso}
+%% ---
+%% ---
+%\subsection{Diagramas de Atividades}
+%% ---
+%% ---
+%\subsection{Diagramas de Seqüência}
+%% ---
+%% ---
+%\subsection{Mock-Ups}
+%% ---
+%
+%
+%\chapter{Implementação e Testes}
 % ----------------------------------------------------------
 
-% ---
-\section{Testes de Unidade}
-% ---
-
-% ---
-\section{Teste de Carga}
-% ---
+%% ---
+%\section{Testes de Unidade}
+%% ---
+%
+%% ---
+%\section{Teste de Carga}
+%% ---
 
 
 
