@@ -80,8 +80,8 @@
 % Pacotes de citações
 % ---
 \usepackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
-%\usepackage[alf]{abntex2cite}	              % Citações utilizando o padrão autor-data de chamadas
-\usepackage[num,overcite]{abntex2cite}       % Citações utilizando o padrão numérico de chamadas
+\usepackage[alf]{abntex2cite}	              % Citações utilizando o padrão autor-data de chamadas
+%\usepackage[num,overcite]{abntex2cite}       % Citações utilizando o padrão numérico de chamadas
 \citebrackets()
 
 
@@ -185,7 +185,7 @@
 \orientador{Andréia Alves dos Santos Schwaab}
 \coorientador{Leandro José Komosinski}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Ciências da Computação da Universidade Federal de Santa Catarina para a obtenção do grau de Bacherel em Ciências da Computação.}
+\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Ciências da Computação da Universidade Federal de Santa Catarina para a obtenção do grau de Bacharel em Ciências da Computação.}
 
 % ---
 % Configurações de aparência do PDF final
@@ -341,6 +341,7 @@ The abstract.
   \item[JSF]     JavaServer Faces
   \item[JPA]     Java Persistence API
   \item[SeTIC]   Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação
+  \item[UFSC]    Universidade Federal de Santa Catarina
 \end{siglas}
 
 
@@ -367,10 +368,10 @@ The abstract.
 % ----------------------------------------------------------
 
 % ---
-\section{Cenário Atual}
+\section{Contextualização}
 % ---
 
-O acesso aos cursos de Pós-Graduação da UFSC é feito através de processos seletivos. A inscrição nesses processos seletivos é feita, atualmente, de forma desorganizada: existe um sistema provisório \footnote{Vide \href{}{http://www.capg.homologacao.ufsc.br/inscricao} }, com poucas funcionalidades, que está sendo utilizado por secretarias de alguns cursos; outras utilizam o seu próprio formulário de inscrição online, enquanto que algumas não utilizam nenhum sistema de inscrição propriamente dito, restringindo-se ao uso de formulários de inscrição manuais.
+O acesso aos cursos de Pós-Graduação da UFSC é feito através de processos seletivos. Atualmente, existe um sistema\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}} com poucas funcionalidades que está sendo utilizado por secretarias de alguns cursos. Outras utilizam o seu próprio formulário de inscrição online, enquanto que algumas não utilizam nenhum sistema de inscrição propriamente dito, restringindo-se ao uso de formulários de inscrição manuais.
 
 O uso desses diversos sistemas de inscrição, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
 
@@ -382,10 +383,24 @@ O uso desses diversos sistemas de inscrição, com suas funcionalidades e interf
   \item Difícil obtenção de estatísticas relacionadas aos candidatos.
 \end{itemize}
 
+Adicionalmente, o sistema atual está carente de algumas funcionalidades consideradas primordiais, descritas a seguir.
+
+\subsection{Envio de documentos}
+Provavelmente a funcionalidade mais importante que será implementada neste novo sistema é a possibilidade do envio de documentos por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
+
+\subsection{Salvamento das informações}
+Caso um candidato queira fazer a inscrição em algum dos programas disponibilizados pela UFSC através do sistema de inscrição atual, este deve, essencialmente, fornecer todas as informações em uma única sessão e, ao final, receberá um número de inscrição e a possibilidade de imprimir um comprovante de inscrição. Não há margens para erros, indecisões ou perdas de conexão durante esse processo. Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
+
+\subsection{Ordem de preenchimento do formulário}
+No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo\footnote{A não ser, é claro, em situações onde exista uma ordem implícita. O envio de documentos é um exemplo, pois estes dependem do programa e nível escolhidos.}.
+
 % ---
 \section{SeTIC}
 % ---
 
+A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), um dos órgãos de destaque na Universidade do Estado de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade.
+
+Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e atualmente possui bolsa de extensão pela FEESC. Todas as atividades estão sendo desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operação} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
 
 % ---
 \section{Objetivos}
@@ -394,15 +409,15 @@ O uso desses diversos sistemas de inscrição, com suas funcionalidades e interf
 % ---
 \subsection{Objetivo Geral}
 % ---
-O objetivo principal deste Trabalho de Conclusão é desenvolver um sistema para a inscrição de candidatos nos processos seletivos dos diversos programas de Pós-Graduação da UFSC, utilizando o sistema provisório que está em uso como base.
+O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um sistema para a inscrição de candidatos nos processos seletivos dos diversos programas de Pós-Graduação da UFSC, utilizando o sistema de inscrição que está em uso atualmente como base.
 
 % ---
 \subsection{Objetivos Específicos}
 % ---
 \begin{itemize}
-  \item Implementação do Módulo de Inscrição.
-  \item Implementação do Módulo Administrativo.
-  \item Elaboração do TCC.
+  \item Implementação do Módulo de Inscrição - consiste na implementação das regras de negócio e das páginas que o candidato terá acesso ao realizar sua inscrição.
+  \item Implementação do Módulo Administrativo - consiste na implementação das regras de negócio no sistema CAPG Secretaria (sistema em desenvolvimento para administração dos cursos por suas secretarias).
+  \item Elaboração de um artigo referente ao TCC.
 \end{itemize}
 
 % ---
@@ -411,7 +426,7 @@ O objetivo principal deste Trabalho de Conclusão é desenvolver um sistema para
 \begin{itemize}
   \item Módulo do Formulário de Inscrição.
   \item Módulo Administrativo do Processo de Inscrição.
-  \item Elaboração do TCC.
+  \item Artigo referente à produção realizada anexo ao TCC.
 \end{itemize}
 
 
@@ -425,7 +440,7 @@ O objetivo principal deste Trabalho de Conclusão é desenvolver um sistema para
 
 
 % ---
-\section{Plataforma Java, Edição Empresarial}
+\section{Plataforma Java, Edição Empresarial}\label{sec:java2e}
 % ---
 
 As \textbf{aplicações empresariais} têm o propósito de fornecer a \emph{lógica do negócio} de uma empresa. O seu gerenciamento é feito de forma centralizada e é comum a sua interação com outros softwares empresariais. A plataforma Java, Edição Empresarial (Java EE), é um conjunto de tecnologias Java que são utilizadas para o desenvolvimento de aplicações empresariais. O objetivo da plataforma é fornecer aos desenvolvedores um conjunto de especificações / APIs que permitam a diminuição do tempo de desenvolvimento, a redução da complexidade e o aumento do desempenho de aplicações empresariais\cite{javaee7}. Tais especificações são \emph{contratos} que são implementados por diversos fornecedores, \emph{e.g.}, GlassFish, Oracle WebLogic, Apache TomEE, etc.
@@ -549,11 +564,6 @@ A implementação de controladores para atender a diferentes tipos de requisiç�
 
 A Figura~\ref{fig:mvc} mostra esquemas representativos destes dois modelos MVC. Em (A), tem-se o \emph{framework} JSF, baseado em componentes. Resumidamente, a requisição feita pelo usuário da aplicação é recebida pelo \texttt{FacesServlet}, que delega o processamento para a visão responsável pela geração da página acessada. O componente acessado (por exemplo, um botão) invoca um método em um \emph{managed bean}\footnote{Uma classe Java que trabalha junto à visão.}. Este, por sua vez, pode buscar dados do modelo e retorná-los para a visão. Finalmente, a visão envia a resposta ao usuário. O ciclo de vida do processamento de requisições do JSF é bem mais complexo, pois envolve a criação de uma árvore de componentes, a conversão e validação dos dados obtidos destes componentes, o gerenciamento de eventos oriundos destes componentes e a propagação dos dados para os \emph{beans}.
 
-No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\footnote{Classes que estendem a classe \texttt{HttpServlet}.} para tratar as diversas requisições, invocando o modelo e atualizando a visão. 
-
-
-%, tais como o 
-
 \begin{figure}[!ht]
   \caption{\label{fig:mvc}Comparação entre os dois tipos de padrão MVC. Em (A), tem-se o \emph{framework} baseado em componentes. Em (B), o baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
   \begin{center}
@@ -561,6 +571,8 @@ No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\
   \end{center}
   \fonte{Caelum. Adaptado de \citetext{caelum}}
 \end{figure}
+
+No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\footnote{Classes que estendem a classe \texttt{HttpServlet}.} para tratar as diversas requisições, invocando o modelo e atualizando a visão. 
 
 
 %
@@ -614,7 +626,7 @@ Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são
 \end{lstlisting}
 
 
-Dentre suas vantagens, destacam-se:
+Dentre suas vantagens, \cite{javaee7} destacam:
 \begin{itemize}
   \item Reuso de código através de \emph{templates} e da composição de componentes.
   \item Redução do tempo de compilação.
@@ -625,7 +637,7 @@ Dentre suas vantagens, destacam-se:
 % ---
 \subsection{Primefaces}
 % ---
-Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces. Nos sistemas desenvolvidos na SeTIC baseados em Java, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
+Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces. Nos sistemas atualmente desenvolvidos pela SeTIC baseados em Java, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
 
 \begin{figure}[!ht]
   \caption{\label{fig:primefaces_datatable}Componente DataTable da biblioteca PrimeFaces. Evidencia-se o uso de um \emph{paginator} no topo da tabela e o uso do tema \emph{bluesky}.}
@@ -657,26 +669,36 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 % ---
 
 % ---
-\subsection{Análise e Definição de Requisitos}
+\subsection{Elicitação, Análise e Definição de Requisitos}
 % ---
 
-O desenvolvimento de um softare/sistema segundo o modelo em cascata pode ser dividido em diversas etapas ou estágios. A primeira delas consiste na análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, colocar um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não obstante, evita a implementação de funcionalidades desnecessárias.
+O desenvolvimento de um software/sistema segundo o modelo em cascata pode ser dividido em diversas etapas ou estágios. A primeira consiste na elicitação, análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
 
-A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto aos \emph{stakeholders} do sistema. Dessa forma, pôde-se obter uma melhor compreensão das necessidades.
+A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto ao cliente. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
-Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
+Cabe aqui ressaltar que até o momento da confecção deste relatório, apenas uma reunião havia sido feita com o cliente. Um conjunto de \emph{wireframes} das páginas do sistema foi desenvolvido\footnote{Utilizou-se um \emph{plugin} do WireframeSketcher feito para o Eclipse.} e apresentado com o objetivo de validar a estrutura, o conteúdo, as diversas funções e os diversos caminhos de interações dos usuários com o sistema. A confecção deste conjunto de \emph{wireframes} teve como base o sistema atual. Em cima deste foram aplicadas todas as mudanças que se faziam necessárias e que justificam o desenvolvimento do novo sistema. A Figura~\ref{fig:wireframe} fornece um exemplo retirado deste conjunto: após ter feito \emph{login} no sistema, o usuário Fulano é recebido com um conjunto de inscrições previamente realizadas por si. Evidencia-se o uso de balões explicativos para agilizar o entendimento dos diversos elementos da página pelo cliente. Ressalta-se que o visual da página não é o foco do \emph{wireframe}, e sim o que ela permite que o usuário realize.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:wireframe} \emph{Wireframe} que representa a página de inscrições realizadas pelo usuário Fulano após este ter feito \emph{login} no sistema. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/wireframe.png}
+  \end{center}
+  \fonte{Autor.}
+\end{figure}
+
+Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.} para o sistema foi aprovado e servirá como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
 
 \subsubsection{Requisitos Funcionais}
 
-Os requisitos funcionais descrevem o que o sistema deve fazer. A sua descrição é feita aqui de forma abstrata.
+Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, como deve reagir a entradas específicas e como deve se comportar em determinadas situações. A sua descrição é feita aqui de forma abstrata (em alto nível) para que sejam compreendidos pelos diversos \emph{stakeholders} do projeto.
 
 \begin{description}
 \item[Requisito 1 - Visualizar programas oferecidos.] O usuário poderá visualizar a lista de programas de pós-graduação oferecidos pela UFSC sem a necessidade de realizar \emph{login} no sistema.
 \item[Requisito 2 - Realizar cadastro no CAS.] O usuário poderá se cadastrar no Sistema de Autenticação Centralizada a partir da página inicial do sistema.
-\item[Requisito 3 - Acessar o sistema.] O usuário poderá acessar o sistema fazendo \emph{login} através do CAS. O acesso ao sistema não será restrito a nenhum período de inscrição.
+\item[Requisito 3 - Acessar o sistema.] O usuário poderá acessar o sistema através de \emph{login}.
 \item[Requisito 4 - Sair do sistema.] O usuário poderá sair do sistema a qualquer momento fazendo \emph{logout}.
 \item[Requisito 5 - Salvar a inscrição.] O usuário poderá salvar as informações inseridas no formulário para um acesso futuro.
-\item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição para o programa selecionado.
+\item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição do programa selecionado, desde que não tenha finalizado a sua inscrição.
 \item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, o usuário receberá um número de inscrição e os dados inseridos não poderão mais ser modificados.
 \item[Requisito 8 - Imprimir um comprovante de inscrição.] Após finalizada a inscrição, o usuário poderá imprimir um comprovante de inscrição.
 \item[Requisito 9 - Importar dados do CAS.] O usuário poderá importar os dados que foram utilizados para fazer o cadastro no CAS.
@@ -689,21 +711,24 @@ Os requisitos funcionais descrevem o que o sistema deve fazer. A sua descrição
 
 
 \subsubsection{Requisitos Não-Funcionais}
+
+Segundo \cite{sommerville2011}, os requisitos não funcionais são aqueles que não estão diretamente relacionados com os serviços específicos oferecidos pelo sistema a seus usuários. Relacionam-se às propriedades emergentes do sistema e definem restrições sobre a sua implementação. Foram identificados os seguintes requisitos:
+
+\begin{itemize}
+\item O sistema deve possibilitar o acesso dos usuários durante todos os dias do ano para que possam imprimir comprovantes de inscrição.
+\item Usuários do sistema devem autenticar-se utilizando o Sistema de Autenticação Centralizada (CAS).
+\item A aplicação Web deve ser feita utilizando a linguagem de programação Java e as tecnologias que são comumente utilizadas no desenvolvimento Web com Java e que estão disponíveis na SeTIC (vide Seção~\ref{sec:java2e}).
+\item A aplicação Web deve utilizar a estrutura e seguir o visual dos demais sistemas desenvolvidos na SeTIC. Para tanto, deve-se utilizar o projeto denominado \emph{Projeto Base}, criado por desenvolvedores da SeTIC para o desenvolvimento de novos sistemas.
+\end{itemize}
+
+
 % ---
 \subsection{Diagramas de Classes}
 % ---
 % ---
 \subsection{Diagramas de Casos de Uso}
 % ---
-% ---
-\subsection{Diagramas de Atividades}
-% ---
-% ---
-\subsection{Diagramas de Seqüência}
-% ---
-% ---
-\subsection{Mock-Ups}
-% ---
+
 
 % ---
 %\section{Módulo Administrativo}
