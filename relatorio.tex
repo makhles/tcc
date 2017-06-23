@@ -342,6 +342,8 @@ The abstract.
   \item[JPA]     Java Persistence API
   \item[SeTIC]   Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação
   \item[UFSC]    Universidade Federal de Santa Catarina
+  \item[RUP]     Rational Unified Process
+  \item[UML]     Unified Modelling Language
 \end{siglas}
 
 
@@ -661,18 +663,21 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 
 
 
-\chapter{Análise e Projeto}
+\chapter{Análise e Projeto - Módulo de Inscrição}
 % ----------------------------------------------------------
 
-% ---
-\section{Módulo do Formulário de Inscrição}
-% ---
+\cite{sommerville2011} explica que um \emph{processo de software} é um conjunto de atividades relacionadas que levam à produção de um produto de software. Embora existam diversos processos de software, todos devem incluir as seguintes atividades fundamentais: especificação, projeto e implementação, validação, e evolução do software. Cada uma destas atividades é uma tarefa complexa em si mesma e inclui subatividades.
+
+Por não existir um modelo de processo de software padrão a ser utilizado na SeTIC, o autor decidiu-se por utilizar o mesmo ``modelo'' de processo de software dos projetos anteriores em que participou na SeTIC como estagiário: as atividades fundamentais supracitadas são executadas de forma iterativa, seguindo as boas práticas especificadas pelo \emph{Rational Unified Process} (RUP), um modelo de processo moderno e híbrido, derivado de trabalhos sobre a UML (Unified Modelling Language).
+
+Ressalta-se que o desenvolvimento se dá por meio da extensão e melhoria de um sistema existente. Far-se-á uso das tabelas utilizadas nesse sistema, bem como dos campos presentes no formulário de inscrição. Não obstante, novas tabelas e campos serão criados, e toda a lógica de negócio do sistema será de autoria deste autor.
+
 
 % ---
-\subsection{Elicitação, Análise e Definição de Requisitos}
+\section{Elicitação, Análise e Definição de Requisitos}
 % ---
 
-O desenvolvimento de um software/sistema segundo o modelo em cascata pode ser dividido em diversas etapas ou estágios. A primeira consiste na elicitação, análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
+O desenvolvimento de um software/sistema segundo o modelo adotado pode ser dividido em diversos estágios. O primeiro consiste na elicitação, análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
 
 A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto ao cliente. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
@@ -688,7 +693,7 @@ Cabe aqui ressaltar que até o momento da confecção deste relatório, apenas u
 
 Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.} para o sistema foi aprovado e servirá como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
 
-\subsubsection{Requisitos Funcionais}
+\subsection{Requisitos Funcionais}
 
 Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, como deve reagir a entradas específicas e como deve se comportar em determinadas situações. A sua descrição é feita aqui de forma abstrata (em alto nível) para que sejam compreendidos pelos diversos \emph{stakeholders} do projeto.
 
@@ -710,7 +715,7 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 \end{description}
 
 
-\subsubsection{Requisitos Não-Funcionais}
+\subsection{Requisitos Não Funcionais}
 
 Segundo \cite{sommerville2011}, os requisitos não funcionais são aqueles que não estão diretamente relacionados com os serviços específicos oferecidos pelo sistema a seus usuários. Relacionam-se às propriedades emergentes do sistema e definem restrições sobre a sua implementação. Foram identificados os seguintes requisitos:
 
@@ -721,55 +726,41 @@ Segundo \cite{sommerville2011}, os requisitos não funcionais são aqueles que n
 \item A aplicação Web deve utilizar a estrutura e seguir o visual dos demais sistemas desenvolvidos na SeTIC. Para tanto, deve-se utilizar o projeto denominado \emph{Projeto Base}, criado por desenvolvedores da SeTIC para o desenvolvimento de novos sistemas.
 \end{itemize}
 
+% ---
+\section{Projeto do Sistema}
+% ---
+
+O segundo estágio do modelo de desenvolvimento de software adotado consiste em desenvolver a arquitetura geral do sistema. Aqui descrevem-se as principais abstrações do sistema e seus relacionamentos através dos diagramas de casos de uso e de classes.
+
+\subsection{Diagrama de Casos de Uso}
+
+Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. As interações são representadas por elipses e os atores por bonecos palito. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato, único ator do módulo de inscrição.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:use_cases} Casos de uso identificados para o ator Candidato. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/use_cases.png}
+  \end{center}
+  \fonte{Autor.}
+\end{figure}
 
 % ---
 \subsection{Diagramas de Classes}
 % ---
-% ---
-\subsection{Diagramas de Casos de Uso}
-% ---
 
+A fazer.
 
 % ---
-%\section{Módulo Administrativo}
-%% ---
-%
-%% ---
-%\subsection{Elicitação e Análise de Requisitos}
-%% ---
-%% ---
-%\subsection{Diagramas de Classes}
-%% ---
-%% ---
-%\subsection{Diagramas de Casos de Uso}
-%% ---
-%% ---
-%\subsection{Diagramas de Atividades}
-%% ---
-%% ---
-%\subsection{Diagramas de Seqüência}
-%% ---
-%% ---
-%\subsection{Mock-Ups}
-%% ---
-%
-%
-%\chapter{Implementação e Testes}
-% ----------------------------------------------------------
+\section{Implementação}
+% ---
 
-%% ---
-%\section{Testes de Unidade}
-%% ---
-%
-%% ---
-%\section{Teste de Carga}
-%% ---
+A fazer.
 
 
 
 \chapter{Conclusões}
 % ----------------------------------------------------------
-
+A fazer.
 
 
 % ----------------------------------------------------------
