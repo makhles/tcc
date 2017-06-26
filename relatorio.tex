@@ -56,7 +56,7 @@
 \usepackage[final]{pdfpages}
 \usepackage{listings}         % Para incluir código fonte com formatação
 
-%\usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
+\usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
 %\usepackage{adjustbox}        % Permite o escalonamento do conteúdo que não cabe em uma página
 %\usepackage{tabularx}         % Impede o overflow de tabelas. 
 %\usepackage{rotating}         % Rotaciona tabelas.
@@ -400,7 +400,7 @@ No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Mu
 \section{SeTIC}
 % ---
 
-A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), um dos órgãos de destaque na Universidade do Estado de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade.
+A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), um dos órgãos de destaque na Universidade do Estado de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade\footnote{Mais informações em http://setic.ufsc.br/apresentacao/}.
 
 Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e atualmente possui bolsa de extensão pela FEESC. Todas as atividades estão sendo desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operação} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
 
@@ -474,7 +474,7 @@ Esta camada é composta de clientes aplicativos que acessam o servidor Java EE e
 \end{itemize}
 
 % ---
-\subsubsection{Camada Web}
+\subsubsection{Camada Web}\label{sec:camada-web}
 % ---
 
 É a camada responsável pela interação entre os clientes e a camada de negócios. Suas principais funções são:
@@ -512,7 +512,7 @@ Um \emph{servlet} HTTP pode, além do método \texttt{doGet()}, sobreescrever ou
 
 
 % ---
-\subsubsection{Camada de Negócio}
+\subsubsection{Camada de Negócio}\label{sec:camada-negocio}
 % ---
 A camada de negócios possui componentes que provêm a lógica do negócio da aplicação, ou seja, código que provê funcionalidades para um determinado domínio do negócio. As tecnologias utilizadas nessa camada são as seguintes:
 \begin{itemize}
@@ -576,28 +576,6 @@ A Figura~\ref{fig:mvc} mostra esquemas representativos destes dois modelos MVC. 
 
 No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\footnote{Classes que estendem a classe \texttt{HttpServlet}.} para tratar as diversas requisições, invocando o modelo e atualizando a visão. 
 
-
-%
-%Apenas testando:
-%
-%\begin{table}[!htb]
-%  \IBGEtab{%
-%    \caption{Um Exemplo de tabela alinhada que pode ser longa ou curta, conforme padrão IBGE.}%
-%    \label{tabela-ibge}
-%  }{%
-%    \begin{tabular}{ccc}
-%      \toprule
-%      Nome & Nascimento & Documento \\
-%      \midrule \midrule
-%      Maria da Silva & 11/11/1111 & 111.111.111-11 \\
-%      \bottomrule
-%    \end{tabular}%
-%  }{%
-%    \fonte{Produzido pelos autores}%
-%    \nota{Esta éuma nota, que diz que os dados são baseados na regressão linear.}%
-%    \nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
-%  }
-%\end{table}
 
 
 % ---
@@ -754,7 +732,47 @@ A fazer.
 \section{Implementação}
 % ---
 
-A fazer.
+Após definida a estrutura inicial do sistema, deu-se início ao processo de implementação. O Projeto Base foi configurado para atender às necessidades do sistema. Diversos pacotes foram criados para a separação lógica das classes, como pode ser visto na Figura~\ref{fig:src_explorer}.
+
+O pacote \texttt{(a)} é composto de \emph{beans} e classes auxialiares da camada Web (vide Seção~\ref{sec:camada-web}) que, em conjunto com os arquivos .xhtml, são responsáveis por gerar as páginas da aplicação. O mapeamento objeto-relacional se encontra no pacote destacado por \texttt{(b)}. Aqui se encontram as classes das inúmeras entidades do sistema (vide Seção~\ref{sec:camada-negocio}).
+
+    
+%TODO
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:src_explorer} Alguns pacotes e classes da aplicação. }
+  \begin{center}
+    \includegraphics[scale=1.0]{/src_explorer.png}
+  \end{center}
+  \fonte{Produzido pelo autor.}
+\end{figure}
+
+
+No momento da confecção deste relatório, os casos de uso listados na Tabela~\ref{tabela-casos-uso} haviam sido implementados.
+
+
+\begin{table}[!htb]
+  \IBGEtab{%
+    \caption{Casos de uso implementados e respectivas páginas envolvidas.}%
+    \label{tabela-casos-uso}
+  }{
+    \begin{tabular}{|c|c|}
+      \hline 
+      Caso de Uso & Página \\ \hline 
+      Visualizar programas disponíveis & programas.xhtml \\ \hline 
+      Fazer \emph{login} & \multirow{2}{*}{login.xhtml} \\
+      Fazer \emph{logout} & \\ \hline
+      Criar inscrição & \multirow{3}{*}{inscricoes.xhtml} \\
+      Editar inscrição & \\
+      Excluir inscrição & \\ \hline 
+    \end{tabular} 
+  }{
+    \fonte{Produzido pelo autor.}%
+    %\nota{Esta é uma nota, que diz que os dados são baseados na regressão linear.}%
+    %\nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
+  }
+\end{table}
 
 
 
@@ -778,3 +796,24 @@ A fazer.
 
 
 \end{document}
+
+% EXEMPLO DE TABELA DO IBGE
+%
+%\begin{table}[!htb]
+%  \IBGEtab{%
+%    \caption{Um Exemplo de tabela alinhada que pode ser longa ou curta, conforme padrão IBGE.}%
+%    \label{tabela-ibge}
+%  }{%
+%    \begin{tabular}{ccc}
+%      \toprule
+%      Nome & Nascimento & Documento \\
+%      \midrule \midrule
+%      Maria da Silva & 11/11/1111 & 111.111.111-11 \\
+%      \bottomrule
+%    \end{tabular}%
+%  }{%
+%    \fonte{Produzido pelos autores}%
+%    \nota{Esta é uma nota, que diz que os dados são baseados na regressão linear.}%
+%    \nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
+%  }
+%\end{table}
