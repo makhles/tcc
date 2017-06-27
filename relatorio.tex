@@ -81,7 +81,7 @@
 % Pacotes de citações
 % ---
 \usepackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	              % Citações utilizando o padrão autor-data de chamadas
+\usepackage[alf]{abntex2cite}	               % Citações utilizando o padrão autor-data de chamadas
 %\usepackage[num,overcite]{abntex2cite}       % Citações utilizando o padrão numérico de chamadas
 \citebrackets()
 
@@ -631,6 +631,127 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 % ---
 \subsection{Java Persistence API}
 % ---
+
+A API de Persistência do Java (JPA - Java Persistence API), possibilita o gerenciamento de dados relacionais nas aplicações Java através de um mapeamento objeto-relacional. Esse mapeamento é feito através de \emph{entidades} - objetos do domínio de persistência. Uma entidade representa uma tabela de um banco de dados no modelo relacional, e suas instâncias representam as linhas desta tabela. Segundo \citeonline{javaee7}, para ser considerada uma entidade, uma classe precisa:
+
+\begin{enumerate}
+  \item Possuir a anotação \texttt{javax.persistence.entity};
+  \item Pelo menos um construtor sem argumentos com visibilidade \texttt{public} ou \texttt{protected};
+  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \texttt{final};
+  \item Instâncias persistíveis devem ser declaradas como \texttt{private}, \texttt{protected} ou \texttt{package-private} e podem ser acessadas somente através dos métodos da classe.
+\end{enumerate}
+
+O estado de uma entidade é definido através de seus campos persistíveis, os quais usam anotações de mapeamento objeto-relacional para mapear as entidades e seus relacionamentos aos dados da base de dados. As restrições impostas anteriormente e o relacionamento entre campos podem ser vistos na entidade \texttt{PoloCursoNivel} do Algoritmo~\ref{alg:entity_pcn}, no qual as restrições foram destacadas com comentários.
+
+Pode-se perceber o relacionamento entre as entidades \texttt{PoloCursoNivel} e \texttt{Polo} através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
+
+%\begin{landscape}
+\begin{lstlisting}[language=java, caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
+
+@Entity // 1)
+@Table(name="poloCursoNivel_cnp", catalog = "capg",
+       schema = "dbo")
+public class PoloCursoNivel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private PoloCursoNivelPK id;
+
+    @ManyToOne
+    @JoinColumn(name="cd_polo_pol",
+                referencedColumnName="cd_polo_pol")
+    private Polo polo;  // 3 e 4)
+
+    @ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "cd_curso_cur",
+                    referencedColumnName = "cd_curso_cur"),
+        @JoinColumn(name = "cd_nivel_niv",
+                    referencedColumnName = "cd_nivel_niv")
+    })
+    private Curso curso;
+
+    // Demais campos
+
+    public PoloCursoNivel() {  // 2)
+        super();
+    }
+    public PoloCursoNivelPK getId() {
+        return id;
+    }
+    public void setId(PoloCursoNivelPK id) {
+        this.id = id;
+    }
+    // Demais getters e setters
+}
+
+\end{lstlisting}
+\fonte{Autor.}
+%\end{landscape}
+
+%Diz-se que a entidade \texttt{PoloCursoNivel} é a entidade fonte e a entidade \texttt{Polo} é a entidade alvo da associação.
+
+\citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são discutidas brevemente nos itens a seguir.
+
+\subsubsection{Relacionamento \texttt{@OneToOne}}
+Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, espera-se que o nome dessa coluna seja o nome do atributo da entidade fonte, seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
+
+Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fig:jpa_onetoone}. O mapeamento feito pelo JPA espera que a coluna com a chave estrangeira a ser utilizada seja chamada de \texttt{PARKINGSPACE\_ID}, porém essa coluna chama-se \texttt{PSPACE\_ID}. Neste caso, utiliza-se a anotação \texttt{@JoinColumn(name = ``PSPACE\_ID'')}, conforme Algoritmo~\ref{alg:entity_employee}.
+
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_onetoone} Tabelas EMPLOYEE e PARKING\_SPACE.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/jpa/one_to_one_table.png}
+  \end{center}
+  \fonte{Retirado de \citeonline{keith2013}.}
+\end{figure}
+
+É interessante notar que o campo \texttt{name} não possui nenhuma anotação relacionada à sua persistência. Isso se deve ao fato de existir uma coluna de mesmo nome na tabela \texttt{EMPLOYEE}.
+
+\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee}]
+@Entity
+public class Employee {
+
+  @Id
+  private long id;
+  private String name;
+  
+  @OneToOne
+  @JoinColumn(name="PSPACE_ID")
+  private ParkingSpace parkingSpace;
+  // ...
+}
+\end{lstlisting}
+
+
+
+Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, define-se então o relacionamento um pra um bidirecional. Em relacionamentos bidirecionais, uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
+
+\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee_bi}]
+@Entity
+public class ParkingSpace {
+  
+  @Id
+  private long id;
+  private int lot;
+  private String location;
+
+  @OneToOne(mappedBy="parkingSpace")
+  private Employee employee;
+  // ...
+}
+\end{lstlisting}
+
+\subsubsection{Relacionamento \texttt{@OneToMany}}
+
+
+
+
+\subsubsection{Relacionamento \texttt{@ManyToMany}}
+
 
 % ---
 \subsection{Hibernate}
