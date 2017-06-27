@@ -55,6 +55,7 @@
 \usepackage{microtype} 			  % Para melhorias de justificação
 \usepackage[final]{pdfpages}
 \usepackage{listings}         % Para incluir código fonte com formatação
+\usepackage{lscape}           % Folha em formato landscape
 
 \usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
 %\usepackage{adjustbox}        % Permite o escalonamento do conteúdo que não cabe em uma página
@@ -671,7 +672,7 @@ Cabe aqui ressaltar que até o momento da confecção deste relatório, apenas u
 
 Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.} para o sistema foi aprovado e servirá como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
 
-\subsection{Requisitos Funcionais}
+\subsection{Requisitos Funcionais}\label{sec:requisitos_funcionais}
 
 Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, como deve reagir a entradas específicas e como deve se comportar em determinadas situações. A sua descrição é feita aqui de forma abstrata (em alto nível) para que sejam compreendidos pelos diversos \emph{stakeholders} do projeto.
 
@@ -732,24 +733,49 @@ A fazer.
 \section{Implementação}
 % ---
 
-Após definida a estrutura inicial do sistema, deu-se início ao processo de implementação. O Projeto Base foi configurado para atender às necessidades do sistema. Diversos pacotes foram criados para a separação lógica das classes, como pode ser visto na Figura~\ref{fig:src_explorer}.
+Após definida a estrutura inicial do sistema, deu-se início ao processo de implementação. O projeto foi configurado para atender às necessidades do sistema. Além de arquivos de configuração, diversos pacotes foram criados para a separação lógica das classes, como pode ser visto na Figura~\ref{fig:src_explorer}.
 
-O pacote \texttt{(a)} é composto de \emph{beans} e classes auxialiares da camada Web (vide Seção~\ref{sec:camada-web}) que, em conjunto com os arquivos .xhtml, são responsáveis por gerar as páginas da aplicação. O mapeamento objeto-relacional se encontra no pacote destacado por \texttt{(b)}. Aqui se encontram as classes das inúmeras entidades do sistema (vide Seção~\ref{sec:camada-negocio}).
+O pacote \texttt{(a)} é composto de \emph{beans} e classes auxialiares da camada Web (vide Seção~\ref{sec:camada-web}) que, em conjunto com os arquivos .xhtml, são responsáveis por gerar as páginas da aplicação.
 
-    
-%TODO
+O mapeamento objeto-relacional se encontra no pacote destacado por \texttt{(b)}. Aqui se encontram as classes das inúmeras entidades do sistema (vide Seção~\ref{sec:camada-negocio}) e, por serem muitas, não foram incluídas na imagem.
 
+As classes representadas por \texttt{(c)}, assim como as classes do item anterior, pertencem à camada de negócios. São classes ditas de serviço, responsáveis pelas operações básicas de persistência: \emph{Create}, \emph{Read}, \emph{Update}, \emph{Delete}, comumente abreaviadas por CRUD. Na imagem, as classes \texttt{AcessoService}, \texttt{InscricoesService} e \texttt{InscricoesService} são interfaces\footnote{Em Java, uma interface é um tipo abstrato que especifica um comportamento que deve ser implementado.}, enquanto que \texttt{AcessoServiceImpl}, \texttt{InscricoesServiceImpl} e \texttt{InscricoesServiceImpl} representam suas implementações.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:src_explorer} Alguns pacotes e classes da aplicação. }
+  \caption{\label{fig:src_explorer} Alguns pacotes e classes da aplicação vistos no Eclipse. }
   \begin{center}
     \includegraphics[scale=1.0]{/src_explorer.png}
   \end{center}
   \fonte{Produzido pelo autor.}
 \end{figure}
 
+Para ilustrar a operação \emph{read}, o Algoritmo~\ref{alg:programas_disponiveis} contém o método que obtém a lista de programas disponíveis em uma determinada data. Percebe-se que o tipo do elemento contido na lista é um \texttt{ProgramaAux}, uma das classes auxialiares mencionadas no item \texttt{(a)}. Ainda, \texttt{em} é uma instância de um \texttt{EntityManager} que está associada a um contexto de persistência.
+%TODO - referenciar JPA
 
-No momento da confecção deste relatório, os casos de uso listados na Tabela~\ref{tabela-casos-uso} haviam sido implementados.
+\begin{landscape}
+\begin{lstlisting}[language=java, caption={Obtenção da lista de programas disponíveis.}, label={alg:programas_disponiveis}]
+public List<ProgramaAux> obterProgramasDisponiveisNaData(DateTime data) {
+    StringBuffer query = new StringBuffer();
+    query.append("SELECT new br.ufsc.setic.capginscricao.controller.capg.ProgramaAux(");
+    query.append("ps.curso.nome, ps.nivel.descricao, ps.polo.nome) ");
+    query.append("FROM ProcessoSeletivo ps ");
+    query.append("WHERE :data BETWEEN ps.dtInicioProcesso AND ps.dtTerminoProcesso ");
+    query.append("ORDER BY ps.curso");
+
+    return em.createQuery(query.toString(), ProgramaAux.class)
+            .setParameter("data", data.toLocalDateTime())
+            .getResultList();
+}
+\end{lstlisting}
+\end{landscape}
+
+Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer} já existiam no Projeto Base e provêm funcionalidades como segurança (através do Spring), acesso a Web Services, comunição com a base de dados Centura, validadores e conversores do JSF, etc.
+
+% ---
+\subsection{Funcionalidades}
+% ---
+
+A Tabela~\ref{tabela-casos-uso} lista os casos de uso relativos aos requisitos especificados na Seção \ref{sec:requisitos_funcionais} e que haviam sido implementados \emph{parcialmente} no momento da confecção deste relatório.
 
 
 \begin{table}[!htb]
@@ -759,7 +785,7 @@ No momento da confecção deste relatório, os casos de uso listados na Tabela~\
   }{
     \begin{tabular}{|c|c|}
       \hline 
-      Caso de Uso & Página \\ \hline 
+      Caso de Uso & Página da Aplicação \\ \hline 
       Visualizar programas disponíveis & programas.xhtml \\ \hline 
       Fazer \emph{login} & \multirow{2}{*}{login.xhtml} \\
       Fazer \emph{logout} & \\ \hline
@@ -773,6 +799,9 @@ No momento da confecção deste relatório, os casos de uso listados na Tabela~\
     %\nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
   }
 \end{table}
+
+Faz-se necessário justificar o uso do termo ``parcialmente'' no parágrafo anterior. Embora a criação e a edição de inscrições tenham sido implementadas, diversas variáveis de controle e mesmo de estado serão criadas ao longo do desenvolvimento deste projeto para atender aos demais requisitos especificados. Muitas dessas variáveis serão utilizadas na criação e edição de inscrições, implicando em uma constante refatoração do código já implementado. Daí que não se pode afirmar que os casos de uso citados tenham sido implementados em sua totalidade.
+
 
 
 
