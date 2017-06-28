@@ -141,9 +141,9 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 \lstset{ %
-  backgroundcolor=\color{white},   % choose the background color;
-  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  backgroundcolor=\color{white},     % choose the background color;
+  basicstyle=\footnotesize\ttfamily, % the size of the fonts that are used for the code
+  breakatwhitespace=false,           % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
   captionpos=t,                    % sets the caption-position to bottom
   commentstyle=\color{mygreen},    % comment style
@@ -377,16 +377,14 @@ The abstract.
 O acesso aos cursos de Pós-Graduação da UFSC é feito através de processos seletivos. Atualmente, existe um sistema\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}} com poucas funcionalidades que está sendo utilizado por secretarias de alguns cursos. Outras utilizam o seu próprio formulário de inscrição online, enquanto que algumas não utilizam nenhum sistema de inscrição propriamente dito, restringindo-se ao uso de formulários de inscrição manuais.
 
 O uso desses diversos sistemas de inscrição, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
-
 \begin{itemize}
-  \item Não-reutilização do código.
   \item Falta de padronização dos requisitos e tecnologias utilizadas.
   \item Autenticação de forma não-centralizada, o que além de ser uma vulnerabilidade em termos de segurança, implica em duplicação de código.
   \item Difícil manutenibilidade;
   \item Difícil obtenção de estatísticas relacionadas aos candidatos.
 \end{itemize}
 
-Adicionalmente, o sistema atual está carente de algumas funcionalidades consideradas primordiais, descritas a seguir.
+Não obstante, o sistema atual está carente de algumas funcionalidades consideradas primordiais, descritas nos itens a seguir. A implementação de tais funcionalidades no sistema atual é complexa, pois a sua estrutura não foi projetada pensando em tais funcionalidades. Adicionalmente, as bibliotecas e tecnologias utilizadas no sistema atual são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, a atualização tecnológica do sistema de inscrição.
 
 \subsection{Envio de documentos}
 Provavelmente a funcionalidade mais importante que será implementada neste novo sistema é a possibilidade do envio de documentos por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
@@ -446,13 +444,13 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um sis
 \section{Plataforma Java, Edição Empresarial}\label{sec:java2e}
 % ---
 
-As \textbf{aplicações empresariais} têm o propósito de fornecer a \emph{lógica do negócio} de uma empresa. O seu gerenciamento é feito de forma centralizada e é comum a sua interação com outros softwares empresariais. A plataforma Java, Edição Empresarial (Java EE), é um conjunto de tecnologias Java que são utilizadas para o desenvolvimento de aplicações empresariais. O objetivo da plataforma é fornecer aos desenvolvedores um conjunto de especificações / APIs que permitam a diminuição do tempo de desenvolvimento, a redução da complexidade e o aumento do desempenho de aplicações empresariais\cite{javaee7}. Tais especificações são \emph{contratos} que são implementados por diversos fornecedores, \emph{e.g.}, GlassFish, Oracle WebLogic, Apache TomEE, etc.
+As \textbf{aplicações empresariais} têm o propósito de fornecer a \emph{lógica do negócio} de uma empresa. O seu gerenciamento é feito de forma centralizada e é comum a sua interação com outros softwares empresariais. A plataforma Java, Edição Empresarial (Java EE), é um conjunto de tecnologias Java que são utilizadas para o desenvolvimento de aplicações empresariais. O objetivo da plataforma é fornecer aos desenvolvedores um conjunto de especificações / APIs que permitam a diminuição do tempo de desenvolvimento, a redução da complexidade e o aumento do desempenho de aplicações empresariais \cite{javaee7}. Tais especificações são \emph{contratos} que são implementados por diversos fornecedores, \emph{e.g.}, GlassFish, Oracle WebLogic, Apache TomEE, etc.
 
 % ---
 \subsection{Aplicações Multi-Camadas}
 % ---
 
-Segundo o modelo Java EE, as aplicações são distribuídas em camadas (\emph{tiered design})\footnote{Os termos \emph{tier} e \emph{layer} são ambos traduzidos para o português como ``camada''. No entanto, uma \emph{tier} representa uma unidade física, na qual um código ou processo é executado. Uma \emph{layer}, por sua vez, representa uma unidade lógica, responsável pela organização lógica do código através da abstração dos dados. Diversas \emph{layers} podem existir em computadores diferentes, ou em processos diferentes em um único computador, ou ainda em um único processo em um único computador.\cite{lhotka}}. Define-se, desta forma, responsabilidades distintas para as diferentes partes do sistema, \emph{i.e.}, para os diferentes componentes que compõem uma aplicação Java EE (vide Figura~\ref{fig:multitiered_app}) e que são distribuídos nas camadas Cliente, Web, Negócio e EIS.
+Segundo o modelo Java EE, as aplicações são distribuídas em camadas (\emph{tiered design})\footnote{Os termos \emph{tier} e \emph{layer} são ambos traduzidos para o português como ``camada''. No entanto, uma \emph{tier} representa uma unidade física, na qual um código ou processo é executado. Uma \emph{layer}, por sua vez, representa uma unidade lógica, responsável pela organização lógica do código através da abstração dos dados. Diversas \emph{layers} podem existir em computadores diferentes, ou em processos diferentes em um único computador, ou ainda em um único processo em um único computador \cite{lhotka}.}. Define-se, desta forma, responsabilidades distintas para as diferentes partes do sistema, \emph{i.e.}, para os diferentes componentes que compõem uma aplicação Java EE (vide Figura~\ref{fig:multitiered_app}) e que são distribuídos nas camadas Cliente, Web, Negócio e EIS.
 
 \begin{figure}[!ht]
   \caption{\label{fig:multitiered_app}Componentes Java EE distribuídos nas diversas camadas de duas aplicações Web.}
@@ -554,7 +552,7 @@ Existem duas implementações principais: Apache MyFaces e Oracle Mojarra. Ambas
 
 \subsubsection{Arquitetura do \emph{Framework}}
 
-O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitetural expressa um esquema de organização estrutural para sistemas baseados em \emph{software}. O padrão provê um conjunto de subsistemas predefinidos, especifica suas responsabilidades, e inclui regras e diretrizes para organizar a relação entre eles.\cite{buschmann96}} MVC baseado em componentes. A grande vantagem do padrão MVC é a separação entre apresentação e comportamento (lógica) da aplicação:
+O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitetural expressa um esquema de organização estrutural para sistemas baseados em \emph{software}. O padrão provê um conjunto de subsistemas predefinidos, especifica suas responsabilidades, e inclui regras e diretrizes para organizar a relação entre eles \cite{buschmann96}.} MVC baseado em componentes. A grande vantagem do padrão MVC é a separação entre apresentação e comportamento (lógica) da aplicação:
 
 \begin{description}
   \item[Visão] - fornece a representação da informação para o usuário da aplicação. Pode-se ter diversas visões do mesmo modelo. A tecnologia padrão utilizada pelo JSF é a Facelets (vide Seção~\ref{sec:facelets}).
@@ -646,7 +644,7 @@ O estado de uma entidade é definido através de seus campos persistíveis, os q
 Pode-se perceber o relacionamento entre as entidades \texttt{PoloCursoNivel} e \texttt{Polo} através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
 
 %\begin{landscape}
-\begin{lstlisting}[language=java, caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
+\begin{lstlisting}[caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
 
 @Entity // 1)
 @Table(name="poloCursoNivel_cnp", catalog = "capg",
@@ -711,7 +709,7 @@ Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fi
 
 É interessante notar que o campo \texttt{name} não possui nenhuma anotação relacionada à sua persistência. Isso se deve ao fato de existir uma coluna de mesmo nome na tabela \texttt{EMPLOYEE}.
 
-\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee}]
+\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee}]
 @Entity
 public class Employee {
 
@@ -730,7 +728,7 @@ public class Employee {
 
 Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, define-se então o relacionamento um pra um bidirecional. Em relacionamentos bidirecionais, uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
 
-\begin{lstlisting}[language=java, caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
+\begin{lstlisting}[caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
 @Entity
 public class ParkingSpace {
   
@@ -760,7 +758,7 @@ Este tipo de relacionamento ocorre quando uma entidade está associada a uma col
 
 É importante notar que esse relacionamento implica em um relacionamento \emph{muitos para um} quando analisado a partir da tabela \texttt{EMPLOYEE} e, portanto, é um relacionamento naturalmente bidirecional. Daí que uma das entidades fará o papel de dona do relacionamento, conforme discutido anteriormente no caso do relacionamento \emph{um para um} bidirecional. Devido ao fato de não existir uma maneira escalonável de guardar inúmeras chaves em uma única linha de uma tabela, a entidade dona do relacionamento nessa situação deve ser a que estiver no lado ``muitos''. Nesse caso, a entidade dona é, portanto, a \texttt{EMPLOYEE} e nela estarão as chaves estrangeiras para as linhas da tabela \texttt{DEPARTMENT}. Por sua vez, isso implica na adição do elemento \texttt{mappedBy} na anotação \texttt{@JoinColumn} dessa última entidade, conforme Algoritmo~\ref{alg:entity_dept}.
 
-\begin{lstlisting}[language=java, caption={Classe Department e seus relacionamentos.}, label={alg:entity_dept}]
+\begin{lstlisting}[caption={Classe Department e seus relacionamentos.}, label={alg:entity_dept}]
 @Entity
   public class Department {
 
@@ -776,7 +774,7 @@ Este tipo de relacionamento ocorre quando uma entidade está associada a uma col
 
 Mais uma vez, devido à utilização de um nome de coluna diferente do valor padrão esperado para esse relacionamento, utiliza-se o elemento \texttt{name} na anotação \texttt{@JoinColumn} da entidade Employee (vide Algoritmo~\ref{alg:entity_employee2}).
 
-\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee2}]
+\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee2}]
 @Entity
 public class Employee {
 
@@ -793,16 +791,53 @@ public class Employee {
 
 \subsubsection{Relacionamento \texttt{@ManyToMany}}
 
+O último tipo de relacionamento entre entidades apresentado é chamado de \emph{muitos para muitos}. Esse relacionamento ocorre quando uma ou mais entidades fonte estão associadas a uma coleção de entidades alvo, e estas entidades alvo estão associadas a uma coleção de entidades fonte. A representação dessa situação em UML pode ser vista no item (b) da Figura~\ref{fig:jpa_manytomany} para as entidades Employee e Project.
+
+Considere agora as tabelas ilustradas no item (a) da Figura~\ref{fig:jpa_manytomany}. Uma linha de \texttt{EMPLOYEE} pode estar associada a diversas linhas de \texttt{PROJECT} e vice-versa. A existência da tabela \texttt{EMP\_PROJ} justifica-se por não ser escalável guardar as chaves estrangeiras em cada linha de \emph{ambas} as tabelas. Nesse caso, \texttt{EMP\_PROJ} possui apenas duas colunas e estas guardam as chaves estrangeiras de cada uma das tabelas. Portanto, \texttt{EMPLOYEE} não possui uma coluna com as chaves estrageiras de \texttt{PROJECT} e vice-versa \cite{keith2013}.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_manytomany} Tabelas \texttt{EMPLOYEE},  \texttt{EMP\_PROJ} e \texttt{PROJECT} em (a) e seu relacionamento em (b).}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/jpa/many_to_many.png}
+  \end{center}
+  \fonte{Adaptado de \citeonline{keith2013}.}
+\end{figure}
+
+Se ambas as tabelas \texttt{EMPLOYEE} e \texttt{PROJECT} não possuem uma coluna de chaves estrangeiras, quem é a entidade dona do relacionamento? A resposta é: tanto faz, desde que essa decisão seja indicada ao JPA. As entidades Employee e Project resultantes do mapeamento podem ser vistas no Algoritmo~\ref{alg:entity_employee_project}. Evidencia-se o uso da anotação \texttt{joinColumns}, indicando a entidade dona do relacionamento.
 
 
+\begin{lstlisting}[caption={Classes Employee e Project.}, label={alg:entity_employee_project}]
+@Entity
+public class Employee {
+  @Id
+  private long id;
+  private String name;
+  @ManyToMany
+  @JoinTable(name="EMP_PROJ",
+      joinColumns=@JoinColumn(name="EMP_ID"),
+      inverseJoinColumns=@JoinColumn(name="PROJ_ID"))
+  private Collection<Project> projects;
+  // ...
+}
+
+@Entity
+public class Project {
+  @Id
+  private long id;
+  private String name;
+  @ManyToMany(mappedBy="projects")
+  private Collection<Employee> employees;
+  // ...
+}
+\end{lstlisting}
 
 
 % ---
-\subsection{Hibernate}
+%\subsection{Hibernate}
 % ---
 
 % ---
-\subsection{Spring}
+%\subsection{Spring}
 % ---
 
 
@@ -810,7 +845,7 @@ public class Employee {
 \chapter{Análise e Projeto - Módulo de Inscrição}
 % ----------------------------------------------------------
 
-\cite{sommerville2011} explica que um \emph{processo de software} é um conjunto de atividades relacionadas que levam à produção de um produto de software. Embora existam diversos processos de software, todos devem incluir as seguintes atividades fundamentais: especificação, projeto e implementação, validação, e evolução do software. Cada uma destas atividades é uma tarefa complexa em si mesma e inclui subatividades.
+\citeonline{sommerville2011} explica que um \emph{processo de software} é um conjunto de atividades relacionadas que levam à produção de um produto de software. Embora existam diversos processos de software, todos devem incluir as seguintes atividades fundamentais: especificação, projeto e implementação, validação, e evolução do software. Cada uma destas atividades é uma tarefa complexa em si mesma e inclui subatividades.
 
 Por não existir um modelo de processo de software padrão a ser utilizado na SeTIC, o autor decidiu-se por utilizar o mesmo ``modelo'' de processo de software dos projetos anteriores em que participou na SeTIC como estagiário: as atividades fundamentais supracitadas são executadas de forma iterativa, seguindo as boas práticas especificadas pelo \emph{Rational Unified Process} (RUP), um modelo de processo moderno e híbrido, derivado de trabalhos sobre a UML (Unified Modelling Language).
 
@@ -821,7 +856,7 @@ Ressalta-se que o desenvolvimento se dá por meio da extensão e melhoria de um 
 \section{Elicitação, Análise e Definição de Requisitos}
 % ---
 
-O desenvolvimento de um software/sistema segundo o modelo adotado pode ser dividido em diversos estágios. O primeiro consiste na elicitação, análise e definição de requisitos. Segundo \cite{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
+O desenvolvimento de um software/sistema segundo o modelo adotado pode ser dividido em diversos estágios. O primeiro consiste na elicitação, análise e definição de requisitos. Segundo \citeonline{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidaeds dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
 
 A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto ao cliente. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
@@ -861,7 +896,7 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 
 \subsection{Requisitos Não Funcionais}
 
-Segundo \cite{sommerville2011}, os requisitos não funcionais são aqueles que não estão diretamente relacionados com os serviços específicos oferecidos pelo sistema a seus usuários. Relacionam-se às propriedades emergentes do sistema e definem restrições sobre a sua implementação. Foram identificados os seguintes requisitos:
+Segundo \citeonline{sommerville2011}, os requisitos não funcionais são aqueles que não estão diretamente relacionados com os serviços específicos oferecidos pelo sistema a seus usuários. Relacionam-se às propriedades emergentes do sistema e definem restrições sobre a sua implementação. Foram identificados os seguintes requisitos:
 
 \begin{itemize}
 \item O sistema deve possibilitar o acesso dos usuários durante todos os dias do ano para que possam imprimir comprovantes de inscrição.
@@ -883,16 +918,33 @@ Diagramas de casos de uso fornecem uma representação em alto nível da intera�
 \begin{figure}[!ht]
   \caption{\label{fig:use_cases} Casos de uso identificados para o ator Candidato. }
   \begin{center}
-    \includegraphics[width=1.0\textwidth]{/use_cases.png}
+    \includegraphics[width=0.8\textwidth]{/use_cases.png}
   \end{center}
   \fonte{Autor.}
 \end{figure}
 
 % ---
-\subsection{Diagramas de Classes}
+\subsection{Diagrama de Classes}
 % ---
 
-A fazer.
+O diagrama de classes do sistema foi dividido em duas imagens devido ao tamanho destas. A Figura~\ref{fig:uml_classes1} mostra as classes envolvidas na obtenção dos programas disponíveis.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:uml_classes1} Modelo entidade-relacionamento relacionado à obtenção de programas. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/uml/programas.png}
+  \end{center}
+  \fonte{Autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:uml_classes1} Modelo entidade-relacionamento relacionado às inscrições. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/uml/inscricoes.png}
+  \end{center}
+  \fonte{Autor.}
+\end{figure}
+
 
 % ---
 \section{Implementação}
