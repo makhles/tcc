@@ -695,7 +695,7 @@ public class PoloCursoNivel implements Serializable {
 \citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são discutidas brevemente nos itens a seguir.
 
 \subsubsection{Relacionamento \texttt{@OneToOne}}
-Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, espera-se que o nome dessa coluna seja o nome do atributo da entidade fonte, seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
+Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, o JPA espera que o nome dessa coluna seja igual ao nome do atributo da entidade fonte seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
 
 Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fig:jpa_onetoone}. O mapeamento feito pelo JPA espera que a coluna com a chave estrangeira a ser utilizada seja chamada de \texttt{PARKINGSPACE\_ID}, porém essa coluna chama-se \texttt{PSPACE\_ID}. Neste caso, utiliza-se a anotação \texttt{@JoinColumn(name = ``PSPACE\_ID'')}, conforme Algoritmo~\ref{alg:entity_employee}.
 
@@ -720,7 +720,7 @@ public class Employee {
   private String name;
   
   @OneToOne
-  @JoinColumn(name="PSPACE_ID")
+  @JoinColumn(name = "PSPACE_ID")
   private ParkingSpace parkingSpace;
   // ...
 }
@@ -728,9 +728,9 @@ public class Employee {
 
 
 
-Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, define-se então o relacionamento um pra um bidirecional. Em relacionamentos bidirecionais, uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
+Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, define-se então o relacionamento um pra um bidirecional. Em relacionamentos bidirecionais, uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
 
-\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee_bi}]
+\begin{lstlisting}[language=java, caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
 @Entity
 public class ParkingSpace {
   
@@ -739,7 +739,7 @@ public class ParkingSpace {
   private int lot;
   private String location;
 
-  @OneToOne(mappedBy="parkingSpace")
+  @OneToOne(mappedBy = "parkingSpace")
   private Employee employee;
   // ...
 }
@@ -747,10 +747,54 @@ public class ParkingSpace {
 
 \subsubsection{Relacionamento \texttt{@OneToMany}}
 
+Este tipo de relacionamento ocorre quando uma entidade está associada a uma coleção de entidades. Considere as tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} ilustradas na Figura~\ref{fig:jpa_onetomany}. O relacionamento \emph{um para muitos} feito em UML pode ser visto em (b).
 
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_onetomany} Tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} em (a) e seu relacionamento em (b).}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/jpa/one_to_many.png}
+  \end{center}
+  \fonte{Adaptado de \citeonline{keith2013}.}
+\end{figure}
+
+
+É importante notar que esse relacionamento implica em um relacionamento \emph{muitos para um} quando analisado a partir da tabela \texttt{EMPLOYEE} e, portanto, é um relacionamento naturalmente bidirecional. Daí que uma das entidades fará o papel de dona do relacionamento, conforme discutido anteriormente no caso do relacionamento \emph{um para um} bidirecional. Devido ao fato de não existir uma maneira escalonável de guardar inúmeras chaves em uma única linha de uma tabela, a entidade dona do relacionamento nessa situação deve ser a que estiver no lado ``muitos''. Nesse caso, a entidade dona é, portanto, a \texttt{EMPLOYEE} e nela estarão as chaves estrangeiras para as linhas da tabela \texttt{DEPARTMENT}. Por sua vez, isso implica na adição do elemento \texttt{mappedBy} na anotação \texttt{@JoinColumn} dessa última entidade, conforme Algoritmo~\ref{alg:entity_dept}.
+
+\begin{lstlisting}[language=java, caption={Classe Department e seus relacionamentos.}, label={alg:entity_dept}]
+@Entity
+  public class Department {
+
+  @Id
+  private long id;
+  private String name;
+
+  @OneToMany(mappedBy = "department")
+  private Collection<Employee> employees;
+  // ...
+}
+\end{lstlisting}
+
+Mais uma vez, devido à utilização de um nome de coluna diferente do valor padrão esperado para esse relacionamento, utiliza-se o elemento \texttt{name} na anotação \texttt{@JoinColumn} da entidade Employee (vide Algoritmo~\ref{alg:entity_employee2}).
+
+\begin{lstlisting}[language=java, caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee2}]
+@Entity
+public class Employee {
+
+  @Id
+  private long id;
+
+  @ManyToOne
+  @JoinColumn(name = "DEPT_ID")
+  private Department department;
+  // ...
+}
+\end{lstlisting}
 
 
 \subsubsection{Relacionamento \texttt{@ManyToMany}}
+
+
+
 
 
 % ---
