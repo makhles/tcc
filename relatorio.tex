@@ -582,7 +582,7 @@ No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\
 % ---
 \emph{Facelets} é uma tecnologia de apresentação utilizada em aplicações baseadas em JSF. Atualmente, é também a tecnologia definida na especificação do JSF, substituindo assim a descontinuada JSP (JavaServer Pages).
 
-Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. No Algoritmo~\ref{alg:tags}, por exemplo, utiliza-se as \emph{tags} \texttt{<h:inputText>} e \texttt{<f:validateLongRange>}, das bibliotecas  JSF HTML e Core, respectivamente.
+Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. No Algoritmo~\ref{alg:tags}, por exemplo, utiliza-se as \emph{tags} \texttt{<h:inputText>} e \texttt{<f:validateLongRange>}, das bibliotecas  JSF HTML e Core, respectivamente, para a entrada de texto e validação desse texto (após sua conversão) entre um valor mínimo e um valor máximo.
 
 \begin{lstlisting}[language=html, caption={Utilização de \emph{tags} em um arquivo XHTML.}, label={alg:tags}]
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -603,6 +603,7 @@ Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são
   </h:form>
 </h:body>
 \end{lstlisting}
+\fonte{Adaptado de \citeonline{javaee7}.}
 
 
 Dentre suas vantagens, \cite{javaee7} destacam:
@@ -634,16 +635,15 @@ A API de Persistência do Java (JPA - Java Persistence API), possibilita o geren
 
 \begin{enumerate}
   \item Possuir a anotação \texttt{javax.persistence.entity};
-  \item Pelo menos um construtor sem argumentos com visibilidade \texttt{public} ou \texttt{protected};
-  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \texttt{final};
-  \item Instâncias persistíveis devem ser declaradas como \texttt{private}, \texttt{protected} ou \texttt{package-private} e podem ser acessadas somente através dos métodos da classe.
+  \item Pelo menos um construtor sem argumentos com visibilidade \emph{public} ou \emph{protected};
+  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \emph{final};
+  \item Instâncias persistíveis devem ser declaradas como \emph{private}, \emph{protected} ou \emph{package private} e podem ser acessadas somente através dos métodos da classe.
 \end{enumerate}
 
 O estado de uma entidade é definido através de seus campos persistíveis, os quais usam anotações de mapeamento objeto-relacional para mapear as entidades e seus relacionamentos aos dados da base de dados. As restrições impostas anteriormente e o relacionamento entre campos podem ser vistos na entidade \texttt{PoloCursoNivel} do Algoritmo~\ref{alg:entity_pcn}, no qual as restrições foram destacadas com comentários.
 
-Pode-se perceber o relacionamento entre as entidades \texttt{PoloCursoNivel} e \texttt{Polo} através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
+Pode-se perceber o relacionamento entre as entidades PoloCursoNivel e Polo através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
 
-%\begin{landscape}
 \begin{lstlisting}[caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
 
 @Entity // 1)
@@ -685,10 +685,8 @@ public class PoloCursoNivel implements Serializable {
 }
 
 \end{lstlisting}
-\fonte{Autor.}
-%\end{landscape}
+\fonte{Adaptado de \citeonline{keith2013}.}
 
-%Diz-se que a entidade \texttt{PoloCursoNivel} é a entidade fonte e a entidade \texttt{Polo} é a entidade alvo da associação.
 
 \citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são discutidas brevemente nos itens a seguir.
 
@@ -713,9 +711,7 @@ Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fi
 @Entity
 public class Employee {
 
-  @Id
-  private long id;
-  private String name;
+  @Id private long id;
   
   @OneToOne
   @JoinColumn(name = "PSPACE_ID")
@@ -723,18 +719,16 @@ public class Employee {
   // ...
 }
 \end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}
 
 
-
-Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, define-se então o relacionamento um pra um bidirecional. Em relacionamentos bidirecionais, uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
+Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, tem-se então um relacionamento bidirecional, em que uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
 
 \begin{lstlisting}[caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
 @Entity
 public class ParkingSpace {
   
-  @Id
-  private long id;
-  private int lot;
+  @Id private long id;
   private String location;
 
   @OneToOne(mappedBy = "parkingSpace")
@@ -742,6 +736,7 @@ public class ParkingSpace {
   // ...
 }
 \end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
 
 \subsubsection{Relacionamento \texttt{@OneToMany}}
 
@@ -771,6 +766,7 @@ Este tipo de relacionamento ocorre quando uma entidade está associada a uma col
   // ...
 }
 \end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
 
 Mais uma vez, devido à utilização de um nome de coluna diferente do valor padrão esperado para esse relacionamento, utiliza-se o elemento \texttt{name} na anotação \texttt{@JoinColumn} da entidade Employee (vide Algoritmo~\ref{alg:entity_employee2}).
 
@@ -787,6 +783,7 @@ public class Employee {
   // ...
 }
 \end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
 
 
 \subsubsection{Relacionamento \texttt{@ManyToMany}}
@@ -830,7 +827,7 @@ public class Project {
   // ...
 }
 \end{lstlisting}
-
+\fonte{Adaptado de \citeonline{keith2013}.}%
 
 % ---
 %\subsection{Hibernate}
@@ -867,7 +864,7 @@ Cabe aqui ressaltar que até o momento da confecção deste relatório, apenas u
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/wireframe.png}
   \end{center}
-  \fonte{Autor.}
+  \fonte{Produzido pelo autor.}
 \end{figure}
 
 Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.} para o sistema foi aprovado e servirá como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
@@ -920,30 +917,36 @@ Diagramas de casos de uso fornecem uma representação em alto nível da intera�
   \begin{center}
     \includegraphics[width=0.8\textwidth]{/use_cases.png}
   \end{center}
-  \fonte{Autor.}
+  \fonte{Produzido pelo autor.}%
 \end{figure}
 
 % ---
 \subsection{Diagrama de Classes}
 % ---
 
-O diagrama de classes do sistema foi dividido em duas imagens devido ao tamanho destas. A Figura~\ref{fig:uml_classes1} mostra as classes envolvidas na obtenção dos programas disponíveis.
+Um diagrama de classes é responsável por mostrar as diversas classes de uma aplicação e as associações (agregação, composição, generalização e dependências) entre elas.
+
+O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_classes1} mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
 
 \begin{figure}[!ht]
   \caption{\label{fig:uml_classes1} Modelo entidade-relacionamento relacionado à obtenção de programas. }
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/programas.png}
   \end{center}
-  \fonte{Autor.}
+  \fonte{Produzido pelo autor com a ferramenta ObjectAid UML Explorer.}%
 \end{figure}
 
+A Figura~\ref{fig:uml_classes2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As dependências dessas classes não são mostradas (este diagrama pode crescer substancialmente). As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean} (através de uma classe que a implemente). Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
+
+\begin{landscape}
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_classes1} Modelo entidade-relacionamento relacionado às inscrições. }
+  \caption{\label{fig:uml_classes2} Modelo entidade-relacionamento relacionado às inscrições. }
   \begin{center}
-    \includegraphics[width=1.0\textwidth]{/uml/inscricoes.png}
+    \includegraphics[scale=0.40]{/uml/inscricoes.png}
   \end{center}
-  \fonte{Autor.}
+  \fonte{Produzido pelo autor com a ferramenta ObjectAid UML Explorer.}%
 \end{figure}
+\end{landscape}
 
 
 % ---
@@ -984,12 +987,13 @@ public List<ProgramaAux> obterProgramasDisponiveisNaData(DateTime data) {
             .getResultList();
 }
 \end{lstlisting}
+\fonte{Produzido pelo autor.}%
 \end{landscape}
 
 Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer} já existiam no Projeto Base e provêm funcionalidades como segurança (através do Spring), acesso a Web Services, comunição com a base de dados Centura, validadores e conversores do JSF, etc.
 
 % ---
-\subsection{Funcionalidades}
+\subsection{Funcionalidades}\label{sec:funcionalidades}
 % ---
 
 A Tabela~\ref{tabela-casos-uso} lista os casos de uso relativos aos requisitos especificados na Seção \ref{sec:requisitos_funcionais} e que haviam sido implementados \emph{parcialmente} no momento da confecção deste relatório.
@@ -1024,7 +1028,20 @@ Faz-se necessário justificar o uso do termo ``parcialmente'' no parágrafo ante
 
 \chapter{Conclusões}
 % ----------------------------------------------------------
-A fazer.
+
+O sistema de inscrição atual é utilizado por apenas alguns dos cursos de Pós-Graduação da UFSC. Alguns cursos utilizam seus próprios sistemas, dificultando a sua mantenibilidade e introduzindo duplicações de código e vulnerabilidades.
+
+Torna-se imprescindível, portanto, o desenvolvimento de um novo sistema de inscrição unificado, que dê suporte a novas funcionalidades e que utilize as tecnologias atualmente em uso na SeTIC.
+
+Algumas atividades previstas na proposta do TCC foram desenvolvidas neste primeiro semestre da disciplina de Projetos, especificamente:
+\begin{itemize}
+  \item Levantamento das funcionalidades;
+  \item Especificação dos requisitos do sistema a partir destas funcionalidades
+  \item Definição da arquitetura do sistema;
+  \item Adequação do Projeto Base para atender a estrutura definida;
+  \item implementação dos casos de uso discutidos na Seção~\ref{sec:funcionalidades}.
+\end{itemize}
+
 
 
 % ----------------------------------------------------------
