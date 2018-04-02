@@ -379,9 +379,9 @@
 \section{Contextualização}
 % ---
 
-O acesso aos cursos de Pós-Graduação da UFSC é feito através de processos seletivos. Atualmente, existe um sistema\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}} com poucas funcionalidades que está sendo utilizado por secretarias de alguns cursos. Outras utilizam o seu próprio formulário de inscrição online, enquanto que algumas não utilizam nenhum sistema de inscrição propriamente dito, restringindo-se ao uso de formulários de inscrição manuais.
+O acesso aos programas de pós-graduação da UFSC é feito através de processos seletivos lançados por suas respectivas secretarias. Todos os programas possuem algum sistema para as inscrições em seus processos seletivos, porém nem todos possuem um sistema informatizado (restringindo-se ao uso de formulários de inscrição manuais), e há diversos sistemas informatizados em uso. 
 
-O uso desses diversos sistemas de inscrição, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
+O uso desses diversos sistemas, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
 \begin{itemize}
   \item Falta de padronização dos requisitos e tecnologias utilizadas.
   \item Autenticação de forma não-centralizada, o que além de ser uma vulnerabilidade em termos de segurança, implica em duplicação de código.
@@ -389,7 +389,7 @@ O uso desses diversos sistemas de inscrição, com suas funcionalidades e interf
   \item Difícil obtenção de estatísticas relacionadas aos candidatos.
 \end{itemize}
 
-Não obstante, o sistema atual está carente de algumas funcionalidades consideradas primordiais, descritas nos itens a seguir. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época da elaboração do sistema. Adicionalmente, as bibliotecas e tecnologias utilizadas no sistema atual são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, a atualização tecnológica do sistema de inscrição.
+Visando unificar os sistemas existentes, a solução adotada pela SeTIC foi a criação de um sistema informatizado\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}}. Não obstante, esse sistema está carente de algumas funcionalidades consideradas primordiais. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas a seguir.
 
 \subsection{Envio de documentos}
 A funcionalidade mais importante que será implementada neste novo sistema é a possibilidade do envio de documentos por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
@@ -415,14 +415,15 @@ Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e atualmente
 % ---
 \subsection{Objetivo Geral}
 % ---
-O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um sistema para a inscrição de candidatos nos processos seletivos dos diversos programas de Pós-Graduação da UFSC, utilizando o sistema de inscrição que está em uso atualmente como base.
+O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um novo sistema informatizado para a inscrição de candidatos nos processos seletivos dos diversos programas de Pós-Graduação da UFSC, tendo como inspiração o sistema de inscrição que está em uso atualmente.
 
 % ---
 \subsection{Objetivos Específicos}
 % ---
 \begin{itemize}
-  \item Implementar o Módulo de Inscrição - consiste na implementação das regras de negócio e das páginas que o candidato terá acesso ao realizar sua inscrição.
-  \item Implementar o Módulo Administrativo - consiste na implementação das regras de negócio no sistema CAPG Secretaria (sistema em desenvolvimento para administração dos cursos por suas secretarias).
+  \item Implementar as \emph{regras de negócio} da inscrição em um processo seletivo, \emph{i.e.}, o \emph{back-end} da aplicação.
+  \item Criar as tabelas necessárias no banco de dados.
+  \item Implementar a interface com o usuário, \emph{i.e.}, as páginas que o candidato terá acesso ao realizar sua inscrição.
   \item Elaborar um artigo referente ao TCC.
 \end{itemize}
 
@@ -430,8 +431,7 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um sis
 \section{Resultados Esperados}
 % ---
 \begin{itemize}
-  \item Módulo do Formulário de Inscrição.
-  \item Módulo Administrativo do Processo de Inscrição.
+  \item Sistema CAPG Inscrição publicado no ambiente de homologação.
   \item Artigo referente à produção realizada anexo ao TCC.
 \end{itemize}
 
