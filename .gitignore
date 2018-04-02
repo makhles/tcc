@@ -224,3 +224,6 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# visual paradigm files
+*.vpp*
