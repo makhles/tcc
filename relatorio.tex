@@ -345,9 +345,10 @@
 %  \item[Java EE] Java Enterprise Edition
 %  \item[JSF]     JavaServer Faces
 %  \item[JPA]     Java Persistence API
+%  \item[PROPG]   Pró-Reitoria de Pós-Gradução
+%  \item[RUP]     Rational Unified Process
 %  \item[SeTIC]   Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação
 %  \item[UFSC]    Universidade Federal de Santa Catarina
-%  \item[RUP]     Rational Unified Process
 %  \item[UML]     Unified Modelling Language
 %\end{siglas}
 
@@ -379,20 +380,35 @@
 \section{Contextualização}
 % ---
 
-O acesso aos programas de pós-graduação da UFSC é feito através de processos seletivos lançados por suas respectivas secretarias. Todos os programas possuem algum sistema para as inscrições em seus processos seletivos, porém nem todos possuem um sistema informatizado (restringindo-se ao uso de formulários de inscrição manuais), e há diversos sistemas informatizados em uso. 
+O acesso aos programas de pós-graduação oferecidos pela Universidade Federal de Santa Catarina é feito através de processos seletivos lançados por suas respectivas secretarias. Todos os programas possuem algum sistema para as inscrições em seus processos seletivos, porém ou não possuem um sistema informatizado (restringindo-se ao uso de formulários de inscrição manuais), ou fazem uso de algum sistema informatizado não oficial. 
 
 O uso desses diversos sistemas, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
 \begin{itemize}
   \item Falta de padronização dos requisitos e tecnologias utilizadas.
-  \item Autenticação de forma não-centralizada, o que além de ser uma vulnerabilidade em termos de segurança, implica em duplicação de código.
+  \item Autenticação de forma não-centralizada: além de ser uma vulnerabilidade em termos de segurança, implica em duplicação de código.
   \item Difícil manutenibilidade;
   \item Difícil obtenção de estatísticas relacionadas aos candidatos.
 \end{itemize}
 
-Visando unificar os sistemas existentes, a solução adotada pela SeTIC foi a criação de um sistema informatizado\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}}. Não obstante, esse sistema está carente de algumas funcionalidades consideradas primordiais. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas a seguir.
+Em meados de 2010, esperava-se mais de cinco mil inscrições no Programa de Especialização em Saúde da Família. Visando atender essas inscrições, a solução adotada pela Pró-Reitoria de Pós-Gradução (PROPG), em parceria com a Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), foi a criação de um sistema informatizado\footnote{Vide \href{}{http://www.capg.ufsc.br/inscricao}}. Posteriormente, esse sistema foi adotado por outros programas.
+
+A Figura~\ref{fig:uso_sistemas} mostra o uso desse sistema pelos programas da UFSC em 2017. Dos 113 programas, apenas 67 (59\%) adotaram o sistema para realizar as inscrições. A figura também mostra o uso de acordo com o tipo do programa (\emph{stricto sensu} ou \emph{lato sensu}).
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:uso_sistemas}Utilização dos sistemas de inscrição em 2017.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{uso_sistema_atual}
+  \end{center}
+  \fonte{Dados obtidos em consultas ao banco de dados do CAPG.}
+\end{figure}
+
+
+
+Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas a seguir.
 
 \subsection{Envio de documentos}
-A funcionalidade mais importante que será implementada neste novo sistema é a possibilidade do envio de documentos por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
+A funcionalidade mais importante que será implementada neste novo sistema é o envio de documentos de forma digital por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
 
 \subsection{Salvamento das informações}
 Caso um candidato queira fazer a inscrição em algum dos programas disponibilizados pela UFSC através do sistema de inscrição atual, este deve, essencialmente, fornecer todas as informações em uma única sessão e, ao final, receberá um número de inscrição e a possibilidade de imprimir um comprovante de inscrição. Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
@@ -424,6 +440,8 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um nov
   \item Implementar as \emph{regras de negócio} da inscrição em um processo seletivo, \emph{i.e.}, o \emph{back-end} da aplicação.
   \item Criar as tabelas necessárias no banco de dados.
   \item Implementar a interface com o usuário, \emph{i.e.}, as páginas que o candidato terá acesso ao realizar sua inscrição.
+  \item Tornar o sistema acessível em dispositivos móveis.
+  \item Disponibilizar o sistema em ambiente de homologação.
   \item Elaborar um artigo referente ao TCC.
 \end{itemize}
 
