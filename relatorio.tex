@@ -403,24 +403,22 @@ A Figura~\ref{fig:uso_sistemas} mostra o uso desse sistema pelos programas da UF
   \fonte{Dados obtidos em consultas ao banco de dados do CAPG.}
 \end{figure}
 
-
-
 Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas a seguir.
 
 \subsection{Envio de documentos}
 A funcionalidade mais importante que será implementada neste novo sistema é o envio de documentos de forma digital por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
 
-\subsection{Salvamento das informações}
+\subsection{Salvamento progressivo das informações}
 Caso um candidato queira fazer a inscrição em algum dos programas disponibilizados pela UFSC através do sistema de inscrição atual, este deve, essencialmente, fornecer todas as informações em uma única sessão e, ao final, receberá um número de inscrição e a possibilidade de imprimir um comprovante de inscrição. Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
 
 \subsection{Ordem de preenchimento do formulário}
-No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo\footnote{A não ser, é claro, em situações onde exista uma ordem implícita. O envio de documentos é um exemplo, pois estes dependem do programa e nível escolhidos.}.
+No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo\footnote{A não ser em situações onde exista uma ordem implícita. O envio de documentos é um exemplo, pois estes dependem do programa e nível escolhidos.}.
 
 % ---
 \section{SeTIC}
 % ---
 
-A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), setor de informática da Universidade Federal de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade\footnote{Mais informações em http://setic.ufsc.br/apresentacao/}.
+A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), setor de informática da Universidade Federal de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade\footnote{Mais informações em http://setic.ufsc.br/apresentacao/}. As aplicações desenvolvidas pela SeTIC são solicitadas e acompanhadas por usuários dos diversos setores da UFSC.
 
 Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e atualmente possui bolsa de extensão pela FEESC. Todas as atividades estão sendo desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operação} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
 
@@ -445,7 +443,7 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um nov
   \item Elaborar um artigo referente ao TCC.
 \end{itemize}
 
-% ---
+% --- 
 \section{Resultados Esperados}
 % ---
 \begin{itemize}
@@ -508,30 +506,7 @@ Esta camada é composta de clientes aplicativos que acessam o servidor Java EE e
   \item Executar um pouco de lógica simples e armazenar dados em componentes JavaBeans temporariamente.
 \end{itemize}
 
-\emph{Servlets} e páginas web criadas com a tecnologia \emph{JavaServer Faces} (vide seção~\ref{sec:jsf}) são os componentes desta camada. \emph{Servlets} são classes Java que possuem métodos adequados a receber requisições e construir respostas às tais requisições dinamicamente. O trecho de código a seguir (vide Algoritmo~\ref{alg:servlet}) representa um \texttt{HttpServlet} que atende a requisições HTTP do tipo GET através da sobrescrita do método \texttt{doGet()}. Os parâmetros \texttt{HttpServletRequest} e \texttt{HttpServletResponse} representam, respectivamente, a requisição feita pelo cliente e a resposta do servidor.
-%
-\begin{lstlisting}[language=Java, caption={Um \emph{servlet} que imprime ``\emph{Hello World}''.}, label={alg:servlet}]
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-
-public class HelloWorld extends HttpServlet {
-  public void doGet(HttpServletRequest req,
-                    HttpServletResponse res)
-      throws ServletException, IOException {
-    res.setContentType("text/html");
-    PrintWriter out = res.getWriter();
-    out.println("<html>");
-    out.println("<head><title>Hello World</title></head>");
-    out.println("<body>");
-    out.println("<big>Hello World</big>");
-    out.println("</body></html>");
-  }
-}
-\end{lstlisting}
-\fonte{adaptado de \citeonline{javaservlet}}
-
-Um \emph{servlet} HTTP pode, além do método \texttt{doGet()}, sobreescrever outros métodos, tais como \texttt{doPut()}, \texttt{doDelete()}, etc, que representam requisições HTTP do tipo PUT, DELETE, etc, respectivamente.
+\emph{Servlets} (vide Anexo~\ref{anexo:servlets}) e páginas web criadas com a tecnologia \emph{JavaServer Faces} (vide seção~\ref{sec:jsf}) são os componentes desta camada. 
 
 
 % ---
@@ -541,7 +516,7 @@ A camada de negócios possui componentes que provêm a lógica do negócio da ap
 \begin{itemize}
   \item Componentes Enterprise JavaBeans (EJB), que fornecem funcionalidades como gerenciamento de sessão, segurança, gerenciamento de transações, etc.
   \item \emph{Web services} (JAX-RS, JAX-WS).
-  \item Entidades de persistência - Java Persistence API (JPA).
+  \item Java Persistence API (JPA), para a criação e gerenciamento de entidades (vide Seção~\ref{sec:jpa}).
 \end{itemize}
 
 
@@ -563,15 +538,15 @@ A camada EIS consiste de servidores de bancos de dados, sistemas de planejamento
 A tecnologia JavaServer Faces (JSF) é uma \emph{especificação} de uma API Java utilizada para a criação de interfaces de usuário em aplicações web. Com essa API, é possível:
 %
 \begin{itemize}
-  \item Representar componentes\footnote{Componentes, ou \emph{widgets}, são entidades autônomas e reutilizáveis da interface de usuário.} e o gerenciamento dos seus estados;
-  \item Fazer o controle de eventos;
+  \item Representar componentes\footnote{Componentes, ou \emph{widgets}, são entidades autônomas e reutilizáveis da interface de usuário.} e gerenciar seus estados;
+  \item Fazer o controle de eventos gerados;
   \item Realizar a validação e a conversão de dados no lado do servidor;
   \item Definir regras para a navegação entre páginas;
   \item Prover o suporte à internacionalização e acessibilidade;
 \end{itemize}
 %
 
-Existem duas implementações principais: Apache MyFaces e Oracle Mojarra. Ambas contêm pelo menos os componentes padrões, ou seja, os componentes responsáveis por gerar qualquer um dos elementos HTML básicos (tabelas, caixas de entrada de texto, botões, seletores, etc). 
+Existem diversas implementações da especificação. Apache MyFaces e Oracle Mojarra são as principais. Ambas contêm pelo menos os componentes padrões, ou seja, os componentes responsáveis por gerar qualquer um dos elementos HTML básicos (tabelas, caixas de entrada de texto, botões, seletores, etc). Bibliotecas de componentes podem ser utilizadas como suporte às implementações (vide Seção~\ref{sec:primefaces}).
 
 
 \subsubsection{Arquitetura do \emph{Framework}}
@@ -584,20 +559,31 @@ O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitet
   \item[Controlador] - converte entradas/eventos em comandos para a visão ou para o modelo.
 \end{description}
 
-Todas as requisições feitas à aplicação devem passar primeiramente pelo controlador através do \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Ou seja, o próprio \emph{framework} JSF assume o papel de controlador no padrão MVC (vide esquema A na Figura~\ref{fig:mvc}). Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate} tal como o do Algoritmo~\ref{alg:servlet}.
-A implementação de controladores para atender a diferentes tipos de requisições, tais como o mostrado no Algoritmo~\ref{alg:servlet}, é utilizada em \emph{action-based frameworks} (SpringMVC, Struts, ASP.NET, etc).
+Os \emph{frameworks} MVC podem ser baseados em ações (\emph{action-based}) ou em componentes (\emph{component-based}). Em ambos os tipos, todas as requisições feitas à aplicação devem passar primeiramente por um controlador frontal, como pode ser visto nas Figuras~\ref{fig:mvc-push}~e~\ref{fig:mvc-pull}.
 
-A Figura~\ref{fig:mvc} mostra esquemas representativos destes dois modelos MVC. Em (A), tem-se o \emph{framework} JSF, baseado em componentes. Resumidamente, a requisição feita pelo usuário da aplicação é recebida pelo \texttt{FacesServlet}, que delega o processamento para a visão responsável pela geração da página acessada. O componente acessado (por exemplo, um botão) invoca um método em um \emph{managed bean}\footnote{Uma classe Java que trabalha junto à visão.}. Este, por sua vez, pode buscar dados do modelo e retorná-los para a visão. Finalmente, a visão envia a resposta ao usuário. O ciclo de vida do processamento de requisições do JSF é bem mais complexo, pois envolve a criação de uma árvore de componentes, a conversão e validação dos dados obtidos destes componentes, o gerenciamento de eventos oriundos destes componentes e a propagação dos dados para os \emph{beans}.
+Quando se utiliza um \emph{framework} baseado em ação (SpringMVC, Struts, ASP.NET, etc), o controlador frontal é um \emph{servlet} que irá lidar com objetos \texttt{HTTPServletRequest} e \texttt{HTTPServletResponse}, delegar as requisições para métodos de outros controladores (classes que estendem a classe \texttt{HttpServlet}) de acordo com o caminho do recurso desejado e dos parâmetros da requisição. A obtenção, conversão e validação dos parâmetros das requisições, e atualização dos valores do modelo são responsabilidades do desenvolvedor da aplicação.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mvc}Comparação entre os dois tipos de padrão MVC. Em (A), tem-se o \emph{framework} baseado em componentes. Em (B), o baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
+  \caption{\label{fig:mvc-push}\emph{Framework} MVC baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
   \begin{center}
-    \includegraphics[width=0.75\textwidth]{/mvc/mvc.png}
+    \includegraphics[width=0.75\textwidth]{/mvc/action-based.png}
   \end{center}
   \fonte{Caelum. Adaptado de \citetext{caelum}}
 \end{figure}
 
-No esquema (B), o desenvolvedor da aplicação deve criar classes controladoras\footnote{Classes que estendem a classe \texttt{HttpServlet}.} para tratar as diversas requisições, invocando o modelo e atualizando a visão. 
+O JSF é um \emph{framework} baseado em componentes. Como tal, possui um controlador frontal, o \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate}\footnote{Trechos de código que são incluídos em diversos lugares com um mínimo de alteração.}, tal como no caso anterior (vide Algoritmo~\ref{alg:servlet}, no Anexo~\ref{anexo:servlets}).
+
+Resumidamente, a requisição feita pelo usuário da aplicação é recebida pelo \texttt{FacesServlet}, que delega o processamento para a visão responsável pela geração da página acessada. O componente acessado (por exemplo, um botão) invoca um método em um \emph{managed bean}\footnote{Uma classe Java que trabalha junto à visão.}. Este, por sua vez, pode buscar dados do modelo e retorná-los para a visão. Finalmente, a visão envia a resposta ao usuário.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mvc-pull}\emph{Framework} MVC baseado em componentes. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/mvc/component-based.png}
+  \end{center}
+  \fonte{Caelum. Adaptado de \citetext{caelum}}
+\end{figure}
+
+O ciclo de vida do processamento de requisições do JSF é, na verdade, bem mais complexo do que o apresentado, pois envolve a criação de uma árvore de componentes, a conversão e validação dos dados obtidos destes componentes, o gerenciamento de eventos oriundos destes componentes e a propagação dos dados para os \emph{beans}.
 
 
 
@@ -634,17 +620,17 @@ Dentre suas vantagens, \cite{javaee7} destacam:
 \begin{itemize}
   \item Reuso de código através de \emph{templates} e da composição de componentes.
   \item Redução do tempo de compilação.
-  \item Validação de expressões em \emph{Expression Language} em tempo de compilação.
+  \item Validação de expressões em \emph{Expression Language}\footnote{Mecanismo que permite a comunicação entre as páginas da web e os \emph{managed beans}.} em tempo de compilação.
 \end{itemize}
 
 
 % ---
-\subsection{Primefaces}
+\subsection{Primefaces}\label{sec:primefaces}
 % ---
-Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces. Nos sistemas atualmente desenvolvidos pela SeTIC baseados em Java, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
+Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces. Nos sistemas baseados em Java atualmente desenvolvidos pela SeTIC, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:primefaces_datatable}Componente DataTable da biblioteca PrimeFaces. Evidencia-se o uso de um \emph{paginator} no topo da tabela e o uso do tema \emph{bluesky}.}
+  \caption{\label{fig:primefaces_datatable}Componente DataTable da biblioteca PrimeFaces. Evidencia-se o uso de \emph{paginators} no cabeçalho e rodapé, e o uso do tema \emph{bluesky}.}
   \begin{center}
     \includegraphics[width=0.75\textwidth]{/primefaces/datatable.png}
   \end{center}
@@ -652,21 +638,25 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 \end{figure}
 
 % ---
-\subsection{Java Persistence API}
+\subsection{Java Persistence API}\label{sec:jpa}
 % ---
 
-A API de Persistência do Java (JPA - Java Persistence API), possibilita o gerenciamento de dados relacionais nas aplicações Java através de um mapeamento objeto-relacional. Esse mapeamento é feito através de \emph{entidades} - objetos do domínio de persistência. Uma entidade representa uma tabela de um banco de dados no modelo relacional, e suas instâncias representam as linhas desta tabela. Segundo \citeonline{javaee7}, para ser considerada uma entidade, uma classe precisa:
+A API de Persistência do Java (JPA) possibilita o gerenciamento de dados relacionais nas aplicações Java através de um mapeamento objeto-relacional. Esse mapeamento é feito através de \emph{entidades} - objetos do domínio de persistência. Uma entidade representa uma tabela de um banco de dados no modelo relacional, e suas instâncias representam as linhas desta tabela. 
 
-\begin{enumerate}
-  \item Possuir a anotação \texttt{javax.persistence.entity};
-  \item Pelo menos um construtor sem argumentos com visibilidade \emph{public} ou \emph{protected};
-  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \emph{final};
-  \item Instâncias persistíveis devem ser declaradas como \emph{private}, \emph{protected} ou \emph{package private} e podem ser acessadas somente através dos métodos da classe.
-\end{enumerate}
+%Segundo \citeonline{javaee7}, para ser considerada uma entidade, uma classe precisa:
+%
+%\begin{enumerate}
+%  \item Possuir a anotação \texttt{javax.persistence.entity};
+%  \item Pelo menos um construtor sem argumentos com visibilidade \emph{public} ou \emph{protected};
+%  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \emph{final};
+%  \item Instâncias persistíveis devem ser declaradas como \emph{private}, \emph{protected} ou \emph{package private} e podem ser acessadas somente através dos métodos da classe.
+%\end{enumerate}
 
-O estado de uma entidade é definido através de seus campos persistíveis, os quais usam anotações de mapeamento objeto-relacional para mapear as entidades e seus relacionamentos aos dados da base de dados. As restrições impostas anteriormente e o relacionamento entre campos podem ser vistos na entidade \texttt{PoloCursoNivel} do Algoritmo~\ref{alg:entity_pcn}, no qual as restrições foram destacadas com comentários.
+O estado de uma entidade é definido através de seus campos persistíveis, os quais usam anotações de mapeamento objeto-relacional para mapear as entidades e seus relacionamentos aos dados da base de dados.
 
-Pode-se perceber o relacionamento entre as entidades PoloCursoNivel e Polo através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
+%As restrições impostas anteriormente e o relacionamento entre campos podem ser vistos na entidade \texttt{PoloCursoNivel} do Algoritmo~\ref{alg:entity_pcn}, no qual as restrições foram destacadas com comentários.
+%
+%Pode-se perceber o relacionamento entre as entidades PoloCursoNivel e Polo através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@Table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
 
 \begin{lstlisting}[caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
 
@@ -707,7 +697,13 @@ public class PoloCursoNivel implements Serializable {
 \fonte{Adaptado de \citeonline{keith2013}.}
 
 
-\citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são discutidas brevemente nos itens a seguir.
+\citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são:
+\begin{itemize}
+  \item \texttt{@OneToOne} - 
+  \item \texttt{@OneToMany} - 
+  \item \texttt{@ManyToMany} - 
+\end{itemize}
+
 
 \subsubsection{Relacionamento \texttt{@OneToOne}}
 Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, o JPA espera que o nome dessa coluna seja igual ao nome do atributo da entidade fonte seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
@@ -1080,6 +1076,34 @@ Algumas atividades previstas na proposta do TCC foram desenvolvidas neste primei
 %  1994.
 %\end{thebibliography}
 
+\anexos
+
+\chapter{Servlets}\label{anexo:servlets}
+
+\emph{Servlets} são classes Java que possuem métodos adequados a receber requisições e construir respostas às tais requisições dinamicamente. O trecho de código do Algoritmo~\ref{alg:servlet} representa um \texttt{HttpServlet} que atende a requisições HTTP do tipo GET através da sobrescrita do método \texttt{doGet()}. Os parâmetros \texttt{HttpServletRequest} e \texttt{HttpServletResponse} representam, respectivamente, a requisição feita pelo cliente e a resposta do servidor.
+%
+\begin{lstlisting}[language=Java, caption={Um \emph{servlet} que imprime ``\emph{Hello World}''.}, label={alg:servlet}]
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class HelloWorld extends HttpServlet {
+  public void doGet(HttpServletRequest req,
+                    HttpServletResponse res)
+      throws ServletException, IOException {
+    res.setContentType("text/html");
+    PrintWriter out = res.getWriter();
+    out.println("<html>");
+    out.println("<head><title>Hello World</title></head>");
+    out.println("<body>");
+    out.println("<big>Hello World</big>");
+    out.println("</body></html>");
+  }
+}
+\end{lstlisting}
+\fonte{adaptado de \citeonline{javaservlet}}
+
+Um \emph{servlet} HTTP pode, além do método \texttt{doGet()}, sobreescrever outros métodos, tais como \texttt{doPut()}, \texttt{doDelete()}, etc, que representam requisições HTTP do tipo PUT, DELETE, etc, respectivamente.
 
 \end{document}
 
