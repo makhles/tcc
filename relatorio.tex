@@ -546,22 +546,22 @@ A tecnologia JavaServer Faces (JSF) é uma \emph{especificação} de uma API Jav
 \end{itemize}
 %
 
-Existem diversas implementações da especificação. Apache MyFaces e Oracle Mojarra são as principais. Ambas contêm pelo menos os componentes padrões, ou seja, os componentes responsáveis por gerar qualquer um dos elementos HTML básicos (tabelas, caixas de entrada de texto, botões, seletores, etc). Bibliotecas de componentes podem ser utilizadas como suporte às implementações (vide Seção~\ref{sec:primefaces}).
+Existem diversas implementações da especificação --- Apache MyFaces e Oracle Mojarra são as principais. Ambas contêm pelo menos os componentes padrões, ou seja, os componentes responsáveis por gerar qualquer um dos elementos HTML básicos (tabelas, caixas de entrada de texto, botões, seletores, etc). Bibliotecas de componentes podem ser utilizadas como suporte às implementações (vide Seção~\ref{sec:primefaces}).
 
 
 \subsubsection{Arquitetura do \emph{Framework}}
 
 O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitetural expressa um esquema de organização estrutural para sistemas baseados em \emph{software}. O padrão provê um conjunto de subsistemas predefinidos, especifica suas responsabilidades, e inclui regras e diretrizes para organizar a relação entre eles \cite{buschmann96}.} MVC baseado em componentes. A grande vantagem do padrão MVC é a separação entre apresentação e comportamento (lógica) da aplicação:
 
-\begin{description}
-  \item[Visão] - fornece a representação da informação para o usuário da aplicação. Pode-se ter diversas visões do mesmo modelo. A tecnologia padrão utilizada pelo JSF é a Facelets (vide Seção~\ref{sec:facelets}).
-  \item[Modelo] - representa o comportamento da aplicação em termos do domínio do problema, e independe da visão.
-  \item[Controlador] - converte entradas/eventos em comandos para a visão ou para o modelo.
-\end{description}
+\begin{itemize}
+  \item \textbf{M}odelo - representa o comportamento da aplicação em termos do domínio do problema.
+  \item \textbf{V}isão - fornece a representação da informação para o usuário da aplicação. Pode-se ter diversas visões do mesmo modelo. A tecnologia padrão utilizada pelo JSF é a Facelets (vide Seção~\ref{sec:facelets}).
+  \item \textbf{C}ontrolador - converte entradas/eventos em comandos para a visão ou para o modelo.
+\end{itemize}
 
 Os \emph{frameworks} MVC podem ser baseados em ações (\emph{action-based}) ou em componentes (\emph{component-based}). Em ambos os tipos, todas as requisições feitas à aplicação devem passar primeiramente por um controlador frontal, como pode ser visto nas Figuras~\ref{fig:mvc-push}~e~\ref{fig:mvc-pull}.
 
-Quando se utiliza um \emph{framework} baseado em ação (SpringMVC, Struts, ASP.NET, etc), o controlador frontal é um \emph{servlet} que irá lidar com objetos \texttt{HTTPServletRequest} e \texttt{HTTPServletResponse}, delegar as requisições para métodos de outros controladores (classes que estendem a classe \texttt{HttpServlet}) de acordo com o caminho do recurso desejado e dos parâmetros da requisição. A obtenção, conversão e validação dos parâmetros das requisições, e atualização dos valores do modelo são responsabilidades do desenvolvedor da aplicação.
+Quando se utiliza um \emph{framework} baseado em ação (\emph{e.g.}, SpringMVC, Struts, ASP.NET, etc), o controlador frontal é um \emph{servlet} que irá lidar com objetos \texttt{HTTPServletRequest} e \texttt{HTTPServletResponse}, delegar as requisições para métodos de outros controladores (classes que estendem a classe \texttt{HttpServlet}) de acordo com o caminho do recurso desejado e dos parâmetros da requisição. A obtenção, conversão e validação dos parâmetros das requisições e a atualização dos valores do modelo são responsabilidades do desenvolvedor da aplicação.
 
 \begin{figure}[!ht]
   \caption{\label{fig:mvc-push}\emph{Framework} MVC baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
@@ -592,7 +592,7 @@ O ciclo de vida do processamento de requisições do JSF é, na verdade, bem mai
 % ---
 \emph{Facelets} é uma tecnologia de apresentação utilizada em aplicações baseadas em JSF. Atualmente, é também a tecnologia definida na especificação do JSF, substituindo assim a descontinuada JSP (JavaServer Pages).
 
-Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. No Algoritmo~\ref{alg:tags}, por exemplo, utiliza-se as \emph{tags} \texttt{<h:inputText>} e \texttt{<f:validateLongRange>}, das bibliotecas  JSF HTML e Core, respectivamente, para a entrada de texto e validação desse texto (após sua conversão) entre um valor mínimo e um valor máximo.
+Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são inseridos através de \emph{tags} de diversas bibliotecas. No Algoritmo~\ref{alg:tags}, por exemplo, utiliza-se o componente \texttt{<h:inputText>}, da biblioteca JSF HTML, para a entrada de texto, e \texttt{<f:validateLongRange>}, da biblioteca Core, para a validação do texto entre um valor mínimo e um máximo.
 
 \begin{lstlisting}[language=html, caption={Utilização de \emph{tags} em um arquivo XHTML.}, label={alg:tags}]
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -627,7 +627,7 @@ Dentre suas vantagens, \cite{javaee7} destacam:
 % ---
 \subsection{Primefaces}\label{sec:primefaces}
 % ---
-Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis. As mais conhecidas são: PrimeFaces, RichFaces e ICEFaces. Nos sistemas baseados em Java atualmente desenvolvidos pela SeTIC, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
+Bibliotecas de componentes oferecem funcionalidades previamente  testadas e eventualmente úteis, tais como tabelas capazes de ordenar, filtrar e selecionar linhas, organização do conteúdo em diversos tipos de painéis e menus, exibição de coleções em listas e árvores, etc, além da possibilidade de escolha de diversos temas. Existem diversas bibliotecas disponíveis --- PrimeFaces, RichFaces e ICEFaces são as mais conhecidas. Nos sistemas baseados em Java atualmente desenvolvidos pela SeTIC, utiliza-se a biblioteca PrimeFaces. A Figura~\ref{fig:primefaces_datatable} mostra um exemplo de tabela feita com essa biblioteca.
 
 \begin{figure}[!ht]
   \caption{\label{fig:primefaces_datatable}Componente DataTable da biblioteca PrimeFaces. Evidencia-se o uso de \emph{paginators} no cabeçalho e rodapé, e o uso do tema \emph{bluesky}.}
@@ -641,208 +641,43 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
 \subsection{Java Persistence API}\label{sec:jpa}
 % ---
 
-A API de Persistência do Java (JPA) possibilita o gerenciamento de dados relacionais nas aplicações Java através de um mapeamento objeto-relacional. Esse mapeamento é feito através de \emph{entidades} - objetos do domínio de persistência. Uma entidade representa uma tabela de um banco de dados no modelo relacional, e suas instâncias representam as linhas desta tabela. 
+A API de Persistência do Java (JPA) possibilita o gerenciamento de dados relacionais nas aplicações Java através de um mapeamento objeto-relacional. Esse mapeamento é feito através de \emph{entidades}, \emph{i.e.}, objetos do domínio de persistência. Uma entidade representa uma tabela de um banco de dados no modelo relacional, e suas instâncias representam as linhas desta tabela. 
 
-%Segundo \citeonline{javaee7}, para ser considerada uma entidade, uma classe precisa:
-%
-%\begin{enumerate}
-%  \item Possuir a anotação \texttt{javax.persistence.entity};
-%  \item Pelo menos um construtor sem argumentos com visibilidade \emph{public} ou \emph{protected};
-%  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \emph{final};
-%  \item Instâncias persistíveis devem ser declaradas como \emph{private}, \emph{protected} ou \emph{package private} e podem ser acessadas somente através dos métodos da classe.
-%\end{enumerate}
+Segundo \citeonline{javaee7}, para ser considerada uma entidade, uma classe Java precisa:
 
-O estado de uma entidade é definido através de seus campos persistíveis, os quais usam anotações de mapeamento objeto-relacional para mapear as entidades e seus relacionamentos aos dados da base de dados.
+\begin{enumerate}
+  \item Possuir a anotação \texttt{javax.persistence.entity};
+  \item Possuir ao menos um construtor sem argumentos com visibilidade \emph{public} ou \emph{protected};
+  \item A classe, suas instâncias persistíveis e seus métodos não podem ser declarados \emph{final};
+  \item Instâncias persistíveis devem ser declaradas como \emph{private}, \emph{protected} ou \emph{package private} e podem ser acessadas somente através dos métodos da classe.
+\end{enumerate}
 
-%As restrições impostas anteriormente e o relacionamento entre campos podem ser vistos na entidade \texttt{PoloCursoNivel} do Algoritmo~\ref{alg:entity_pcn}, no qual as restrições foram destacadas com comentários.
-%
-%Pode-se perceber o relacionamento entre as entidades PoloCursoNivel e Polo através das anotações \texttt{@ManyToOne} e \texttt{@JoinColumn}. Neste caso, várias instâncias de \texttt{PoloCursoNivel} podem referenciar a mesma instância de \texttt{Polo}. No banco de dados, a tabela \texttt{poloCursoNivel\_cnp} (mapeada através da anotação \texttt{@Table}) contém a coluna \texttt{cd\_polo\_pol} (indicada pelo parâmetro \texttt{name}), que é uma chave estrangeira para a coluna de mesmo nome na tabela mapeada da entidade \texttt{Polo} (anotada na classe \texttt{Polo} e, portanto, não mostrada na imagem).
+Tais restrições podem ser vistos na entidade \texttt{Empregado}, destacadas em forma de comentários no Algoritmo~\ref{alg:entity_emp}.
 
-\begin{lstlisting}[caption={Entidade PoloCursoNivel e seus mapeamentos.}, label={alg:entity_pcn}]
-
+\begin{lstlisting}[caption={Entidade Empregado e seus mapeamentos.}, label={alg:entity_emp}]
 @Entity // 1)
-@Table(name="poloCursoNivel_cnp", catalog = "capg",
-       schema = "dbo")
-public class PoloCursoNivel implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class Empregado {
     @Id
-    private PoloCursoNivelPK id;
-
+    @Column(name="EMP_ID")
+    private long id;
+    private String nome;
     @ManyToOne
-    @JoinColumn(name="cd_polo_pol",
-                referencedColumnName="cd_polo_pol")
-    private Polo polo;  // 3 e 4)
-
-    @ManyToOne
-    @JoinColumns({
-        @JoinColumn(name = "cd_curso_cur",
-                    referencedColumnName = "cd_curso_cur"),
-        @JoinColumn(name = "cd_nivel_niv",
-                    referencedColumnName = "cd_nivel_niv")
-    })
-    private Curso curso;
-
-    // Demais campos
-
-    public PoloCursoNivel() {  // 2)
-        super();
-    }
-
-    // Getters e setters
+    private Setor setor; // 3 e 4
+    
+    public Empregado() {}  // 2
+    // ...
 }
-
 \end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}
+%
+Ainda com relação a essa entidade, é interessante observar as seguintes anotações\footnote{As anotações se referem sempre ao campo seguinte.}:
 
-
-\citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. As principais e/ou mais utilizadas são:
 \begin{itemize}
-  \item \texttt{@OneToOne} - 
-  \item \texttt{@OneToMany} - 
-  \item \texttt{@ManyToMany} - 
+  \item \texttt{@Id} - indica que o campo é a chave primária da tabela.
+  \item \texttt{@Column} - indica que o campo é uma coluna da tabela. Quando o parâmetro \texttt{name} não é especificado, assume-se que o nome da coluna é idêntico ao nome do campo (é o caso do campo \texttt{nome}).
+  \item \texttt{@ManyToOne} - indica a relação entre as entidades \texttt{Empregado} e \texttt{Setor}. Neste caso, diversos empregados estão relacionados ao mesmo setor. \citeonline{keith2013} definem outras anotações utilizadas no relacionamento de entidades além de \texttt{@ManyToOne}. Para maiores detalhes, vide Anexo~\ref{anexo:jpa}.
 \end{itemize}
 
 
-\subsubsection{Relacionamento \texttt{@OneToOne}}
-Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, o JPA espera que o nome dessa coluna seja igual ao nome do atributo da entidade fonte seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
-
-Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fig:jpa_onetoone}. O mapeamento feito pelo JPA espera que a coluna com a chave estrangeira a ser utilizada seja chamada de \texttt{PARKINGSPACE\_ID}, porém essa coluna chama-se \texttt{PSPACE\_ID}. Neste caso, utiliza-se a anotação \texttt{@JoinColumn(name = ``PSPACE\_ID'')}, conforme Algoritmo~\ref{alg:entity_employee}.
-
-
-
-\begin{figure}[!ht]
-  \caption{\label{fig:jpa_onetoone} Tabelas EMPLOYEE e PARKING\_SPACE.}
-  \begin{center}
-    \includegraphics[width=0.75\textwidth]{/jpa/one_to_one_table.png}
-  \end{center}
-  \fonte{Retirado de \citeonline{keith2013}.}
-\end{figure}
-
-É interessante notar que o campo \texttt{name} não possui nenhuma anotação relacionada à sua persistência. Isso se deve ao fato de existir uma coluna de mesmo nome na tabela \texttt{EMPLOYEE}.
-
-\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee}]
-@Entity
-public class Employee {
-
-  @Id private long id;
-  
-  @OneToOne
-  @JoinColumn(name = "PSPACE_ID")
-  private ParkingSpace parkingSpace;
-  // ...
-}
-\end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}
-
-
-Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, tem-se então um relacionamento bidirecional, em que uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
-
-\begin{lstlisting}[caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
-@Entity
-public class ParkingSpace {
-  
-  @Id private long id;
-  private String location;
-
-  @OneToOne(mappedBy = "parkingSpace")
-  private Employee employee;
-  // ...
-}
-\end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}%
-
-\subsubsection{Relacionamento \texttt{@OneToMany}}
-
-Este tipo de relacionamento ocorre quando uma entidade está associada a uma coleção de entidades. Considere as tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} ilustradas na Figura~\ref{fig:jpa_onetomany}. O relacionamento \emph{um para muitos} feito em UML pode ser visto em (b).
-
-\begin{figure}[!ht]
-  \caption{\label{fig:jpa_onetomany} Tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} em (a) e seu relacionamento em (b).}
-  \begin{center}
-    \includegraphics[width=0.75\textwidth]{/jpa/one_to_many.png}
-  \end{center}
-  \fonte{Adaptado de \citeonline{keith2013}.}
-\end{figure}
-
-
-É importante notar que esse relacionamento implica em um relacionamento \emph{muitos para um} quando analisado a partir da tabela \texttt{EMPLOYEE} e, portanto, é um relacionamento naturalmente bidirecional. Daí que uma das entidades fará o papel de dona do relacionamento, conforme discutido anteriormente no caso do relacionamento \emph{um para um} bidirecional. Devido ao fato de não existir uma maneira escalonável de guardar inúmeras chaves em uma única linha de uma tabela, a entidade dona do relacionamento nessa situação deve ser a que estiver no lado ``muitos''. Nesse caso, a entidade dona é, portanto, a \texttt{EMPLOYEE} e nela estarão as chaves estrangeiras para as linhas da tabela \texttt{DEPARTMENT}. Por sua vez, isso implica na adição do elemento \texttt{mappedBy} na anotação \texttt{@JoinColumn} dessa última entidade, conforme Algoritmo~\ref{alg:entity_dept}.
-
-\begin{lstlisting}[caption={Classe Department e seus relacionamentos.}, label={alg:entity_dept}]
-@Entity
-  public class Department {
-
-  @Id
-  private long id;
-  private String name;
-
-  @OneToMany(mappedBy = "department")
-  private Collection<Employee> employees;
-  // ...
-}
-\end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}%
-
-Mais uma vez, devido à utilização de um nome de coluna diferente do valor padrão esperado para esse relacionamento, utiliza-se o elemento \texttt{name} na anotação \texttt{@JoinColumn} da entidade Employee (vide Algoritmo~\ref{alg:entity_employee2}).
-
-\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee2}]
-@Entity
-public class Employee {
-
-  @Id
-  private long id;
-
-  @ManyToOne
-  @JoinColumn(name = "DEPT_ID")
-  private Department department;
-  // ...
-}
-\end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}%
-
-
-\subsubsection{Relacionamento \texttt{@ManyToMany}}
-
-O último tipo de relacionamento entre entidades apresentado é chamado de \emph{muitos para muitos}. Esse relacionamento ocorre quando uma ou mais entidades fonte estão associadas a uma coleção de entidades alvo, e estas entidades alvo estão associadas a uma coleção de entidades fonte. A representação dessa situação em UML pode ser vista no item (b) da Figura~\ref{fig:jpa_manytomany} para as entidades Employee e Project.
-
-Considere agora as tabelas ilustradas no item (a) da Figura~\ref{fig:jpa_manytomany}. Uma linha de \texttt{EMPLOYEE} pode estar associada a diversas linhas de \texttt{PROJECT} e vice-versa. A existência da tabela \texttt{EMP\_PROJ} justifica-se por não ser escalável guardar as chaves estrangeiras em cada linha de \emph{ambas} as tabelas. Nesse caso, \texttt{EMP\_PROJ} possui apenas duas colunas e estas guardam as chaves estrangeiras de cada uma das tabelas. Portanto, \texttt{EMPLOYEE} não possui uma coluna com as chaves estrageiras de \texttt{PROJECT} e vice-versa \cite{keith2013}.
-
-\begin{figure}[!ht]
-  \caption{\label{fig:jpa_manytomany} Tabelas \texttt{EMPLOYEE},  \texttt{EMP\_PROJ} e \texttt{PROJECT} em (a) e seu relacionamento em (b).}
-  \begin{center}
-    \includegraphics[width=1.0\textwidth]{/jpa/many_to_many.png}
-  \end{center}
-  \fonte{Adaptado de \citeonline{keith2013}.}
-\end{figure}
-
-Se ambas as tabelas \texttt{EMPLOYEE} e \texttt{PROJECT} não possuem uma coluna de chaves estrangeiras, quem é a entidade dona do relacionamento? A resposta é: tanto faz, desde que essa decisão seja indicada ao JPA. As entidades Employee e Project resultantes do mapeamento podem ser vistas no Algoritmo~\ref{alg:entity_employee_project}. Evidencia-se o uso da anotação \texttt{joinColumns}, indicando a entidade dona do relacionamento.
-
-
-\begin{lstlisting}[caption={Classes Employee e Project.}, label={alg:entity_employee_project}]
-@Entity
-public class Employee {
-  @Id
-  private long id;
-  private String name;
-  @ManyToMany
-  @JoinTable(name="EMP_PROJ",
-      joinColumns=@JoinColumn(name="EMP_ID"),
-      inverseJoinColumns=@JoinColumn(name="PROJ_ID"))
-  private Collection<Project> projects;
-  // ...
-}
-
-@Entity
-public class Project {
-  @Id
-  private long id;
-  private String name;
-  @ManyToMany(mappedBy="projects")
-  private Collection<Employee> employees;
-  // ...
-}
-\end{lstlisting}
-\fonte{Adaptado de \citeonline{keith2013}.}%
 
 % ---
 %\subsection{Hibernate}
@@ -1079,6 +914,7 @@ Algumas atividades previstas na proposta do TCC foram desenvolvidas neste primei
 \anexos
 
 \chapter{Servlets}\label{anexo:servlets}
+% ----------------------------------------------------------
 
 \emph{Servlets} são classes Java que possuem métodos adequados a receber requisições e construir respostas às tais requisições dinamicamente. O trecho de código do Algoritmo~\ref{alg:servlet} representa um \texttt{HttpServlet} que atende a requisições HTTP do tipo GET através da sobrescrita do método \texttt{doGet()}. Os parâmetros \texttt{HttpServletRequest} e \texttt{HttpServletResponse} representam, respectivamente, a requisição feita pelo cliente e a resposta do servidor.
 %
@@ -1104,6 +940,151 @@ public class HelloWorld extends HttpServlet {
 \fonte{adaptado de \citeonline{javaservlet}}
 
 Um \emph{servlet} HTTP pode, além do método \texttt{doGet()}, sobreescrever outros métodos, tais como \texttt{doPut()}, \texttt{doDelete()}, etc, que representam requisições HTTP do tipo PUT, DELETE, etc, respectivamente.
+
+
+
+\chapter{Relacionamentos JPA}\label{anexo:jpa}
+% ----------------------------------------------------------
+
+
+\section{Relacionamento \texttt{@OneToOne}}
+Apenas uma instância da entidade fonte\footnote{A entidade na qual se está fazendo a anotação.} pode referenciar a mesma instância da entidade alvo. Em termos do banco de dados, isso implica na existência de uma restrição de unicidade na coluna da chave estrangeira da tabela fonte. Ainda, o JPA espera que o nome dessa coluna seja igual ao nome do atributo da entidade fonte seguido de um \emph{underscore} e do nome da coluna da chave primária da tabela alvo. Caso esse não seja o caso, então deve-se fornecer o nome da coluna na anotação \texttt{@JoinColumn}.
+
+Para ilustrar essa situação, considere as tabelas ilustradas na Figura~\ref{fig:jpa_onetoone}. O mapeamento feito pelo JPA espera que a coluna com a chave estrangeira a ser utilizada seja chamada de \texttt{PARKINGSPACE\_ID}, porém essa coluna chama-se \texttt{PSPACE\_ID}. Neste caso, utiliza-se a anotação \texttt{@JoinColumn(name = ``PSPACE\_ID'')}, conforme Algoritmo~\ref{alg:entity_employee}.
+
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_onetoone} Tabelas EMPLOYEE e PARKING\_SPACE.}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/jpa/one_to_one_table.png}
+  \end{center}
+  \fonte{Retirado de \citeonline{keith2013}.}
+\end{figure}
+
+É interessante notar que o campo \texttt{name} não possui nenhuma anotação relacionada à sua persistência. Isso se deve ao fato de existir uma coluna de mesmo nome na tabela \texttt{EMPLOYEE}.
+
+\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee}]
+@Entity
+public class Employee {
+
+  @Id private long id;
+  
+  @OneToOne
+  @JoinColumn(name = "PSPACE_ID")
+  private ParkingSpace parkingSpace;
+  // ...
+}
+\end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}
+
+
+Quando a entidade alvo do relacionamento também possuir uma referência à entidade fonte, tem-se então um relacionamento bidirecional, em que uma das entidades é dita ser a \emph{dona} do relacionamento por conter a coluna com a chave estrangeira da outra entidade\footnote{A escolha de qual das tabelas deverá conter a chave estrangeira da outra tabela é uma decisão de modelagem do banco de dados.}. Nessa situação, a anotação \texttt{@JoinColumn} da entidade que \emph{não} é a dona do relacionamento recebe o elemento \texttt{mappedBy = "X"}, onde X refere-se ao nome do campo da entidade que é dona do relacionamento, como pode ser visto no Algoritmo~\ref{alg:entity_employee_bi}.
+
+\begin{lstlisting}[caption={Classe ParkingSpace e seus relacionamentos.}, label={alg:entity_employee_bi}]
+@Entity
+public class ParkingSpace {
+  
+  @Id private long id;
+  private String location;
+
+  @OneToOne(mappedBy = "parkingSpace")
+  private Employee employee;
+  // ...
+}
+\end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
+
+\section{Relacionamento \texttt{@OneToMany}}
+
+Este tipo de relacionamento ocorre quando uma entidade está associada a uma coleção de entidades. Considere as tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} ilustradas na Figura~\ref{fig:jpa_onetomany}. O relacionamento \emph{um para muitos} feito em UML pode ser visto em (b).
+
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_onetomany} Tabelas \texttt{EMPLOYEE} e \texttt{DEPARTMENT} em (a) e seu relacionamento em (b).}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{/jpa/one_to_many.png}
+  \end{center}
+  \fonte{Adaptado de \citeonline{keith2013}.}
+\end{figure}
+
+
+É importante notar que esse relacionamento implica em um relacionamento \emph{muitos para um} quando analisado a partir da tabela \texttt{EMPLOYEE} e, portanto, é um relacionamento naturalmente bidirecional. Daí que uma das entidades fará o papel de dona do relacionamento, conforme discutido anteriormente no caso do relacionamento \emph{um para um} bidirecional. Devido ao fato de não existir uma maneira escalonável de guardar inúmeras chaves em uma única linha de uma tabela, a entidade dona do relacionamento nessa situação deve ser a que estiver no lado ``muitos''. Nesse caso, a entidade dona é, portanto, a \texttt{EMPLOYEE} e nela estarão as chaves estrangeiras para as linhas da tabela \texttt{DEPARTMENT}. Por sua vez, isso implica na adição do elemento \texttt{mappedBy} na anotação \texttt{@JoinColumn} dessa última entidade, conforme Algoritmo~\ref{alg:entity_dept}.
+
+\begin{lstlisting}[caption={Classe Department e seus relacionamentos.}, label={alg:entity_dept}]
+@Entity
+  public class Department {
+
+  @Id
+  private long id;
+  private String name;
+
+  @OneToMany(mappedBy = "department")
+  private Collection<Employee> employees;
+  // ...
+}
+\end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
+
+Mais uma vez, devido à utilização de um nome de coluna diferente do valor padrão esperado para esse relacionamento, utiliza-se o elemento \texttt{name} na anotação \texttt{@JoinColumn} da entidade Employee (vide Algoritmo~\ref{alg:entity_employee2}).
+
+\begin{lstlisting}[caption={Classe Employee e seus relacionamentos.}, label={alg:entity_employee2}]
+@Entity
+public class Employee {
+
+  @Id
+  private long id;
+
+  @ManyToOne
+  @JoinColumn(name = "DEPT_ID")
+  private Department department;
+  // ...
+}
+\end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
+
+
+\section{Relacionamento \texttt{@ManyToMany}}
+
+O último tipo de relacionamento entre entidades apresentado é chamado de \emph{muitos para muitos}. Esse relacionamento ocorre quando uma ou mais entidades fonte estão associadas a uma coleção de entidades alvo, e estas entidades alvo estão associadas a uma coleção de entidades fonte. A representação dessa situação em UML pode ser vista no item (b) da Figura~\ref{fig:jpa_manytomany} para as entidades Employee e Project.
+
+Considere agora as tabelas ilustradas no item (a) da Figura~\ref{fig:jpa_manytomany}. Uma linha de \texttt{EMPLOYEE} pode estar associada a diversas linhas de \texttt{PROJECT} e vice-versa. A existência da tabela \texttt{EMP\_PROJ} justifica-se por não ser escalável guardar as chaves estrangeiras em cada linha de \emph{ambas} as tabelas. Nesse caso, \texttt{EMP\_PROJ} possui apenas duas colunas e estas guardam as chaves estrangeiras de cada uma das tabelas. Portanto, \texttt{EMPLOYEE} não possui uma coluna com as chaves estrageiras de \texttt{PROJECT} e vice-versa \cite{keith2013}.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:jpa_manytomany} Tabelas \texttt{EMPLOYEE},  \texttt{EMP\_PROJ} e \texttt{PROJECT} em (a) e seu relacionamento em (b).}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/jpa/many_to_many.png}
+  \end{center}
+  \fonte{Adaptado de \citeonline{keith2013}.}
+\end{figure}
+
+Se ambas as tabelas \texttt{EMPLOYEE} e \texttt{PROJECT} não possuem uma coluna de chaves estrangeiras, quem é a entidade dona do relacionamento? A resposta é: tanto faz, desde que essa decisão seja indicada ao JPA. As entidades Employee e Project resultantes do mapeamento podem ser vistas no Algoritmo~\ref{alg:entity_employee_project}. Evidencia-se o uso da anotação \texttt{joinColumns}, indicando a entidade dona do relacionamento.
+
+
+\begin{lstlisting}[caption={Classes Employee e Project.}, label={alg:entity_employee_project}]
+@Entity
+public class Employee {
+  @Id
+  private long id;
+  private String name;
+  @ManyToMany
+  @JoinTable(name="EMP_PROJ",
+      joinColumns=@JoinColumn(name="EMP_ID"),
+      inverseJoinColumns=@JoinColumn(name="PROJ_ID"))
+  private Collection<Project> projects;
+  // ...
+}
+
+@Entity
+public class Project {
+  @Id
+  private long id;
+  private String name;
+  @ManyToMany(mappedBy="projects")
+  private Collection<Employee> employees;
+  // ...
+}
+\end{lstlisting}
+\fonte{Adaptado de \citeonline{keith2013}.}%
 
 \end{document}
 
