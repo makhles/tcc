@@ -694,9 +694,11 @@ Ainda com relação a essa entidade, é interessante observar as seguintes anota
 
 \citeonline{sommerville2011} explica que um \emph{processo de software} é um conjunto de atividades relacionadas que levam à produção de um produto de software. Embora existam diversos processos de software, todos devem incluir as seguintes atividades fundamentais: especificação, projeto e implementação, validação, e evolução do software. Cada uma destas atividades é uma tarefa complexa em si mesma e inclui subatividades.
 
-Por não existir um modelo de processo de software único a ser utilizado na SeTIC, o autor decidiu-se por utilizar o mesmo ``modelo'' de processo de software dos projetos anteriores em que participou na SeTIC como estagiário: as atividades fundamentais supracitadas são executadas de forma iterativa, seguindo as boas práticas especificadas pelo \emph{Rational Unified Process} (RUP), um modelo de processo moderno e híbrido, derivado de trabalhos sobre a UML (Unified Modelling Language).
+Por não existir um modelo de processo de software único a ser utilizado na SeTIC, o autor decidiu-se por seguir algumas das melhores práticas estabelecidas pelo \emph{Rational Unified Process} (RUP), as quais já foram utilizadas em projetos anteriores em que o autor participou na SeTIC como estagiário (vide Anexo~\ref{anexo:rup}).
 
-Ressalta-se que o desenvolvimento se dá por meio da extensão e melhoria de um sistema existente. Far-se-á uso das tabelas utilizadas nesse sistema, bem como dos campos presentes no formulário de inscrição. Não obstante, novas tabelas e campos serão criados, e a implementação das regras de negócio será realizada pelo autor deste trabalho.
+%: as atividades fundamentais supracitadas são executadas de forma iterativa, seguindo as boas práticas especificadas pelo \emph{Rational Unified Process} (RUP), um modelo de processo moderno e híbrido, derivado de trabalhos sobre a UML (Unified Modelling Language).
+
+Ressalta-se que o desenvolvimento teve como inspiração o sistema existente. Fez-se uso de diversas tabelas já existentes, bem como dos campos presentes no formulário de inscrição. Não obstante, novas tabelas e campos foram criados, e a implementação das regras de negócio foi realizada pelo autor deste trabalho.
 
 
 % ---
@@ -1085,6 +1087,29 @@ public class Project {
 }
 \end{lstlisting}
 \fonte{Adaptado de \citeonline{keith2013}.}%
+
+
+
+\chapter{RUP: melhores práticas}\label{anexo:rup}
+% ----------------------------------------------------------
+
+Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimento de software, seis idéias, conhecidas por \emph{seis melhores práticas}, são descritas no RUP. São chamadas de \emph{melhores} práticas por serem comumente observadas em organizações bem sucedidas.
+
+\begin{enumerate}
+\item \textbf{Desenvolver software iterativamente} --- Identificar o problema por completo, desenvolver uma solução, construir o software e testar o produto, é uma abordagem muito arriscada de se seguir de forma sequencial, dados os sistemas de software complexos dos dias de hoje. A adoção de uma abordagem iterativa permite um entendimento do problema de forma gradativa através de múltiplas iterações. Como cada iteração resulta em um \emph{release} executável, o time de desenvolvimento permanece sempre focado em alcançar as metas de cada iteração, além de possibilitar um melhor controle do cronograma das atividades. Ainda, os requisitos de maior risco são abordados no início de cada estágio, reduzindo, assim, o perfil de risco do projeto.
+
+\item \textbf{Gerenciar requisitos} --- O RUP descreve como elicitar, organizar e documentar as funcionalidades e restrições do sistema, bem como fazer o monitoramento das decisões adotadas ao longo do desenvolvimento do projeto. Além disso, a utilização de \emph{casos de uso} como forma de capturar os requisitos funcionais e direcionar o design, a implementação e o teste de software, aumenta a probabilidade de que o sistema irá satisfazer as necessidades do usuário final.
+
+\item \textbf{Usar arquiteturas baseadas em componentes} --- O desenvolvimento de sistemas altamente complexos de forma monolítica aumenta substancialmente os riscos envolvidos no projeto. A utilização de módulos ou subsistemas que satisfazem funções específicas permite o reuso de código e a realização de testes antes da sua integração.
+
+\item \textbf{Modelar o software visualmente} --- A utilização de diagramas para a modelagem de atores, componentes e suas interações permite a visualização da estrutura e comportamento dos diversos componentes do sistema de forma abstrata. Segundo o RUP, a UML é considerada o alicerce para a modelagem visual.
+
+\item \textbf{Verificar a qualidade do software} --- A aceitação das aplicações de software é drasticamente inibida por baixo desempenho e confiabilidade. A avaliação da qualidade do software é feita através de testes de funcionalidade e desempenho da aplicação e do sistema, com base nos requisitos especificados.
+
+\item \textbf{Controlar as mudanças feitas no software} --- A utilização de uma sistema de controle de mudanças é indispensável em um ambiente em que mudanças são inevitáveis. A identificação de quando uma mudança ocorreu e quem a realizou é muito útil para a sincronização e estabelecimento de áreas de trabalho seguras para os desenvolvedores.
+\end{enumerate}
+
+
 
 \end{document}
 
