@@ -58,6 +58,7 @@
 \usepackage{lscape}           % Folha em formato landscape
 
 \usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
+\usepackage[normalem]{ulem}   % Permite riscar palavras
 %\usepackage{adjustbox}        % Permite o escalonamento do conteúdo que não cabe em uma página
 %\usepackage{tabularx}         % Impede o overflow de tabelas. 
 %\usepackage{rotating}         % Rotaciona tabelas.
@@ -719,27 +720,29 @@ Um conjunto de \emph{wireframes} das páginas do sistema foi desenvolvido\footno
   \fonte{Produzido pelo autor.}
 \end{figure}
 
-Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.} para o sistema foi aprovado e servirá como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
+Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais
+%\footnote{Em princípio, segundo o modelo em cascata, cada estágio só se inicia após o término do anterior. Na prática, há uma sobreposição dos estágios: problemas com os requisitos são identificados durante o projeto e erros de programa aparecem durante a fase de operação e manutenção, exigindo uma reavaliação dos requisitos.}
+ foi aprovado e serviu como uma especificação formal para o desenvolvimento do sistema. Embora a distinção entre os diferentes tipos de requisitos não seja tão clara, os requisitos de software são frequentemente classificados como \emph{funcionais} e \emph{não funcionais}. Essa classificação é abordada nos itens a seguir.
 
 \subsection{Requisitos Funcionais}\label{sec:requisitos_funcionais}
 
-Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, como deve reagir a entradas específicas e como deve se comportar em determinadas situações. A sua descrição é feita aqui de forma abstrata (em alto nível) para que sejam compreendidos pelos diversos \emph{stakeholders} do projeto.
+Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, como deve reagir a entradas específicas e como deve se comportar em determinadas situações. Visando o entendimento por todas as partes interessadas, a especificação dos requisitos é feita aqui de forma abstrata (em alto nível).
 
 \begin{description}
 \item[Requisito 1 - Visualizar programas oferecidos.] O usuário poderá visualizar a lista de programas de pós-graduação oferecidos pela UFSC sem a necessidade de realizar \emph{login} no sistema.
 \item[Requisito 2 - Realizar cadastro no CAS.] O usuário poderá se cadastrar no Sistema de Autenticação Centralizada a partir da página inicial do sistema.
 \item[Requisito 3 - Acessar o sistema.] O usuário poderá acessar o sistema através de \emph{login}.
 \item[Requisito 4 - Sair do sistema.] O usuário poderá sair do sistema a qualquer momento fazendo \emph{logout}.
-\item[Requisito 5 - Salvar a inscrição.] O usuário poderá salvar as informações inseridas no formulário para um acesso futuro.
+\item[Requisito 5 - Salvar a inscrição.] O usuário poderá salvar as informações inseridas no formulário para um acesso futuro. Após o primeiro salvamento, o usuário receberá um número de inscrição.
 \item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição do programa selecionado, desde que não tenha finalizado a sua inscrição.
-\item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, o usuário receberá um número de inscrição e os dados inseridos não poderão mais ser modificados.
-\item[Requisito 8 - Imprimir um comprovante de inscrição.] Após finalizada a inscrição, o usuário poderá imprimir um comprovante de inscrição.
+\item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, os dados inseridos não poderão mais ser modificados.
+\item[Requisito 8 - Receber um comprovante de inscrição.] Após finalizada a inscrição, o usuário receberá um comprovante de inscrição através do e-mail cadastrado.
 \item[Requisito 9 - Importar dados do CAS.] O usuário poderá importar os dados que foram utilizados para fazer o cadastro no CAS.
 \item[Requisito 10 - Importar dados de inscrições anteriores.] O usuário poderá importar alguns dados de inscrições anteriores ao iniciar uma nova inscrição. Os dados que poderão ser importados serão definidos pela PROPG.
 \item[Requisito 11 - Fazer \emph{upload} de arquivos.] O usuário poderá fazer o \emph{upload} de arquivos solicitados pelo programa escolhido.
-\item[Requisito 12 - Importar arquivos.] O usuário poderá importar arquivos utilizados em inscrições anteriores.
-\item[Requisito 13 - Visualizar inscrição.] O usuário poderá visualizar os dados de sua inscrição em uma página única antes de decidir-se por finalizar a inscrição.
-\item[Requisito 14 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados à PROPG na reunião de definição dos requisitos.
+\item[Requisito 12 - Importar arquivos.] O usuário poderá buscar arquivos utilizados em inscrições anteriores.
+\item[\sout{Requisito 13 - Visualizar inscrição.}] \sout{O usuário poderá visualizar os dados de sua inscrição em uma página única antes de decidir-se por finalizar a inscrição.} Requisito removido devido à forma como o formulário é exibido ao usuário.
+\item[Requisito 13 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados à PROPG na reunião de definição dos requisitos.
 \end{description}
 
 
@@ -748,10 +751,11 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 Segundo \citeonline{sommerville2011}, os requisitos não funcionais são aqueles que não estão diretamente relacionados com os serviços específicos oferecidos pelo sistema a seus usuários. Relacionam-se às propriedades emergentes do sistema e definem restrições sobre a sua implementação. Foram identificados os seguintes requisitos:
 
 \begin{itemize}
-\item O sistema deve possibilitar o acesso dos usuários durante todos os dias do ano para que possam imprimir comprovantes de inscrição.
+%\item O sistema deve possibilitar o acesso dos usuários durante todos os dias do ano para que possam imprimir comprovantes de inscrição.
 \item Usuários do sistema devem autenticar-se utilizando o Sistema de Autenticação Centralizada (CAS).
 \item A aplicação Web deve ser feita utilizando a linguagem de programação Java e as tecnologias que são comumente utilizadas no desenvolvimento Web com Java e que estão disponíveis na SeTIC (vide Seção~\ref{sec:java2e}).
-\item A aplicação Web deve utilizar a estrutura e seguir o visual dos demais sistemas desenvolvidos na SeTIC. Para tanto, deve-se utilizar o projeto denominado \emph{Projeto Base}, criado por desenvolvedores da SeTIC para o desenvolvimento de novos sistemas.
+\item A aplicação Web deve utilizar a estrutura e seguir o visual dos demais sistemas desenvolvidos na SeTIC\footnote{Este requisito se refere à versão \emph{desktop} da aplicação.}. Para tanto, deve-se utilizar o projeto denominado \emph{Projeto Base}, criado por desenvolvedores da SeTIC para o desenvolvimento de novos sistemas.
+\item O sistema deve possuir uma interface responsiva, \emph{i.e.}, capaz de ajustar a disposição do conteúdo em função das dimensões da janela do navegador e do tipo de dispositivo utilizado (\emph{desktop} ou móvel). 
 \end{itemize}
 
 % ---
@@ -762,12 +766,12 @@ O segundo estágio do modelo de desenvolvimento de software adotado consiste em 
 
 \subsection{Diagrama de Casos de Uso}
 
-Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. As interações são representadas por elipses e os atores por bonecos palito. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato, único ator do módulo de inscrição.
+Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato. As interações são representadas por elipses e os atores por bonecos palito. Cores foram utilizadas facilitar a visualização da separação dos níveis dos relacionamentos entre os casos de uso.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:use_cases} Casos de uso identificados para o ator Candidato. }
+  \caption{\label{fig:use_cases} Casos de uso identificados para o ator Candidato. Relacionamentos de extensão representados por \texttt{<<e>>}. }
   \begin{center}
-    \includegraphics[width=0.8\textwidth]{/use_cases.png}
+    \includegraphics[width=1.0\textwidth]{/use_cases.png}
   \end{center}
   \fonte{Elaborada pelo autor.}%
 \end{figure}
