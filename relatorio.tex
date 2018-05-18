@@ -804,6 +804,28 @@ A Figura~\ref{fig:uml_classes2} ilustra a classe \texttt{InscricoesBean} e algum
 \end{figure}
 \end{landscape}
 
+Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage} foi desenvolvido.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:uml_storage} Modelo entidade-relacionamento relacionado ao salvamento de documentos. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/uml/storage.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}%
+\end{figure}
+
+
+Das entidades mostradas, as tabelas \texttt{inscricaoSelecao\_sel}, \texttt{processoSeletivo\_pro} e \texttt{editalProcessoSeletivo\_eps} já existiam no base de dados. As demais entidades atendem aos requisitos 11 e 12 (vide Seção~\ref{sec:requisitos_funcionais}):
+
+\begin{itemize}
+  \item \texttt{tipoDocInscricao\_tdi} - contém os tipos dos documentos obrigatórios para a inscrição nos diversos programas, \emph{e.g.}, histórico escolar, diploma de graduação, RG, \emph{etc}.
+  \item \texttt{inscricaoSelDocumento\_isd} - entidade que armazena o código dos documentos enviados por cada candidato. Os documentos propriamente ditos são armazenados em um repositório e seus identificadores salvos no campo \texttt{cd\_arquivoStorage\_isd}. Pode-se obter, por exemplo, uma lista de códigos de documentos enviados por um determinado candidato e, a partir da relação com a entidade \texttt{docProcessoSeletivo\_dps}, qual o tipo de cada documento e a qual processo seletivo pertence.
+  \item \texttt{docProcessoSeletivo\_dps}
+  \item \texttt{inscricaoSelecao\_sel} - é a entidade principal da inscrição, onde ficam armazenados os dados pessoais do candidato.
+  \item \texttt{processoSeletivo\_pro}
+  \item \texttt{editalProcessoSeletivo\_eps}
+
+\end{itemize}
 
 % ---
 \section{Implementação}
