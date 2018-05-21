@@ -950,7 +950,26 @@ O acesso à lista de programas disponíveis para a inscrição é feita a partir
 % ---
 \subsection{Autenticação no sistema}\label{sec:autenticacao}
 % ---
-\colorbox{yellow}{TODO}
+Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode cadastrar-se e autenticar-se perante o sistema. Após autenticado, o candidato é automaticamente transferido para a página de inscrições.
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:acesso_sistema} Acesso ao sistema de inscrição do CAPG. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/acesso_sistema.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:autenticacao} Cadastro e autenticação no CAS. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/autenticacao.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
 
 
 % ---
