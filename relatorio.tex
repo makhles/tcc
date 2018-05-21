@@ -879,13 +879,13 @@ Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer}
 \section{Funcionalidades}\label{sec:funcionalidades}
 % ---
 
-A Tabela~\ref{tabela-casos-uso} mostra um mapeamento entre os casos de uso identificados para o ator Candidato (vide Seção~\ref{sec:casos_uso}) e as páginas nas quais foram implementados. A implementação de cada item está descrita nas subseções a seguir.
+A Tabela~\ref{tab:casos-uso} mostra um mapeamento entre os casos de uso identificados para o ator Candidato (vide Seção~\ref{sec:casos_uso}) e as páginas nas quais foram implementados. A implementação de cada item está descrita nas subseções a seguir.
 
 
 \begin{table}[!htb]
   \IBGEtab{%
     \caption{Casos de uso implementados e respectivas páginas envolvidas.}%
-    \label{tabela-casos-uso}
+    \label{tab:casos-uso}
   }{
     \begin{tabular}{ll}
       \toprule
@@ -923,7 +923,28 @@ A Tabela~\ref{tabela-casos-uso} mostra um mapeamento entre os casos de uso ident
 % ---
 \subsection{Lista de programas disponíveis}\label{sec:programas_disponiveis}
 % ---
-\colorbox{yellow}{TODO}
+%Como pode ser visto na Tabela~\ref{tab:casos-uso}, a visualização dos programas disponíveis possui uma página própria, \texttt{programas.xhtml}.
+O acesso à lista de programas disponíveis para a inscrição é feita a partir da página inicial da aplicação, conforme destacado na Figura~\ref{fig:acesso_programas} por um retângulo verde. O candidato não precisa estar logado no sistema para acessá-la. A lista exibe os programas, os níveis e os polos que estão com inscrições abertas no momento do acesso à página (vide Figura~\ref{fig:programas_disponiveis}).
+
+\begin{figure}[!ht]
+  \caption{\label{fig:acesso_programas} Acesso à lista de programas disponíveis em destaque. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/acesso_programas.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:programas_disponiveis} Lista de programas disponíveis para inscrição. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/programas_disponiveis.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
 
 
 % ---
