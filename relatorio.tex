@@ -848,26 +848,31 @@ As classes representadas por \texttt{(c)}, assim como as classes do item anterio
 Para ilustrar a operação \emph{read}, o Algoritmo~\ref{alg:programas_disponiveis} contém o método que obtém a lista de programas disponíveis em uma determinada data. Percebe-se que o tipo do elemento contido na lista é um \texttt{ProgramaAux}, uma das classes auxialiares mencionadas no item \texttt{(a)}. Ainda, \texttt{em} é uma instância de um \texttt{EntityManager} que está associada a um contexto de persistência.
 %TODO - referenciar JPA
 
-Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer} já existiam no Projeto Base e provêm funcionalidades como segurança (através do Spring), acesso a Web Services, comunição com a base de dados Centura, validadores e conversores do JSF, \emph{etc}.
 
-\begin{landscape}
+%\begin{landscape}
 \begin{lstlisting}[language=java, caption={Obtenção da lista de programas disponíveis.}, label={alg:programas_disponiveis}]
-public List<ProgramaAux> obterProgramasDisponiveisNaData(DateTime data) {
+public List<ProgramaAux>
+obterProgramasDisponiveisNaData(DateTime data) {
     StringBuffer query = new StringBuffer();
-    query.append("SELECT new br.ufsc.setic.capginscricao.controller.capg.ProgramaAux(");
-    query.append("ps.curso.nome, ps.nivel.descricao, ps.polo.nome) ");
+    query.append("SELECT new br.ufsc...ProgramaAux(");
+    query.append("ps.curso.nome, ps.nivel.descricao, ");
+    query.append("ps.polo.nome) ");
     query.append("FROM ProcessoSeletivo ps ");
-    query.append("WHERE :data BETWEEN ps.dtInicioProcesso AND ps.dtTerminoProcesso ");
+    query.append("WHERE :dt BETWEEN ps.dtInicioProcesso ");
+    query.append("AND ps.dtTerminoProcesso ");
     query.append("ORDER BY ps.curso");
 
-    return em.createQuery(query.toString(), ProgramaAux.class)
-            .setParameter("data", data.toLocalDateTime())
+    return em.createQuery(query.toString(),
+                          ProgramaAux.class)
+            .setParameter("dt", data.toLocalDateTime())
             .getResultList();
 }
 \end{lstlisting}
 \fonte{Produzido pelo autor.}%
-\end{landscape}
+%\end{landscape}
 
+
+Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer} já existiam no Projeto Base e provêm funcionalidades como segurança (através do Spring), acesso a Web Services, comunição com a base de dados Centura, validadores e conversores do JSF, \emph{etc}.
 
 
 % ---
