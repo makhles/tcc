@@ -59,6 +59,7 @@
 
 \usepackage{multirow}         % Permite a mesclagem de linhas em tabelas
 \usepackage[normalem]{ulem}   % Permite riscar palavras
+\usepackage{enumitem}         % Permite renomear os itens de itemize
 %\usepackage{adjustbox}        % Permite o escalonamento do conteúdo que não cabe em uma página
 %\usepackage{tabularx}         % Impede o overflow de tabelas. 
 %\usepackage{rotating}         % Rotaciona tabelas.
@@ -1033,10 +1034,12 @@ Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilita
 
 A Figura~\ref{fig:importar_dados} ilustra uma página típica de quando se inicia a edição de uma inscrição\footnote{Com exceção da mensagem de importação de dados.}. Nota-se que, ao contrário da página inicial da criação de uma nova inscrição, o número da inscrição e a data limítrofe para a finalização da inscrição são exibidas no cabeçalho da página.
 
-A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados Pessoais}.
-
-
-
+A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados Pessoais} preenchidos com dados fictícios. É importante ressaltar que alguns dos campos dependem do preenchimento do campo \texttt{País de origem}:
+\begin{itemize}
+  \item Quando o país de origem selecionado for \texttt{Brasil}, os campos \texttt{Naturalidade} e \texttt{Município de trabalho} são capazes de completar automaticamente o valor inserido pelo usuário\footnote{Utiliza-se um componente PrimeFaces chamado \texttt{AutoComplete}.}. Para isso, requerem que o usuário insira ao menos três caracteres.
+  \item Ao escolher um país estrangeiro, os campos \texttt{Naturalidade} e \texttt{Município de trabalho} tornam-se campos de entrada de texto normais, sem a funcionalidade de auto-completar a entrada fornecida. Ainda, os campos \texttt{Número do RG}, \texttt{UF} e \texttt{Órgão expedidor} são substituídos pelos campos \texttt{Número do passaporte} e \texttt{Validade do passaporte}, e o campo \texttt{CPF} deixa de ser obrigatório.
+\end{itemize}
+%
 \begin{figure}[!ht]
   \caption{\label{fig:dados_pessoais_desktop} Campos da aba \texttt{Dados Pessoais}.}
   \begin{center}
@@ -1044,14 +1047,34 @@ A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados P
   \end{center}
   \fonte{Elaborada pelo autor.}
 \end{figure}
+%
+Os pares formados pelos campos \texttt{Deficiência} e \texttt{Recurso necessário} têm o seguinte funcionamento: 
 
+\begin{itemize}
+  \item Inicialmente, apenas o campo \texttt{Deficiência} do primeiro par está habilitado.
+  \item Se o usuário selecionar um valor para um campo \texttt{Deficiência}, habilita-se o campo \texttt{Recurso necessário} do seu par e o campo \texttt{Deficiência} do par seguinte.
+  \item Se o usuário limpar algum campo \texttt{Deficiência}, então o campo \texttt{Recurso necessário} do seu par e todos os pares seguintes serão desabilitados. 
+  \item Podem existir ao todo três pares.
+\end{itemize}
+
+O preenchimento da aba \texttt{Contato} depende do campo \texttt{País}. A Figura~\ref{fig:contato_desktop} exibe duas situações: 
+%
+\begin{enumerate}[label=(\alph*)]
+  \item Se o endereço for nacional, então os campos \texttt{Município}, \texttt{Bairro} e \texttt{Logradouro} serão automaticamente preenchidos quando o usuário preencher o campo \texttt{CEP} e pressionar a tecla \texttt{<TAB>} (ou clicar fora do campo).
+  \item Se o endereço for internacional, então o campo \texttt{CEP} é desabilitado e o usuário deve preencher os campos \texttt{Município}, \texttt{Bairro} e \texttt{Logradouro}.
+\end{enumerate}
+%
 \begin{figure}[!ht]
-  \caption{\label{fig:contato_desktop} Campos da aba \texttt{Contato}.}
+  \caption{\label{fig:contato_desktop} Preenchimento da aba \texttt{Contato}. Em \texttt{(a)}, tem-se um endereço nacional. Em \texttt{(b)}, internacional.}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/contato_desktop.png}
   \end{center}
   \fonte{Elaborada pelo autor.}
 \end{figure}
+%
+Ainda, os campos relacionados a números de telefone são automaticamente formatados conforme o usuário insere os números.
+
+Os candidatos podem adicionar cursos de formação já concluídos ou em andamento na aba \texttt{Formação}, através do link \texttt{Adicionar curso} (vide Figuras~\ref{fig:formacao_desktop}~e~\ref{fig:adicionar_curso}). Nesta última, se a caixa \texttt{Instituição nacional} estiver selecionada, então o campo \texttt{Instituição} completa automaticamente o valor inserido pelo usuário (a partir de três caracteres).
 
 \begin{figure}[!ht]
   \caption{\label{fig:formacao_desktop} Campos da aba \texttt{Formação}.}
@@ -1060,6 +1083,23 @@ A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados P
   \end{center}
   \fonte{Elaborada pelo autor.}
 \end{figure}
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:adicionar_curso} Caixa de diálogo modal que permite a adição de um curso de formação.}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{/app/adicionar_curso.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+
+% ---
+\subsection{Envio de documentos}\label{sec:envio_documentos}
+% ---
+\colorbox{yellow}{TODO}
+
 
 \begin{figure}[!ht]
   \caption{\label{fig:documentos_desktop} Campos da aba \texttt{Documentos}.}
@@ -1084,13 +1124,6 @@ A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados P
   \end{center}
   \fonte{Elaborada pelo autor.}
 \end{figure}
-
-
-
-% ---
-\subsection{Envio de documentos}\label{sec:envio_documentos}
-% ---
-\colorbox{yellow}{TODO}
 
 
 % ---
