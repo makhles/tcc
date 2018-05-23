@@ -950,7 +950,7 @@ O acesso à lista de programas disponíveis para a inscrição é feita a partir
 % ---
 \subsection{Autenticação no sistema}\label{sec:autenticacao}
 % ---
-Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode cadastrar-se e autenticar-se perante o sistema. Após autenticado, o candidato é automaticamente transferido para a página de inscrições.
+Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode cadastrar-se e autenticar-se perante o sistema. Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
 
 
 \begin{figure}[!ht]
@@ -961,7 +961,7 @@ Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o c
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
+Após autenticado, o candidato é automaticamente transferido para a página de inscrições (vide Figura~\ref{fig:inscricoes}). Nesta, destaca-se o nome do usuário autenticado no sistema por um retângulo verde, e à sua direita o link para encerrar a sua sessão no sistema.
 
 \begin{figure}[!ht]
   \caption{\label{fig:autenticacao} Cadastro e autenticação no CAS. }
@@ -972,10 +972,119 @@ Salienta-se que o CAS é um sistema já existente e utilizado por diversos outro
 \end{figure}
 
 
+\begin{figure}[!ht]
+  \caption{\label{fig:inscricoes} Lista de inscrições do candidato. Em destaque: encerramento da sessão.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/inscricoes.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
 % ---
 \subsection{Gerenciamento de inscrições}\label{sec:gerenciamento_inscricoes}
 % ---
-\colorbox{yellow}{TODO}
+
+O usuário autenticado no sistema tem acesso a uma lista de inscrições por si realizadas, na qual indica-se o programa, o nível e a data de finalização da inscrição, como pode ser visto na tabela da Figura~\ref{fig:inscricoes}. Cada inscrição possui ainda um \emph{status}: 
+
+\begin{itemize}
+  \item \textbf{Finalizada} -- inscrição pertencente a um processo seletivo passado que não pode ser editada ou excluída.
+  \item \textbf{Em andamento} -- inscrição pertencente a um processo seletivo em vigência que pode ser editada e/ou excluída.
+\end{itemize}
+
+Ressalta-se que a tabela de inscrições não é visível para candidatos que nunca realizaram uma inscrição em algum dos processos seletivos para cursos de pós-graduação da UFSC. Para estes, apenas o link \texttt{Fazer uma nova inscrição}\footnote{Link na parte inferior da tabela da Figura~\ref{fig:inscricoes}.} estará disponível.
+
+
+% ---
+\subsection{Criação de uma inscrição}\label{sec:criacao_inscricao}
+% ---
+
+É possível criar uma nova inscrição a partir da tela de inscrições. Ao fazê-lo, o candidato se depara com uma tela tal qual a da Figura~\ref{fig:criar_inscricao}, na qual identificam-se algumas regiões:
+
+\begin{itemize}
+  \item No \emph{cabeçalho} da página encontram-se algumas mensagens informativas que têm o propósito de auxiliar o usuário sobre a utilização da aplicação.
+  \item No \emph{corpo} da página encontra-se um componente da biblioteca PrimeFaces chamado \texttt{AccordionPanel}\footnote{Vide \href{https://www.primefaces.org/showcase/ui/panel/accordionPanel.xhtml}{https://www.primefaces.org/showcase/ui/panel/accordionPanel.xhtml}.}, composto de diversas abas. Quando uma aba recebe um clique do mouse, o seu conteúdo é exibido progressivamente (daí a referência a um acordeão).
+  \item No \emph{rodapé} da página encontram-se os botões de ação \texttt{Salvar}, \texttt{Validar} e \texttt{Finalizar}. O botão \texttt{Salvar} é habilitado após o preenchimento do campo \texttt{Polo}, e salva as informações fornecidas pelo usuário na base de dados. Deve-se atentar para o fato de que as informações fornecidas pelos usuários não são salvas automaticamente, daí o uso do botão. A utilização dos demais botões será explicada na seção \ref{sec:validacao}.
+\end{itemize}
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:criar_inscricao} Criação de uma nova inscrição.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/criar_inscricao.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilitadas. Para habilitá-las, é preciso preencher os campos \texttt{Programa}, \texttt{Nível} e \texttt{Polo}, e clicar no botão \texttt{Salvar}. Após o salvamento, o candidato terá a opção de importar os dados da última inscrição por si realizada (vide Figura~\ref{fig:importar_dados}). A partir deste ponto, os casos de uso \emph{criar inscrição} e \emph{editar inscrição} têm as mesmas funcionalidades.
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:importar_dados} Importação de dados na criação de uma nova inscrição.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/importar_dados.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+% ---
+\subsection{Edição de uma inscrição}\label{sec:edicao_inscricao}
+% ---
+
+A Figura~\ref{fig:importar_dados} ilustra uma página típica de quando se inicia a edição de uma inscrição\footnote{Com exceção da mensagem de importação de dados.}. Nota-se que, ao contrário da página inicial da criação de uma nova inscrição, o número da inscrição e a data limítrofe para a finalização da inscrição são exibidas no cabeçalho da página.
+
+A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados Pessoais}.
+
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:dados_pessoais_desktop} Campos da aba \texttt{Dados Pessoais}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/dados_pessoais_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:contato_desktop} Campos da aba \texttt{Contato}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/contato_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:formacao_desktop} Campos da aba \texttt{Formação}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/formacao_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:documentos_desktop} Campos da aba \texttt{Documentos}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/documentos_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:enviar_documento_desktop} Envio de documentos.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/enviar_documento_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:buscar_documento_desktop} Busca de documentos.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/buscar_documento_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
 
 
 % ---
@@ -985,7 +1094,7 @@ Salienta-se que o CAS é um sistema já existente e utilizado por diversos outro
 
 
 % ---
-\subsection{Salvamento e finalização de uma inscrição}\label{sec:envio_documentos}
+\subsection{Validação e finalização de uma inscrição}\label{sec:validacao}
 % ---
 
 \colorbox{yellow}{TODO}
