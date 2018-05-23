@@ -922,6 +922,15 @@ A Tabela~\ref{tab:casos-uso} mostra um mapeamento entre os casos de uso identifi
 
 
 % ---
+\subsection{Dispositivos móveis}\label{sec:mobile}
+% ---
+
+\colorbox{yellow}{TODO}
+
+
+
+
+% ---
 \subsection{Lista de programas disponíveis}\label{sec:programas_disponiveis}
 % ---
 %Como pode ser visto na Tabela~\ref{tab:casos-uso}, a visualização dos programas disponíveis possui uma página própria, \texttt{programas.xhtml}.
@@ -1098,9 +1107,9 @@ Os candidatos podem adicionar cursos de formação já concluídos ou em andamen
 % ---
 \subsection{Envio de documentos}\label{sec:envio_documentos}
 % ---
-\colorbox{yellow}{TODO}
 
-
+Uma das principais funcionalidades providas por este sistema é permitir que o candidato faça o envio de documentos. Não somente se reduz a quantidade de papéis que ficariam armazenados nas secretarias dos cursos (economizando espaço), como também potencializa-se a segurança dos documentos (documentos em papel estão sempre sujeitos a danos e avarias) e facilita-se a sua busca. Essa funcionalidade está implementada na aba \texttt{Documentos}, como pode ser visto na Figura~\ref{fig:documentos_desktop}. As linhas da tabela representam os documentos que são exigidos pela secretaria a qual o programa escolhido está vinculado. No exemplo fictício mostrado, são exigidos três documentos, dois dos quais já foram enviados, e um está pendente.
+%
 \begin{figure}[!ht]
   \caption{\label{fig:documentos_desktop} Campos da aba \texttt{Documentos}.}
   \begin{center}
@@ -1109,6 +1118,8 @@ Os candidatos podem adicionar cursos de formação já concluídos ou em andamen
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
+A partir da tabela, pode-se \emph{enviar} novos documentos (vide Figura~\ref{fig:enviar_documento_desktop}) e \emph{buscar} documentos de inscrições passadas realizadas pelo candidato (vide Figura~\ref{fig:buscar_documento_desktop}).
+%
 \begin{figure}[!ht]
   \caption{\label{fig:enviar_documento_desktop} Envio de documentos.}
   \begin{center}
@@ -1117,8 +1128,12 @@ Os candidatos podem adicionar cursos de formação já concluídos ou em andamen
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
+No envio de documentos, uma caixa de diálogo modal informa os formatos aceitos pela aplicação e o tamanho máximo de cada arquivo. Ao clicar no botão \texttt{Buscar}, abre-se uma janela de busca de documentos nativa ao sistema operacional do computador do candidato para que este possa escolher o documento a ser enviado. Os documentos enviados são armazenados em um repositório e os identificadores dos arquivos são armazenados em um banco de dados (vide Figura~\ref{fig:uml_storage}).
+
+Na busca de documentos, uma janela modal exibe uma lista de inscrições passadas nas quais esse mesmo tipo de documento foi utilizado. As colunas \texttt{Programa}, \texttt{Nível} e \texttt{Data do envio} auxiliam o candidato na escolha do documento a ser reutilizado na inscrição atual.
+
 \begin{figure}[!ht]
-  \caption{\label{fig:buscar_documento_desktop} Busca de documentos.}
+  \caption{\label{fig:buscar_documento_desktop} Busca de documentos utilizados em inscrições passadas.}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/buscar_documento_desktop.png}
   \end{center}
@@ -1126,8 +1141,18 @@ Os candidatos podem adicionar cursos de formação já concluídos ou em andamen
 \end{figure}
 
 
+Uma das preocupações que podem ser levantadas em relação ao envio de documentos é a quantidade de conexões simultâneas que o servidor onde está instalado o repositório de documentos suporta. Segundo dados obtidos na própria SeTIC, são possíveis sete conexões simultâneas ao repositório. Até o momento, o sistema atual não teve problemas relacionados à falta de conexões disponíveis. Embora o sistema em desenvolvimento vise atender a uma gama maior de secretarias, os processo seletivos dos diferentes programas costumam ter cronogramas diferentes, diminuindo a concorrência por conexões ao repositório.
+
+
 % ---
 \subsection{Validação e finalização de uma inscrição}\label{sec:validacao}
+% ---
+
+\colorbox{yellow}{TODO}
+
+
+% ---
+\subsection{Documentos enviados}\label{sec:documentos_enviados}
 % ---
 
 \colorbox{yellow}{TODO}
