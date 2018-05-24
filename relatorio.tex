@@ -1153,11 +1153,41 @@ Uma das preocupações que podem ser levantadas em relação ao envio de documen
 
 
 % ---
-\subsection{Validação e finalização de uma inscrição}\label{sec:validacao}
+\subsection{Verificação de erros e finalização de uma inscrição}\label{sec:validacao}
 % ---
 
-\colorbox{yellow}{TODO}
+Pode-se verificar a existência de erros e o não-preenchimento de campos obrigatórios em qualquer momento durante o preenchimento do formulário através do botão \texttt{Verificar}\footnote{Salvo a situação em que o usuário está criando uma nova inscrição e ainda não salvou o formulário.}.
+%
+Na presença de tais erros, uma mensagem é exibida para o usuário e as abas que possuem campos não-preenchidos ou com erros são destacadas com ícone de exclamação, como pode ser visto na Figura~\ref{fig:verificacao_msg} para as abas \texttt{Dados Pessoais} e \texttt{Contato}.
+%
+\begin{figure}[!ht]
+  \caption{\label{fig:verificacao_msg} Erros encontrados nas abas \texttt{Dados Pessoais} e \texttt{Contato}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/verificacao_msg_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
 
+Ao abrir tais abas, os campos não-validados estão destacados na cor vermelha e com um ícone de exclamação ao lado de seus rótulos (vide Figura~\ref{fig:verificacao_aba}). Neste momento, tendo o usuário corrigido os erros ou não, se o formulário for salvo, os ícones de erro desaparecem.
+
+Quando o formulário for verificado e não houver mais erros, uma mensagem de sucesso é exibida para o usuário (vide Figura~\ref{fig:verificacao_sucesso}), e o botão \texttt{Finalizar} é habilitado.
+
+\begin{figure}[!ht]
+  \caption{\label{fig:verificacao_aba} Campos não-preenchidos da aba \texttt{Dados Pessoais}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/verificacao_aba_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:verificacao_sucesso} Formulário verificado e sem erros.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/verificacao_sucesso_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
 
 % ---
 \subsection{Documentos enviados}\label{sec:documentos_enviados}
@@ -1165,6 +1195,14 @@ Uma das preocupações que podem ser levantadas em relação ao envio de documen
 
 \colorbox{yellow}{TODO}
 
+
+\begin{figure}[!ht]
+  \caption{\label{fig:documentos_enviados} Lista de documentos enviados pelo candidato.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/documentos_enviados_desktop.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
 
 
 
