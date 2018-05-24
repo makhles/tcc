@@ -837,7 +837,7 @@ Após definida a estrutura inicial do sistema, deu-se início ao processo de imp
 \begin{figure}[!ht]
   \caption{\label{fig:src_explorer} Alguns pacotes e classes da aplicação vistos no Eclipse. }
   \begin{center}
-    \includegraphics[scale=0.85]{/src_explorer.png}
+    \includegraphics[width=0.6\textwidth]{/src_explorer.png}
   \end{center}
   \fonte{Elaborada pelo autor.}
 \end{figure}
@@ -883,7 +883,14 @@ Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer}
 % ---
 \section{Dispositivos móveis}\label{sec:mobile}
 % ---
-Um requisito não-funcional que não havia sido considerado no início deste projeto e que surgiu relativamente próximo ao seu fim foi a criação de uma interface que pudesse ser utilizada por dispositivos móveis de forma responsiva (ou fluida). As imagens utilizadas na exemplificação das funcionalidades mostradas a seguir foram feitas com a versão \emph{desktop} do navegador. A versão \emph{mobile} das imagens pode ser vista no Anexo~\ref{anexo:mobile}.
+Um requisito não-funcional que não havia sido considerado no início deste projeto e que surgiu relativamente próximo ao seu fim foi a adaptação da interface para que pudesse ser utilizada em dispositivos móveis. Havia, na época, duas abordagens a serem consideradas:
+
+\begin{itemize}
+  \item A utilização de um \emph{add-on} da biblioteca PrimeFaces chamado PrimeFaces Mobile (PFM), o qual permite a criação de aplicações Web baseadas em JSF otimizadas para o uso em dispositivos móveis. Nesta abordagem, utilizam-se \emph{views} separadas para navegadores de dispositivos móveis e para navegadores comuns, e reutilizam-se os métodos da camada de negócio da aplicação. Embora isso permita maior usabilidade e experiência mais agradável para usuários acostumados a utilizar aplicativos móveis, a duplicação de código dificulta a manutenibilidade da aplicação.
+  \item A utilização de páginas responsivas: as mesmas \emph{views} são utilizadas em navegadores comuns e navegadores de dispositivos móveis, e a disposição dos elementos é controlada a partir de \emph{CSS media queries}.
+\end{itemize}
+%
+Tendo em vista a manutenibilidade do código, optou-se pela segunda abordagem. As imagens utilizadas na exemplificação das funcionalidades mostradas a seguir foram obtidas em navegadores comuns. Imagens obtidas em um navegador de um dispositivo móvel podem ser vistas no Anexo~\ref{anexo:mobile}.
 
 
 % ---
