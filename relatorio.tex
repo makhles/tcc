@@ -767,7 +767,16 @@ O segundo estágio do modelo de desenvolvimento de software adotado consiste em 
 
 \subsection{Diagrama de Casos de Uso}\label{sec:casos_uso}
 
-Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato. \colorbox{yellow}{TODO.} As interações são representadas por elipses e os atores por bonecos palito. Cores foram utilizadas facilitar a visualização da separação dos níveis dos relacionamentos entre os casos de uso.
+Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o sistema de inscrição. As interações são representadas por elipses e os atores por bonecos palito. Identificam-se os seguintes atores:
+
+\begin{itemize}
+  \item \textbf{Candidato}, o principal ator e que atua em todos os casos de uso identificados.
+  \item \textbf{CAS}, ator que interage apenas com os casos de uso relacionados à autenticação do ator Candidato.
+  \item \textbf{Sybase}, uma interface para o sistema de gerenciamento do banco de dados e que atua em todos os casos de uso que necessitam de acesso ao banco de dados.
+  \item \textbf{Storage}, uma interface para o repositório de documentos enviados pelo ator Candidato.
+\end{itemize}
+
+Nota-se também que o caso de uso \emph{verificar inscrição} é o único caso de uso que interage com apenas um ator. Isto se deve ao fato de que a verificação de campos não-preenchidos e de campos com erros de preenchimento é feita em parte pelo JSF e em parte no \emph{bean} associado a \emph{view} de inscrição (ambos na camada Web).
 
 \begin{figure}[!ht]
   \caption{\label{fig:use_cases} Casos de uso identificados no sistema.}
@@ -776,6 +785,32 @@ Diagramas de casos de uso fornecem uma representação em alto nível da intera�
   \end{center}
   \fonte{Elaborada pelo autor.}%
 \end{figure}
+
+% ---
+\subsection{Diagrama de Visão Geral de Interação}
+% ---
+
+Introduzido na versão 2.0 da UML, este diagrama é uma versão modificada do diagrama de atividades, no qual ao invés de ações ou atividades, os nós correspondem a \emph{interações} que são modeladas em outros diagramas. Sua finalidade é modelar as sequências possíveis de ocorrência das interações identificadas. Uma possível aplicação do diagrama de visão geral de interação é a modelagem do fluxo entre as interações associadas aos casos de uso identificados anteriormente. 
+
+O fluxo de execução pode ser visto na Figura~\ref{fig:interaction}. Identificam-se os seguintes elementos:
+
+\begin{itemize}
+  \item \textbf{Nós de uso de interação}, que referenciam as interações associadas aos casos de uso.
+  \item \textbf{Nós de decisão}, responsáveis por receber o fluxo a partir de uma ou mais arestas e selecionar a direção do fluxo de execução de acordo com as guardas.
+  \item \textbf{Guardas}, ou condições booleanas escritas entre colchetes, condicionam a saída do nó de decisão.
+  \item \textbf{Nó inicial}, representado por um círculo preto, a partir do qual inicia-se o fluxo de execução.
+  \item \textbf{Nó final}, representado por um círculo preto inscrito em uma circunferência preta, no qual termina o fluxo de execução. 
+\end{itemize}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:interaction} Interação entre os ``casos de uso'' do sistema. Algumas guardas foram omitidas para não saturar o diagrama.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/uml/interaction.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}%
+\end{figure}
+
+Salienta-se que os diagramas de interação referentes aos nós de uso de interação da Figura~\ref{fig:interaction} não foram modelados.
 
 % ---
 \subsection{Diagrama de Classes}
@@ -805,7 +840,13 @@ A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas da
 \end{figure}
 \end{landscape}
 
-Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage} foi desenvolvido. \colorbox{yellow}{\textbf{TODO:}} substituir os nomes das tabelas e campos no modelo entidade-relacionamento abaixo por nomes mais genéricos próprios de um projeto.
+% ---
+\subsection{Diagrama de Entidade-Relacionamento}
+% ---
+
+Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage} foi desenvolvido.
+
+\colorbox{yellow}{\textbf{TODO:}} substituir os nomes das tabelas e campos no modelo entidade-relacionamento abaixo por nomes mais genéricos próprios de um projeto.
 
 \begin{figure}[!ht]
   \caption{\label{fig:uml_storage} Modelo entidade-relacionamento relacionado ao salvamento de documentos. }
@@ -890,7 +931,7 @@ Um requisito não-funcional que não havia sido considerado no início deste pro
   \item A utilização de páginas responsivas: as mesmas \emph{views} são utilizadas em navegadores comuns e navegadores de dispositivos móveis, e a disposição dos elementos é controlada a partir de \emph{CSS media queries}.
 \end{itemize}
 %
-Tendo em vista a manutenibilidade do código, optou-se pela segunda abordagem. As imagens utilizadas na exemplificação das funcionalidades mostradas a seguir foram obtidas em navegadores comuns. Imagens obtidas em um navegador de um dispositivo móvel podem ser vistas no Anexo~\ref{anexo:mobile}.
+Tendo em vista a manutenibilidade do código, optou-se pela segunda abordagem. As imagens utilizadas na exemplificação das funcionalidades mostradas a seguir foram obtidas em navegadores comuns. Imagens obtidas em um navegador de um dispositivo móvel\footnote{Motorola Moto G5 com resolução de 1920x1080 pixels.} podem ser vistas no Anexo~\ref{anexo:mobile}.
 
 
 % ---
@@ -1193,11 +1234,11 @@ Quando o formulário for verificado e não houver mais erros, uma mensagem de su
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-% ---99
+% ---
 \subsection{Documentos enviados}\label{sec:documentos_enviados}
 % ---
 
-\colorbox{yellow}{TODO}
+Todos os documentos enviados pelo candidato podem ser obtidos a partir da \emph{view documentos enviados}, a qual pode ser acessada através do item de menu \texttt{Documentos enviados}. O usuário pode baixar os documentos desejados clicando no ícone de \emph{download} da linha respectiva (vide Figura~\ref{fig:documentos_enviados}). Informações tais como número de inscrição, programa, nível, tipo de documento e data de envio também estão presentes para auxiliar o usuário a encontrar o documento desejado.
 
 
 \begin{figure}[!ht]
@@ -1213,20 +1254,22 @@ Quando o formulário for verificado e não houver mais erros, uma mensagem de su
 \chapter{Conclusões}
 % ----------------------------------------------------------
 
-O sistema de inscrição atual é utilizado por apenas alguns dos cursos de Pós-Graduação da UFSC. Alguns cursos utilizam seus próprios sistemas, dificultando a sua mantenibilidade e introduzindo duplicações de código e vulnerabilidades.
+O sistema de inscrição atual é utilizado por apenas alguns dos cursos de Pós-Graduação da UFSC. Alguns cursos utilizam seus próprios sistemas, dificultando a sua manutenibilidade e introduzindo duplicações de código e vulnerabilidades.
 
 Torna-se imprescindível, portanto, o desenvolvimento de um novo sistema de inscrição unificado, que dê suporte a novas funcionalidades e que utilize as tecnologias atualmente em uso na SeTIC.
 
-Algumas atividades previstas na proposta do TCC foram desenvolvidas neste primeiro semestre da disciplina de Projetos, especificamente:
+Ao longo deste projeto, diversas atividades previstas foram desenvolvidas, especificamente:
 \begin{itemize}
-  \item Levantamento das funcionalidades;
-  \item Especificação dos requisitos do sistema a partir destas funcionalidades
-  \item Definição da arquitetura do sistema;
+  \item Levantamento das funcionalidades desejadas para o sistema através de entrevistas com o cliente (PROPG);
+  \item Especificação dos requisitos funcionais e não-funcionais do sistema a partir destas funcionalidades;
+  \item Definição da arquitetura do sistema a partir de diagramas feitos segundo as especificações da UML: diagrama de casos de uso, diagrama de visão geral de interação e diagramas de classes;
+  \item Prototipação a partir do desenvolvimento de um conjunto de \emph{wireframes}.
   \item Adequação do Projeto Base para atender a estrutura definida;
-  \item implementação dos casos de uso discutidos na Seção~\ref{sec:funcionalidades}.
+  \item Implementação dos casos de uso discutidos na Seção~\ref{sec:funcionalidades}.
+  \item Adaptação da interface do sistema para sua utilização em dispositivos móveis de forma responsiva.
 \end{itemize}
 
-
+O sistema desenvolvido está atualmente no estágio de homologação. A identificação de \emph{bugs}, as aprimorações e a adição de novas funcionalidades serão feitas por funcionários da SeTIC.
 
 % ----------------------------------------------------------
 \bibliography{referencias}
@@ -1448,7 +1491,78 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 
 \chapter{Exemplificação para dispositivos móveis}\label{anexo:mobile}
 % ----------------------------------------------------------
-\colorbox{yellow}{TODO}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_index_programas} À esquerda: página inicial do sistema, a partir da qual pode-se obter a lista de programas disponíveis para inscrição e iniciar a sessão. À direita: lista de programas disponíveis. }
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_index_programas.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_inscricoes} À esquerda: \emph{view} inscrições após a autenticação. À direita: detalhe para os dois tipos de inscrição. As linhas de uma tabela comum se transformam em pequenos blocos cujo número de linhas é igual ao número de colunas da tabela no modo \emph{desktop}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_inscricoes.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_criar_inscricao} À esquerda: criação de uma nova inscrição. Em detalhe: aba \texttt{Programa} vazia. À direita: mensagem de importar dados da última inscrição realizada.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_criar_inscricao.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_dados_pessoais_contato} Preenchimento do formulário com dados fictícios. À esquerda: campos da aba \texttt{Dados Pessoais}. À direita: campos da aba \texttt{Contato}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_dados_pessoais_contato.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_formacao} Preenchimento do formulário com dados fictícios. À esquerda: aba \texttt{Formação} com um curso de formação em andamento. À direita: caixa de diálogo modal de inclusão de um curso de formação.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_formacao.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_documentos} À esquerda: mensagens informativas da aba \texttt{Documentos}. À direita: caixa de diálogo modal para a reutilização de documentos enviados em inscrições passadas mostrando dois documentos do tipo RG.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_documentos.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_verificacao_erros} À esquerda: erros encontrados no preenchimento do formulário. À direita: destaque para o campo não-preenchido na aba \texttt{Dados pessoais}.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_verificacao_erros.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+\begin{figure}[!ht]
+  \caption{\label{fig:mobile_verificacao_sucesso_documentos_enviados} À esquerda: formulário verificado e sem erros. Botão \texttt{Finalizar} habilitado. À direita: tela de documentos enviados pelo candidato.}
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{/app/mobile_verificacao_sucesso_documentos_enviados.png}
+  \end{center}
+  \fonte{Elaborada pelo autor.}
+\end{figure}
+
+
+
+\chapter{Exemplo de comprovante de inscrição}\label{anexo:comprovante}
+% ----------------------------------------------------------
+
 
 \end{document}
 
