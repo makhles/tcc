@@ -767,12 +767,12 @@ O segundo estágio do modelo de desenvolvimento de software adotado consiste em 
 
 \subsection{Diagrama de Casos de Uso}\label{sec:casos_uso}
 
-Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato. As interações são representadas por elipses e os atores por bonecos palito. Cores foram utilizadas facilitar a visualização da separação dos níveis dos relacionamentos entre os casos de uso.
+Diagramas de casos de uso fornecem uma representação em alto nível da interação entre os diversos usuários (chamados de atores) com o sistema. A Figura~\ref{fig:use_cases} abaixo relaciona os casos de uso identificados para o ator Candidato. \colorbox{yellow}{TODO.} As interações são representadas por elipses e os atores por bonecos palito. Cores foram utilizadas facilitar a visualização da separação dos níveis dos relacionamentos entre os casos de uso.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:use_cases} Casos de uso identificados para o ator Candidato. Relacionamentos de extensão representados por \texttt{<<e>>}. }
+  \caption{\label{fig:use_cases} Casos de uso identificados no sistema.}
   \begin{center}
-    \includegraphics[width=1.0\textwidth]{/use_cases.png}
+    \includegraphics[width=0.9\textwidth]{/uml/use_cases.png}
   \end{center}
   \fonte{Elaborada pelo autor.}%
 \end{figure}
@@ -783,21 +783,21 @@ Diagramas de casos de uso fornecem uma representação em alto nível da intera�
 
 Um diagrama de classes é responsável por mostrar as diversas classes de uma aplicação e as associações (agregação, composição, generalização e dependências) entre elas.
 
-O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_classes1} mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
+O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_er1} mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_classes1} Modelo entidade-relacionamento relacionado à obtenção de programas. }
+  \caption{\label{fig:uml_er1} Modelo entidade-relacionamento relacionado à obtenção de programas. }
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/programas.png}
   \end{center}
   \fonte{Elaborada pelo autor com a ferramenta ObjectAid UML Explorer.}%
 \end{figure}
 
-A Figura~\ref{fig:uml_classes2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As dependências dessas classes não são mostradas (este diagrama pode crescer substancialmente). As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean} (através de uma classe que a implemente). Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
+A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As dependências dessas classes não são mostradas (este diagrama pode crescer substancialmente). As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean} (através de uma classe que a implemente). Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
 
 \begin{landscape}
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_classes2} Modelo entidade-relacionamento relacionado às inscrições. }
+  \caption{\label{fig:uml_er2} Modelo entidade-relacionamento relacionado às inscrições. }
   \begin{center}
     \includegraphics[scale=0.40]{/uml/inscricoes.png}
   \end{center}
@@ -909,24 +909,28 @@ A Tabela~\ref{tab:casos-uso} mostra um mapeamento entre os casos de uso identifi
       \toprule
       \textbf{Caso de Uso} & \textbf{Página da Aplicação} \\
       \midrule \midrule
-      Ver programas disponíveis & \texttt{programas.xhtml} \\ \hline 
-      Registrar                 & \multirow{3}{*}{\texttt{login.xhtml}} \\
-      Fazer \emph{login}        & \\
-      Fazer \emph{logout}       & \\
+      Listar programas     & \texttt{programas.xhtml} \\
+      \midrule 
+      Iniciar sessão       & \texttt{login.xhtml} \\
       \midrule
-      Criar inscrição           & \multirow{3}{*}{\texttt{inscricoes.xhtml}} \\
-      Editar inscrição          & \\
-      Excluir inscrição         & \\
+      Encerrar sessão      & A partir de qualquer página \\
       \midrule
-      Enviar documento          & \texttt{enviar\_documento.xhtml} \\
+      Listar inscrições    & \multirow{4}{*}{\texttt{inscricoes.xhtml}} \\
+      Criar inscrição      & \\
+      Editar inscrição     & \\
+      Excluir inscrição    & \\
       \midrule
-      Buscar documento          & \texttt{buscar\_documento.xhtml} \\
+      Enviar documento     & \texttt{enviar\_documento.xhtml} \\
       \midrule
-      Excluir documento         & \multirow{5}{*}{\texttt{inscricao.xhtml}} \\
-      Importar dados            & \\
-      Salvar inscrição          & \\
-      Finalizar inscrição       & \\
-      Enviar comprovante        & \\
+      Buscar documento     & \texttt{buscar\_documento.xhtml} \\
+      \midrule
+      Baixar documento     & \texttt{documentos\_enviados.hxtml} \\
+      \midrule
+      Excluir documento    & \multirow{5}{*}{\texttt{inscricao.xhtml}} \\
+      Importar dados       & \\
+      Salvar inscrição     & \\
+      Finalizar inscrição  & \\
+      Verificar inscrição  & \\
       \bottomrule
     \end{tabular} 
   }{
@@ -1189,7 +1193,7 @@ Quando o formulário for verificado e não houver mais erros, uma mensagem de su
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-% ---
+% ---99
 \subsection{Documentos enviados}\label{sec:documentos_enviados}
 % ---
 
