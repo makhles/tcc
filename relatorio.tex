@@ -183,13 +183,13 @@
 \instituicao{%
   Universidade Federal de Santa Catarina - UFSC
   \par
-  Ciência da Computação}
+  Ciências da Computação}
 \local{Florianópolis}
 \tipotrabalho{Exemplo para referência futura}
 \orientador{Andréia Alves dos Santos Schwaab}
 \coorientador{Leandro José Komosinski}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Relatório Final do Trabalho de Conclusão do Curso do Curso de Ciências da Computação da Universidade Federal de Santa Catarina.}
+\preambulo{Relatório Final do Trabalho de Conclusão dc Curso do Curso de Ciências da Computação da Universidade Federal de Santa Catarina.}
 %TODO
 %\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Ciências da Computação da Universidade Federal de Santa Catarina para a obtenção do grau de Bacharel em Ciências da Computação.}
 
@@ -310,7 +310,7 @@
  
 \begin{resumo}
 
-Utilizando-se a linguagem Java e as tecnologias para desenvolvimento Web próprias do JavaEE, desenvolveu-se um sistema de inscrição para os Programas de Pós-Graduação da UFSC. O desenvolvimento utilizou como inspiração o sistema atualmente em uso, que infelizmente está carente de algumas funcionalidades. O novo sistema permite o prenchimento do formulário durante todo o período definido no cronograma do processo seletivo, além do envio de documentos obrigatórios pré-estabelecidos pelas secretarias dos cursos e da importação dos dados de inscrições passadas. A interface do sistema foi desenvolvida de forma responsiva, \emph{i.e.}, a usabilidade em dispositivos móveis também foi levada em consideração no desenvolvimento das páginas. Atualmente o sistema se encontra no estágio de homologação e à espera de testes e identificação de possíveis \emph{bugs} e melhorias.
+Utilizando-se a linguagem Java e as tecnologias para desenvolvimento Web próprias do JavaEE, desenvolveu-se um sistema de inscrição para os Programas de Pós-Graduação da UFSC. A produção deste trabalho foi inspirada em um sistema atualmente em uso que está carente de algumas funcionalidades. O novo sistema permite o prenchimento do formulário durante todo o período definido no cronograma do processo seletivo, além do envio de documentos obrigatórios pré-estabelecidos pelas secretarias dos cursos e da importação dos dados de inscrições passadas. A interface do sistema foi desenvolvida de forma responsiva, \emph{i.e.}, a usabilidade em dispositivos móveis também foi levada em consideração no desenvolvimento das páginas. Ainda, empregou-se um conjunto de bibliotecas mais atual do que o do sistema em uso, proporcionando mais recursos ao desenvolvedor. Atualmente o sistema se encontra no estágio de homologação e à espera de testes e identificação de possíveis \emph{bugs} e melhorias.
 
 \vspace{\onelineskip}
 \noindent \textbf{Palavras-chave:} Formulário de Inscrição; Processo Seletivo; Desenvolvimento Web; JavaServer Faces; PrimeFaces; Responsive Web Design.
@@ -319,7 +319,7 @@ Utilizando-se a linguagem Java e as tecnologias para desenvolvimento Web própri
 \begin{resumo}[Abstract]
 \begin{otherlanguage*}{english}
 
-JavaEE Web development technologies were used in the development of a new online Postgraduate Enrollment System for the Federal University of Santa Catarina. The current enrollment system, which lacks some important sought out functionalities, was used as an inspiration in the development of the new system. Candidates can now fill out the application forms at any time during the selection process, upload the required documents and import personal data used in the last submitted application. Responsive web design was taken into consideration while designing the system, \emph{i.e.}, mobile users will not feel left behind when filling out the application form. The system is currently awaiting tests and improvements.
+JavaEE Web development technologies were used in the development of a new online Postgraduate Enrollment System for the Federal University of Santa Catarina. The current enrollment system, which lacks some important sought out functionalities, was used as an inspiration in the development of the new one. Candidates can now fill out the application forms at any time during the selection process, upload the required documents and import personal data used in the last submitted application. Responsive web design was taken into consideration while designing the system, \emph{i.e.}, mobile users will not feel left behind when filling out the application form. Lastly, an up-to-date set of libraries were used instead of the old ones, providing a more resourceful environment to developers. The system is currently awaiting tests and improvements.
 
 \vspace{\onelineskip}
 \noindent \textbf{Keywords:} Application Form; Selection Process; Web Development; JavaServer Faces; PrimeFaces; Responsive Web Design.
@@ -386,8 +386,7 @@ JavaEE Web development technologies were used in the development of a new online
 \section{Contextualização}
 % ---
 
-O acesso aos programas de pós-graduação oferecidos pela Universidade Federal de Santa Catarina é feito através de processos seletivos lançados por suas respectivas secretarias. Todos os programas possuem algum sistema para as inscrições em seus processos seletivos, porém ou não possuem um sistema informatizado (restringindo-se ao uso de formulários de inscrição manuais), ou fazem uso de algum sistema informatizado não oficial. 
-
+O acesso aos programas de pós-graduação oferecidos pela Universidade Federal de Santa Catarina é feito através de processos seletivos lançados por suas respectivas secretarias. Todos os programas possuem algum modo para realizar as inscrições em seus processos seletivos. Dentre as formas utilizadas, destacam-se um sistema informatizado oficial, formulários de inscrição manuais e sistemas informatizados não-oficiais.
 O uso desses diversos sistemas, com suas funcionalidades e interfaces distintas, acarreta em diversos problemas, tais como:
 \begin{itemize}
   \item Falta de padronização dos requisitos e tecnologias utilizadas.
@@ -409,15 +408,17 @@ A Figura~\ref{fig:uso_sistemas} mostra o uso desse sistema pelos programas da UF
   \fonte{Dados obtidos em consultas ao banco de dados do CAPG.}
 \end{figure}
 
-Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas a seguir.
+Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas nas seções~\ref{sec:envio_doc}~e~\ref{sec:ordem}.
 
-\subsection{Envio de documentos}
-A funcionalidade mais importante que será implementada neste novo sistema é o envio de documentos de forma digital por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
+\subsection{Envio de documentos}\label{sec:envio_doc}
+A funcionalidade mais importante que será implementada neste novo sistema é o envio de documentos de forma digital por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias físicas dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
 
 \subsection{Salvamento progressivo das informações}
-Caso um candidato queira fazer a inscrição em algum dos programas disponibilizados pela UFSC através do sistema de inscrição atual, este deve, essencialmente, fornecer todas as informações em uma única sessão e, ao final, receberá um número de inscrição e a possibilidade de imprimir um comprovante de inscrição. Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
+Caso um candidato queira fazer a inscrição em algum dos programas de Pós-Graduação da UFSC através do sistema de inscrição atualmente em uso, este deve, essencialmente, fornecer todas as informações em uma única sessão. Ao final, o sistema fornece um número de inscrição e a possibilidade de impressão de um comprovante de inscrição.
 
-\subsection{Ordem de preenchimento do formulário}
+Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
+
+\subsection{Ordem de preenchimento do formulário}\label{sec:ordem}
 No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo\footnote{A não ser em situações onde exista uma ordem implícita. O envio de documentos é um exemplo, pois estes dependem do programa e nível escolhidos.}.
 
 % ---
@@ -426,7 +427,7 @@ No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Mu
 
 A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), setor de informática da Universidade Federal de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade\footnote{Mais informações em http://setic.ufsc.br/apresentacao/}. As aplicações desenvolvidas pela SeTIC são solicitadas e acompanhadas por usuários dos diversos setores da UFSC.
 
-Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e atualmente possui bolsa de extensão pela FEESC. Todas as atividades estão sendo desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operação} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
+Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e que, durante o período de desenvolvimento deste, teve bolsa de extensão fornecida pela FEESC. Todas as atividades foram desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operacionalização} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
 
 % ---
 \section{Objetivos}
@@ -463,7 +464,7 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um nov
 % ----------------------------------------------------------
 
 % ---
-\section{Aplicações Web}
+%\section{Aplicações Web}
 % ---
 
 
@@ -495,7 +496,7 @@ Esta camada é composta de clientes aplicativos que acessam o servidor Java EE e
 
 \begin{itemize}
   \item Clientes Web - também chamados de \emph{clientes magros}, são compostos de páginas dinâmicas (\emph{e.g.}, XHTML) geradas na camada Web e por um navegador responsável por renderizá-las.
-  \item Clientes Aplicativos - quando os usuários necessitam realizar atividades que requerem uma interface mais rica do que a disponibilizada por linguagens de marcação, utilizam-se clientes aplicativos baseados nas APIs Swing ou AWT (\emph{Abstract Window Toolkit})\footnote{Não obstante, pode-se utilizar uma interface em linha de comando.}. Embora seja possível o estabelecimento de uma conexão HTTP com um \emph{servlet} na camada Web, clientes aplicativos costumam acessar diretamente os \emph{beans} gerenciais da camada de negócio.
+  \item Clientes Aplicativos - quando os usuários necessitam realizar atividades que requerem uma interface mais rica do que a disponibilizada por linguagens de marcação, utilizam-se clientes aplicativos baseados nas APIs Swing ou AWT (\emph{Abstract Window Toolkit}). Não obstante, pode-se utilizar uma interface em linha de comando. Embora seja possível o estabelecimento de uma conexão HTTP com um \emph{servlet} na camada Web, clientes aplicativos costumam acessar diretamente os \emph{beans} gerenciais da camada de negócio.
   \item \emph{Applets} - componentes embarcados que são incluídos nas páginas web. São escritos em Java e, portanto, necessitam da máquina virtual Java instalada no navegador web do cliente (e provavelmente do \emph{plugin} Java e de um arquivo de política de segurança).
 \end{itemize}
 
@@ -567,7 +568,7 @@ O \emph{framework} JSF segue o padrão arquitetural\footnote{Um padrão arquitet
 
 Os \emph{frameworks} MVC podem ser baseados em ações (\emph{action-based}) ou em componentes (\emph{component-based}). Em ambos os tipos, todas as requisições feitas à aplicação devem passar primeiramente por um controlador frontal, como pode ser visto nas Figuras~\ref{fig:mvc-push}~e~\ref{fig:mvc-pull}.
 
-Quando se utiliza um \emph{framework} baseado em ação (\emph{e.g.}, SpringMVC, Struts, ASP.NET, etc), o controlador frontal é um \emph{servlet} que irá lidar com objetos \texttt{HTTPServletRequest} e \texttt{HTTPServletResponse}, delegar as requisições para métodos de outros controladores (classes que estendem a classe \texttt{HttpServlet}) de acordo com o caminho do recurso desejado e dos parâmetros da requisição. A obtenção, conversão e validação dos parâmetros das requisições e a atualização dos valores do modelo são responsabilidades do desenvolvedor da aplicação.
+Quando se utiliza um \emph{framework} baseado em ação (\emph{e.g.}, SpringMVC, Struts, ASP.NET, etc), o controlador frontal é um \emph{servlet} que irá lidar com objetos \texttt{HTTPServletRequest} e \texttt{HTTPServletResponse}, e delegar as requisições para métodos de outros controladores (classes que estendem a classe \texttt{HttpServlet} - vide o Algoritmo~\ref{alg:servlet}, no Anexo~\ref{anexo:servlets}) de acordo com o caminho do recurso desejado e dos parâmetros da requisição. A obtenção, conversão e validação dos parâmetros das requisições e a atualização dos valores do modelo são responsabilidades do desenvolvedor da aplicação.
 
 \begin{figure}[!ht]
   \caption{\label{fig:mvc-push}\emph{Framework} MVC baseado em ações. Os números ao lado das setas indicam a ordem do processamento de uma requisição.}
@@ -577,7 +578,7 @@ Quando se utiliza um \emph{framework} baseado em ação (\emph{e.g.}, SpringMVC,
   \fonte{Caelum. Adaptado de \citetext{caelum}}
 \end{figure}
 
-O JSF é um \emph{framework} baseado em componentes. Como tal, possui um controlador frontal, o \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate}\footnote{Trechos de código que são incluídos em diversos lugares com um mínimo de alteração.}, tal como no caso anterior (vide Algoritmo~\ref{alg:servlet}, no Anexo~\ref{anexo:servlets}).
+O JSF é um \emph{framework} baseado em componentes. Como tal, possui um controlador frontal, o \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate}\footnote{Trechos de código que são incluídos em diversos lugares com um mínimo de alteração.}, tal como no caso de um framework baseado em ações.
 
 Resumidamente, a requisição feita pelo usuário da aplicação é recebida pelo \texttt{FacesServlet}, que delega o processamento para a visão responsável pela geração da página acessada. O componente acessado (por exemplo, um botão) invoca um método em um \emph{managed bean}\footnote{Uma classe Java que trabalha junto à visão.}. Este, por sua vez, pode buscar dados do modelo e retorná-los para a visão. Finalmente, a visão envia a resposta ao usuário.
 
@@ -675,7 +676,7 @@ public class Empregado {
 }
 \end{lstlisting}
 %
-Ainda com relação a essa entidade, é interessante observar as seguintes anotações\footnote{As anotações se referem sempre ao campo seguinte.}:
+Ainda com relação ao Algoritmo~\ref{alg:entity_emp}, é interessante observar as seguintes anotações:
 
 \begin{itemize}
   \item \texttt{@Id} - indica que o campo é a chave primária da tabela.
@@ -715,7 +716,7 @@ O desenvolvimento de um software/sistema segundo o modelo adotado pode ser divid
 
 A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto ao cliente. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
-Um conjunto de \emph{wireframes} das páginas do sistema foi desenvolvido\footnote{Utilizou-se um \emph{plugin} do WireframeSketcher feito para o Eclipse.} e apresentado com o objetivo de validar a estrutura, o conteúdo, as diversas funções e os diversos caminhos de interações dos usuários com o sistema. A confecção deste conjunto de \emph{wireframes} teve como base o sistema atual. Em cima deste foram aplicadas todas as mudanças que se faziam necessárias e que justificam o desenvolvimento do novo sistema. A Figura~\ref{fig:wireframe} fornece um exemplo retirado deste conjunto: após ter feito \emph{login} no sistema, o usuário Fulano é recebido com um conjunto de inscrições previamente realizadas por si. Evidencia-se o uso de balões explicativos para agilizar o entendimento dos diversos elementos da página pelo cliente. Ressalta-se que o visual da página não é o foco do \emph{wireframe}, e sim o que ela permite que o usuário realize.
+Um conjunto de \emph{wireframes}, ou protótipos, das páginas do sistema foi desenvolvido\footnote{Utilizou-se um \emph{plugin} do WireframeSketcher feito para o Eclipse.} e apresentado com o objetivo de validar a estrutura, o conteúdo, as diversas funções e os diversos caminhos de interações dos usuários com o sistema. A confecção deste conjunto de \emph{wireframes} teve como base o sistema informatizado atualmente em uso. Em cima deste foram aplicadas todas as mudanças que se faziam necessárias e que justificam o desenvolvimento do novo sistema. A Figura~\ref{fig:wireframe} fornece um exemplo retirado deste conjunto: após o início da sessão no sistema, a página inicial exibida para o usuário Fulano apresenta um histórico de inscrições já realizadas por este usuário. Evidencia-se o uso de balões explicativos para agilizar o entendimento dos diversos elementos da página. Ressalta-se que o visual da página não é o foco do \emph{wireframe}, e sim o que ela permite que o usuário realize.
 
 \begin{figure}[!ht]
   \caption{\label{fig:wireframe} \emph{Wireframe} que representa a página de inscrições realizadas pelo usuário Fulano após este ter feito \emph{login} no sistema. }
@@ -742,11 +743,10 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 \item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição do programa selecionado, desde que não tenha finalizado a sua inscrição.
 \item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, os dados inseridos não poderão mais ser modificados.
 \item[Requisito 8 - Receber um comprovante de inscrição.] Após finalizada a inscrição, o usuário receberá um comprovante de inscrição através do e-mail cadastrado.
-\item[Requisito 9 - Importar dados do CAS.] O usuário poderá importar os dados que foram utilizados para fazer o cadastro no CAS.
-\item[Requisito 10 - Importar dados de inscrições anteriores.] O usuário poderá importar alguns dados de inscrições anteriores ao iniciar uma nova inscrição. Os dados que poderão ser importados serão definidos pela PROPG.
+\item[Requisito 9 - Importar dados do CAS.] Os dados que foram utilizados para fazer o cadastro no CAS deverão ser importados automaticamente.
+\item[Requisito 10 - Importar dados de inscrições anteriores.] Ao iniciar uma nova inscrição, o usuário poderá importar dados pessoais e dados de contato da última inscrição realizada.
 \item[Requisito 11 - Fazer \emph{upload} de arquivos.] O usuário poderá fazer o \emph{upload} de arquivos solicitados pelo programa escolhido.
 \item[Requisito 12 - Importar arquivos.] O usuário poderá buscar arquivos utilizados em inscrições anteriores.
-\item[\sout{Requisito 13 - Visualizar inscrição.}] \sout{O usuário poderá visualizar os dados de sua inscrição em uma página única antes de decidir-se por finalizar a inscrição.} Requisito removido devido à forma como o formulário é exibido ao usuário.
 \item[Requisito 13 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados à PROPG na reunião de definição dos requisitos.
 \end{description}
 
@@ -814,8 +814,6 @@ O fluxo de execução pode ser visto na Figura~\ref{fig:interaction}. Identifica
   \fonte{Elaborada pelo autor.}%
 \end{figure}
 
-Salienta-se que os diagramas de interação referentes aos nós de uso de interação da Figura~\ref{fig:interaction} não foram modelados.
-
 % ---
 \subsection{Diagrama de Classes}
 % ---
@@ -832,7 +830,7 @@ O diagrama de classes do sistema foi dividido em duas imagens por questão de es
   \fonte{Elaborada pelo autor com a ferramenta ObjectAid UML Explorer.}%
 \end{figure}
 
-A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As dependências dessas classes não são mostradas (este diagrama pode crescer substancialmente). As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean} (através de uma classe que a implemente). Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
+A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean}. Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
 
 \begin{landscape}
 \begin{figure}[!ht]
@@ -848,12 +846,12 @@ A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas da
 \subsection{Diagrama de Entidade-Relacionamento}
 % ---
 
-Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage} foi desenvolvido.
+Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, foi desenvolvido o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage}.
 
 \colorbox{yellow}{\textbf{TODO:}} substituir os nomes das tabelas e campos no modelo entidade-relacionamento abaixo por nomes mais genéricos próprios de um projeto.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_storage} Modelo entidade-relacionamento relacionado ao salvamento de documentos. }
+  \caption{\label{fig:uml_storage} Modelo entidade-relacionamento associado ao salvamento de documentos. }
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/storage.png}
   \end{center}
@@ -861,7 +859,7 @@ Tendo em vista o requisito funcional de permitir ao candidato enviar e importar 
 \end{figure}
 
 
-Das entidades mostradas, as tabelas \texttt{inscricaoSelecao\_sel}, \texttt{processoSeletivo\_pro} e \texttt{editalProcessoSeletivo\_eps} já existiam na base de dados. A primeira contém os dados pessoais do candidato; as outras duas representam processos seletivos e seus respectivos editais. As demais entidades foram modeladas para atender aos requisitos 11 e 12 (vide Seção~\ref{sec:requisitos_funcionais}):
+Em relação às entidades mostradas na Figura~\ref{fig:uml_storage}, as tabelas \texttt{inscricaoSelecao\_sel}, \texttt{processoSeletivo\_pro} e \texttt{editalProcessoSeletivo\_eps} já existiam na base de dados. A primeira engloba os dados pessoais do candidato; as outras duas representam processos seletivos e seus respectivos editais. As demais entidades foram modeladas para atender aos requisitos 11 e 12 (vide Seção~\ref{sec:requisitos_funcionais}):
 
 \begin{itemize}
   \item \texttt{tipoDocInscricao\_tdi} - contém os tipos dos documentos obrigatórios para a inscrição nos diversos programas, \emph{e.g.}, histórico escolar, diploma de graduação, RG, \emph{etc}.
@@ -887,15 +885,15 @@ Após definida a estrutura inicial do sistema, deu-se início ao processo de imp
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-O pacote \texttt{(a)} é composto de \emph{beans} e classes auxialiares da camada Web (vide Seção~\ref{sec:camada-web}) que, em conjunto com os arquivos .xhtml, são responsáveis por gerar as páginas da aplicação.
+O pacote \texttt{(a)} é composto de \emph{beans} e classes auxiliares da camada Web (vide Seção~\ref{sec:camada-web}) que, em conjunto com os arquivos .xhtml, são responsáveis por gerar as páginas da aplicação.
 
 O mapeamento objeto-relacional se encontra no pacote destacado por \texttt{(b)}. Aqui se encontram as classes das inúmeras entidades do sistema (vide Seção~\ref{sec:camada-negocio}) e, por serem muitas, não foram incluídas na imagem.
 
-As classes representadas por \texttt{(c)}, assim como as classes do item anterior, pertencem à camada de negócios. São classes ditas de serviço, responsáveis pelas operações básicas de persistência: \emph{Create}, \emph{Read}, \emph{Update}, \emph{Delete}, comumente abreaviadas por CRUD. Na imagem, as classes \texttt{AcessoService}, \texttt{InscricoesService} e \texttt{InscricoesService} são interfaces\footnote{Em Java, uma interface é um tipo abstrato que especifica um comportamento que deve ser implementado.}, enquanto que \texttt{AcessoServiceImpl}, \texttt{InscricoesServiceImpl} e \texttt{InscricoesServiceImpl} representam suas implementações.
+As classes representadas por \texttt{(c)}, assim como as classes do item \texttt{(b)}, pertencem à camada de negócios. São classes ditas de serviço, responsáveis pelas operações básicas de persistência: \emph{Create}, \emph{Read}, \emph{Update}, \emph{Delete}, comumente abreaviadas por CRUD. Na Figura~\ref{fig:src_explorer}, as classes \texttt{AcessoService}, \texttt{InscricoesService} e \texttt{ProgramasService} são interfaces\footnote{Em Java, uma interface é um tipo abstrato que especifica um comportamento que deve ser implementado.}, enquanto que \texttt{AcessoServiceImpl}, \texttt{InscricoesServiceImpl} e \texttt{ProgramasServiceImpl} representam suas implementações.
 
 
 
-Para ilustrar a operação \emph{read}, o Algoritmo~\ref{alg:programas_disponiveis} contém o método que obtém a lista de programas disponíveis em uma determinada data. Percebe-se que o tipo do elemento contido na lista é um \texttt{ProgramaAux}, uma das classes auxialiares mencionadas no item \texttt{(a)}. Ainda, \texttt{em} é uma instância de um \texttt{EntityManager} que está associada a um contexto de persistência.
+Para ilustrar a operação \emph{read}, o Algoritmo~\ref{alg:programas_disponiveis} contém o método que obtém a lista de programas disponíveis em uma determinada data. Percebe-se que o tipo do elemento contido na lista é um \texttt{ProgramaAux}, uma das classes auxialiares mencionadas no item \texttt{(a)}. A instância do \texttt{EntityManager}, que está associada a um contexto de persistência, é representada por \texttt{em}.
 %TODO - referenciar JPA
 
 
@@ -928,9 +926,9 @@ Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer}
 % ---
 \section{Dispositivos móveis}\label{sec:mobile}
 % ---
-Não é novidade que a utilização de dispositivos móveis para a navegação na internet tem crescido nos últimos anos. Segundo dados obtidos na própria SeTIC, aproximadamente 30\% dos usuários que fizeram inscrição nos sistemas NDI (Núcleo de Desenvolvimento Infantil) e CAPL (Colégio da Aplicação) utilizaram dispositivos móveis (celulares e tablets).
+Não é novidade que a utilização de dispositivos móveis para a navegação na internet tem crescido nos últimos anos. Segundo dados obtidos na própria SeTIC, aproximadamente 30\% dos usuários que fizeram inscrição nos sistemas NDI (Núcleo de Desenvolvimento Infantil) e CAPL (Colégio da Aplicação) em 2017 utilizaram dispositivos móveis (celulares e tablets).
 
-A adaptação da interface do sistema para a utilização em dispositivos móveis é um requisito não-funcional que não havia sido considerado no início do projeto e que surgiu relativamente próximo ao seu fim. Havia, na época, duas abordagens a serem consideradas:
+A adaptação da interface do sistema para a utilização em dispositivos móveis é um requisito não-funcional, cuja implementação teve de levar em consideração duas abordagens:
 
 \begin{itemize}
   \item A utilização de um \emph{add-on} da biblioteca PrimeFaces chamado PrimeFaces Mobile (PFM), o qual permite a criação de aplicações Web baseadas em JSF otimizadas para o uso em dispositivos móveis. Nesta abordagem, utilizam-se \emph{views} separadas para navegadores de dispositivos móveis e para navegadores comuns, e reutilizam-se os métodos da camada de negócio da aplicação. Embora isso permita maior usabilidade e experiência mais agradável para usuários acostumados a utilizar aplicativos móveis, a duplicação de código dificulta a manutenibilidade da aplicação.
@@ -1053,21 +1051,21 @@ Após autenticado, o candidato é automaticamente transferido para a página de 
 \subsection{Gerenciamento de inscrições}\label{sec:gerenciamento_inscricoes}
 % ---
 
-O usuário autenticado no sistema tem acesso a uma lista de inscrições por si realizadas, na qual indica-se o programa, o nível e a data de finalização da inscrição, como pode ser visto na tabela da Figura~\ref{fig:inscricoes}. Cada inscrição possui ainda um \emph{status}: 
+O usuário autenticado no sistema tem acesso ao histórico de inscrições realizadas. Neste histórico, identificam-se o programa, o nível e a data de finalização da inscrição, como pode ser visto na tabela da Figura~\ref{fig:inscricoes}. Cada inscrição possui ainda um \emph{status}: 
 
 \begin{itemize}
   \item \textbf{Finalizada} -- inscrição pertencente a um processo seletivo passado que não pode ser editada ou excluída.
   \item \textbf{Em andamento} -- inscrição pertencente a um processo seletivo em vigência que pode ser editada e/ou excluída.
 \end{itemize}
 
-Ressalta-se que a tabela de inscrições não é visível para candidatos que nunca realizaram uma inscrição em algum dos processos seletivos para cursos de pós-graduação da UFSC. Para estes, apenas o link \texttt{Fazer uma nova inscrição}\footnote{Link na parte inferior da tabela da Figura~\ref{fig:inscricoes}.} estará disponível.
+Ressalta-se que a tabela com o histórico de inscrições não é visível para candidatos que nunca realizaram uma inscrição em algum dos processos seletivos para cursos de pós-graduação da UFSC. Para estes, apenas o link \texttt{Fazer uma nova inscrição}\footnote{Link na parte inferior da tabela da Figura~\ref{fig:inscricoes}.} estará disponível.
 
 
 % ---
 \subsection{Criação de uma inscrição}\label{sec:criacao_inscricao}
 % ---
 
-É possível criar uma nova inscrição a partir da tela de inscrições. Ao fazê-lo, o candidato se depara com uma tela tal qual a da Figura~\ref{fig:criar_inscricao}, na qual identificam-se algumas regiões:
+É possível criar uma nova inscrição a partir da tela de inscrições. Ao fazê-lo, o candidato se depara com uma tela tal qual a da Figura~\ref{fig:criar_inscricao}, na qual identificam-se alguns pontos:
 
 \begin{itemize}
   \item No \emph{cabeçalho} da página encontram-se algumas mensagens informativas que têm o propósito de auxiliar o usuário sobre a utilização da aplicação.
@@ -1084,7 +1082,7 @@ Ressalta-se que a tabela de inscrições não é visível para candidatos que nu
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilitadas. Para habilitá-las, é preciso preencher os campos \texttt{Programa}, \texttt{Nível} e \texttt{Polo}, e clicar no botão \texttt{Salvar}. Após o salvamento, o candidato terá a opção de importar os dados da última inscrição por si realizada (vide Figura~\ref{fig:importar_dados}). A partir deste ponto, os casos de uso \emph{criar inscrição} e \emph{editar inscrição} têm as mesmas funcionalidades.
+Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilitadas no início do preenchimento de uma inscrição. Para habilitá-las, é preciso preencher os campos \texttt{Programa}, \texttt{Nível} e \texttt{Polo}, e clicar no botão \texttt{Salvar}. Após o salvamento, o candidato terá a opção de importar os dados da última inscrição por si realizada, caso exista (vide Figura~\ref{fig:importar_dados}). A partir deste ponto, os casos de uso \emph{criar inscrição} e \emph{editar inscrição} têm as mesmas funcionalidades.
 
 
 \begin{figure}[!ht]
@@ -1100,7 +1098,7 @@ Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilita
 \subsection{Edição de uma inscrição}\label{sec:edicao_inscricao}
 % ---
 
-A Figura~\ref{fig:importar_dados} ilustra uma página típica de quando se inicia a edição de uma inscrição\footnote{Com exceção da mensagem de importação de dados.}. Nota-se que, ao contrário da página inicial da criação de uma nova inscrição, o número da inscrição e a data limítrofe para a finalização da inscrição são exibidas no cabeçalho da página.
+A Figura~\ref{fig:importar_dados} ilustra uma página típica de quando se inicia a edição de uma inscrição, com exceção da mensagem de importação de dados. Nota-se que, ao contrário da página inicial da criação de uma nova inscrição, o número da inscrição e a data limítrofe para a finalização da inscrição são exibidas no cabeçalho da página.
 
 A Figura~\ref{fig:dados_pessoais_desktop} exibe os campos da aba \texttt{Dados Pessoais} preenchidos com dados fictícios. É importante ressaltar que alguns dos campos dependem do preenchimento do campo \texttt{País de origem}:
 \begin{itemize}
