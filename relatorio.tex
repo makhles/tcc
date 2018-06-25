@@ -87,7 +87,6 @@
 %\usepackage[num,overcite]{abntex2cite}       % Citações utilizando o padrão numérico de chamadas
 \citebrackets()
 
-
 % --- 
 % CONFIGURAÇÕES DE PACOTES
 % --- 
@@ -100,13 +99,13 @@
 \renewcommand{\backref}{}
 % Define os textos da citação
 \renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
-		Nenhuma citação no texto.%
-	\or
-		Citado na página #2.%
-	\else
-		Citado #1 vezes nas páginas #2.%
-	\fi}%
+  \ifcase #1 %
+    Nenhuma citação no texto.%
+  \or
+    Citado na página #2.%
+  \else
+    Citado #1 vezes nas páginas #2.%
+  \fi}%
 % ---
 
 % ---
@@ -153,7 +152,7 @@
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,	                   % adds a frame around the code
+  frame=single,                    % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
   language=Java,                   % the language of the code
@@ -167,10 +166,28 @@
   showtabs=false,                  % show tabs within strings adding particular underscores
   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
   stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,	                     % sets default tabsize to 2 spaces
+  tabsize=2,                       % sets default tabsize to 2 spaces
   title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
   numberbychapter=false            % number lists by chapter or sequentially from the beginning of the document
 }
+% ---
+% Novo list of (listings) para QUADROS
+% ---
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+% Configuração de posicionamento padrão:
+\setfloatlocations{quadro}{hbtp}
 
 % ----------------------------------------------------------
 % PREÂMBULO
@@ -189,9 +206,7 @@
 \orientador{Andréia Alves dos Santos Schwaab}
 \coorientador{Leandro José Komosinski}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Relatório Final do Trabalho de Conclusão dc Curso do Curso de Ciências da Computação da Universidade Federal de Santa Catarina.}
-%TODO
-%\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Ciências da Computação da Universidade Federal de Santa Catarina para a obtenção do grau de Bacharel em Ciências da Computação.}
+\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Ciências da Computação da Universidade Federal de Santa Catarina para a obtenção do grau de Bacharel em Ciências da Computação.}
 
 % ---
 % Configurações de aparência do PDF final
@@ -338,8 +353,16 @@ JavaEE Web development technologies were used in the development of a new online
 % ---
 % Lista de tabelas
 % ---
-\pdfbookmark[0]{\listtablename}{lot}
-\listoftables*
+% \pdfbookmark[0]{\listtablename}{lot}
+% \listoftables*
+% \cleardoublepage
+% ---
+
+% ---
+% Lista de quadros
+% ---
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
 \cleardoublepage
 % ---
 
@@ -348,6 +371,7 @@ JavaEE Web development technologies were used in the development of a new online
 % ---
 \begin{siglas}
   \item[CAS]     Sistema de Autenticação Centralizada
+  \item[EIS]     Enterprise Information System
   \item[Java EE] Java Enterprise Edition
   \item[JSF]     JavaServer Faces
   \item[JPA]     Java Persistence API
@@ -408,18 +432,27 @@ A Figura~\ref{fig:uso_sistemas} mostra o uso desse sistema pelos programas da UF
   \fonte{Dados obtidos em consultas ao banco de dados do CAPG.}
 \end{figure}
 
-Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas\footnote{Algumas estão, inclusive, descontinuadas.}, dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas nas seções~\ref{sec:envio_doc}~e~\ref{sec:ordem}.
+Não obstante, esse sistema não foi desenvolvido visando a integração dos sistemas existentes e está carente de algumas funcionalidades frequentemente solicitadas pelos programas de pós-graduação. A implementação de tais funcionalidades no sistema atual é custosa, pois sua estrutura contempla os requisitos definidos na época de sua elaboração. Adicionalmente, as bibliotecas e tecnologias utilizadas são antigas (algumas estão, inclusive, descontinuadas), dificultando seu desenvolvimento e sua manutenibilidade. Justifica-se, portanto, o desenvolvimento de um novo sistema de inscrição, que terá como inspiração o sistema atual, porém com a atualização das tecnologias utilizadas e a adição das funcionalidades descritas nas seções~\ref{sec:envio_doc}~e~\ref{sec:interface}.
 
-\subsection{Envio de documentos}\label{sec:envio_doc}
+\subsection{Funcionalidades Desejadas}
+
+\subsubsection{Envio de Documentos}\label{sec:envio_doc}
 A funcionalidade mais importante que será implementada neste novo sistema é o envio de documentos de forma digital por parte dos candidatos, que atualmente têm o trabalho de comparecer às secretarias dos cursos com as cópias físicas dos documentos. A praticidade dessa funcionalidade beneficia tanto o candidato quanto a universidade.
 
-\subsection{Salvamento progressivo das informações}
+\subsubsection{Salvamento Progressivo das Informações}
 Caso um candidato queira fazer a inscrição em algum dos programas de Pós-Graduação da UFSC através do sistema de inscrição atualmente em uso, este deve, essencialmente, fornecer todas as informações em uma única sessão. Ao final, o sistema fornece um número de inscrição e a possibilidade de impressão de um comprovante de inscrição.
 
-Pretende-se oferecer ao candidato a opção de salvar o progresso do preenchimento do formulário. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
+Devido à extensão do formulário, pretende-se oferecer ao candidato a opção de salvar o progresso do seu preenchimento. O candidato poderá, dessa forma, distribuir o preenchimento do formulário em várias sessões até que esteja seguro das informações fornecidas e decida-se por finalizar sua inscrição.
 
-\subsection{Ordem de preenchimento do formulário}\label{sec:ordem}
-No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo\footnote{A não ser em situações onde exista uma ordem implícita. O envio de documentos é um exemplo, pois estes dependem do programa e nível escolhidos.}.
+\subsubsection{Ordem de Preenchimento do Formulário}\label{sec:ordem}
+No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Muitas vezes, no entanto, o candidato não possui todas as informações necessárias e/ou relevantes ao iniciar o preenchimento do formulário. Pretende-se dar a possibilidade de preenchimento do formulário sem nenhuma ordem imposta neste processo (a não ser em situações nas quais exista uma ordem implícita).
+
+\subsubsection{Interface Responsiva}\label{sec:interface}
+A grande maioria dos \emph{websites} existentes hoje na internet foram desenvolvidos para serem visualizados nas versões \emph{desktop} dos navegadores. Não é novidade, no entanto, que a utilização de dispositivos móveis para a navegação na internet tem crescido nos últimos anos. Segundo dados obtidos na própria SeTIC, aproximadamente 30\% dos usuários que fizeram inscrição nos sistemas NDI (Núcleo de Desenvolvimento Infantil) e CAPL (Colégio da Aplicação) em 2017 utilizaram dispositivos móveis (celulares e tablets). 
+
+O recente aumento na diversificação de dispositivos utilizados para a navegação na internet tem exigido das aplicações web a capacidade de disponibilizar interfaces específicas para cada dispositivo. Identifica-se, portanto, a necessidade do desenvolvimento de uma interface com o usuário que se ajuste da melhor forma possível aos diversos dispositivos por ele utilizados.
+
+
 
 % ---
 \section{SeTIC}
@@ -427,7 +460,9 @@ No sistema atual, o preenchimento do formulário segue uma ordem predefinida. Mu
 
 A Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação (SeTIC), setor de informática da Universidade Federal de Santa Catarina (UFSC), é responsável pelo planejamento, pesquisa, aplicação e desenvolvimento de produtos e serviços de tecnologia da informação e comunicação da universidade\footnote{Mais informações em http://setic.ufsc.br/apresentacao/}. As aplicações desenvolvidas pela SeTIC são solicitadas e acompanhadas por usuários dos diversos setores da UFSC.
 
-Ressalta-se que o autor deste trabalho já foi estagiário na SeTIC e que, durante o período de desenvolvimento deste, teve bolsa de extensão fornecida pela FEESC. Todas as atividades foram desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operacionalização} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
+%Ressalta-se que o autor já foi estagiário na SeTIC, e que, durante o período de desenvolvimento deste trabalho, teve bolsa de extensão fornecida pela FEESC.
+Ressalta-se que o autor foi estagiário na SeTIC por dois anos, período no qual se familiarizou com as tecnologias utilizadas no presente trabalho, e que teve uma bolsa de extensão fornecida pela FEESC para o seu desenvolvimento.
+Todas as atividades foram desenvolvidas nas instalações da SeTIC, com equipamentos e tecnologias disponibilizados por esta. Assim, o último estágio do desenvolvimento do presente sistema, \emph{i.e.}, a \emph{operacionalização} e a \emph{manutenção}\footnote{O sistema é liberado e implantado no ambiente de produção. Eventuais erros que não foram descobertos nos estágios anteriores e novos requisitos podem surgir ao longo do uso do sistema, justificando a sua constante manutenção.}, serão feitas pela SeTIC.
 
 % ---
 \section{Objetivos}
@@ -442,9 +477,9 @@ O objetivo principal deste Trabalho de Conclusão de Curso é desenvolver um nov
 \subsection{Objetivos Específicos}
 % ---
 \begin{itemize}
-  \item Implementar as \emph{regras de negócio} da inscrição em um processo seletivo, \emph{i.e.}, o \emph{back-end} da aplicação.
+  \item Implementar o \emph{back-end} da aplicação, \emph{i.e.}, as \emph{regras de negócio} relativas à inscrição em um processo seletivo.
   \item Criar as tabelas necessárias no banco de dados.
-  \item Implementar a interface com o usuário, \emph{i.e.}, as páginas que o candidato terá acesso ao realizar sua inscrição.
+  \item Implementar o \emph{front-end} da aplicação, \emph{i.e.}, as páginas que o candidato terá acesso ao realizar sua inscrição.
   \item Tornar o sistema acessível em dispositivos móveis.
   \item Disponibilizar o sistema em ambiente de homologação.
   \item Elaborar um artigo referente ao TCC.
@@ -531,7 +566,7 @@ A camada de negócios possui componentes que provêm a lógica do negócio da ap
 \subsubsection{Camada EIS}
 % ---
 
-A camada EIS consiste de servidores de bancos de dados, sistemas de planejamento de recursos empresariais e outras fontes de dados legados. Esses recursos geralmente se localizam em suas próprias máquinas e são acessados pela camada de negócios. As tecnologias utilizadas nessa camada são:
+A camada EIS (\emph{Enterprise Information System}) consiste de servidores de bancos de dados, sistemas de planejamento de recursos empresariais e outras fontes de dados legados. Esses recursos geralmente se localizam em suas próprias máquinas e são acessados pela camada de negócios. As tecnologias utilizadas nessa camada são:
 \begin{itemize}
   \item Java Database Connetivity API (JDBC) - uma interface que permite a conexão às bases de dados.
   \item Java Persistence API (JPA).
@@ -703,8 +738,6 @@ Ainda com relação ao Algoritmo~\ref{alg:entity_emp}, é interessante observar 
 
 Por não existir um modelo de processo de software único a ser utilizado na SeTIC, o autor decidiu-se por seguir algumas das melhores práticas estabelecidas pelo \emph{Rational Unified Process} (RUP), as quais já foram utilizadas em projetos anteriores em que o autor participou na SeTIC como estagiário (vide Anexo~\ref{anexo:rup}).
 
-%: as atividades fundamentais supracitadas são executadas de forma iterativa, seguindo as boas práticas especificadas pelo \emph{Rational Unified Process} (RUP), um modelo de processo moderno e híbrido, derivado de trabalhos sobre a UML (Unified Modelling Language).
-
 Ressalta-se que o desenvolvimento teve como inspiração o sistema existente. Fez-se uso de diversas tabelas já existentes, bem como dos campos presentes no formulário de inscrição. Não obstante, novas tabelas e campos foram criados, e a implementação das regras de negócio foi realizada pelo autor deste trabalho.
 
 
@@ -714,7 +747,7 @@ Ressalta-se que o desenvolvimento teve como inspiração o sistema existente. Fe
 
 O desenvolvimento de um software/sistema segundo o modelo adotado pode ser dividido em diversos estágios. O primeiro consiste na elicitação, análise e definição de requisitos. Segundo \citeonline{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidades dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
 
-A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto ao cliente. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
+A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto à Pró-Reitoria de Pós-Gradução (PROPG), o cliente deste projeto. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
 Um conjunto de \emph{wireframes}, ou protótipos, das páginas do sistema foi desenvolvido\footnote{Utilizou-se um \emph{plugin} do WireframeSketcher feito para o Eclipse.} e apresentado com o objetivo de validar a estrutura, o conteúdo, as diversas funções e os diversos caminhos de interações dos usuários com o sistema. A confecção deste conjunto de \emph{wireframes} teve como base o sistema informatizado atualmente em uso. Em cima deste foram aplicadas todas as mudanças que se faziam necessárias e que justificam o desenvolvimento do novo sistema. A Figura~\ref{fig:wireframe} fornece um exemplo retirado deste conjunto: após o início da sessão no sistema, a página inicial exibida para o usuário Fulano apresenta um histórico de inscrições já realizadas por este usuário. Evidencia-se o uso de balões explicativos para agilizar o entendimento dos diversos elementos da página. Ressalta-se que o visual da página não é o foco do \emph{wireframe}, e sim o que ela permite que o usuário realize.
 
@@ -737,8 +770,8 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 \begin{description}
 \item[Requisito 1 - Visualizar programas oferecidos.] O usuário poderá visualizar a lista de programas de pós-graduação oferecidos pela UFSC sem a necessidade de realizar \emph{login} no sistema.
 \item[Requisito 2 - Realizar cadastro no CAS.] O usuário poderá se cadastrar no Sistema de Autenticação Centralizada a partir da página inicial do sistema.
-\item[Requisito 3 - Acessar o sistema.] O usuário poderá acessar o sistema através de \emph{login}.
-\item[Requisito 4 - Sair do sistema.] O usuário poderá sair do sistema a qualquer momento fazendo \emph{logout}.
+\item[Requisito 3 - Iniciar sessão.] O usuário poderá iniciar a sessão no sistema através de \emph{login}.
+\item[Requisito 4 - Encerrar sessão.] O usuário poderá encerrar a sessão no sistema a qualquer momento através de \emph{logout}.
 \item[Requisito 5 - Salvar a inscrição.] O usuário poderá salvar as informações inseridas no formulário para um acesso futuro. Após o primeiro salvamento, o usuário receberá um número de inscrição.
 \item[Requisito 6 - Alterar informações.] O usuário poderá alterar as informações inseridas durante todo o período de inscrição do programa selecionado, desde que não tenha finalizado a sua inscrição.
 \item[Requisito 7 - Finalizar a inscrição.] O usuário poderá finalizar a sua inscrição. Após finalizada, os dados inseridos não poderão mais ser modificados.
@@ -747,7 +780,7 @@ Os requisitos funcionais descrevem os serviços que o sistema deve fornecer, com
 \item[Requisito 10 - Importar dados de inscrições anteriores.] Ao iniciar uma nova inscrição, o usuário poderá importar dados pessoais e dados de contato da última inscrição realizada.
 \item[Requisito 11 - Fazer \emph{upload} de arquivos.] O usuário poderá fazer o \emph{upload} de arquivos solicitados pelo programa escolhido.
 \item[Requisito 12 - Importar arquivos.] O usuário poderá buscar arquivos utilizados em inscrições anteriores.
-\item[Requisito 13 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados à PROPG na reunião de definição dos requisitos.
+\item[Requisito 13 - Inserir informações.] O usuário poderá inserir diversos tipos de informações, as quais são agrupadas em dados do programa, pessoais, econômicos, de contato e de formação. Embora esses dados não estejam descritos em pormenores neste relatório, estavam presentes nos protótipos apresentados ao cliente na reunião de definição dos requisitos.
 \end{description}
 
 
@@ -794,9 +827,11 @@ Nota-se também que o caso de uso \emph{verificar inscrição} é o único caso 
 \subsection{Diagrama de Visão Geral de Interação}
 % ---
 
-Introduzido na versão 2.0 da UML, este diagrama é uma versão modificada do diagrama de atividades, no qual ao invés de ações ou atividades, os nós correspondem a \emph{interações} que são modeladas em outros diagramas. Sua finalidade é modelar as sequências possíveis de ocorrência das interações identificadas. Uma possível aplicação do diagrama de visão geral de interação é a modelagem do fluxo entre as interações associadas aos casos de uso identificados anteriormente. 
+Introduzido na versão 2.0 da UML, este diagrama é uma versão modificada do diagrama de atividades, no qual ao invés de ações ou atividades, os nós correspondem a \emph{interações} que são modeladas em outros diagramas. Sua finalidade é modelar as sequências possíveis de ocorrência das interações identificadas.
 
-O fluxo de execução pode ser visto na Figura~\ref{fig:interaction}. Identificam-se os seguintes elementos:
+Uma possível aplicação do diagrama de visão geral de interação é a modelagem do fluxo entre as interações associadas aos casos de uso identificados anteriormente. Tem-se, assim, uma visão geral do sistema em execução durante um processo de inscrição. O fluxo de execução pode ser visto na Figura~\ref{fig:interaction}. Algumas guardas foram omitidas para não saturar o diagrama.
+
+Identificam-se os seguintes elementos:
 
 \begin{itemize}
   \item \textbf{Nós de uso de interação}, que referenciam as interações associadas aos casos de uso.
@@ -807,7 +842,7 @@ O fluxo de execução pode ser visto na Figura~\ref{fig:interaction}. Identifica
 \end{itemize}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:interaction} Interação entre os ``casos de uso'' do sistema. Algumas guardas foram omitidas para não saturar o diagrama.}
+  \caption{\label{fig:interaction} Diagrama de Visão Geral de Interação.}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/interaction.png}
   \end{center}
@@ -823,7 +858,7 @@ Um diagrama de classes é responsável por mostrar as diversas classes de uma ap
 O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_er1} mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
 
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_er1} Modelo entidade-relacionamento relacionado à obtenção de programas. }
+  \caption{\label{fig:uml_er1} Diagrama de classes relacionado à obtenção de programas. }
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/programas.png}
   \end{center}
@@ -834,7 +869,7 @@ A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas da
 
 \begin{landscape}
 \begin{figure}[!ht]
-  \caption{\label{fig:uml_er2} Modelo entidade-relacionamento relacionado às inscrições. }
+  \caption{\label{fig:uml_er2} Diagrama de classes relacionado às inscrições. }
   \begin{center}
     \includegraphics[scale=0.40]{/uml/inscricoes.png}
   \end{center}
@@ -848,23 +883,21 @@ A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas da
 
 Tendo em vista o requisito funcional de permitir ao candidato enviar e importar documentos, foi desenvolvido o modelo de relacionamento entre entidades exibido na Figura~\ref{fig:uml_storage}.
 
-\colorbox{yellow}{\textbf{TODO:}} substituir os nomes das tabelas e campos no modelo entidade-relacionamento abaixo por nomes mais genéricos próprios de um projeto.
-
 \begin{figure}[!ht]
   \caption{\label{fig:uml_storage} Modelo entidade-relacionamento associado ao salvamento de documentos. }
   \begin{center}
-    \includegraphics[width=1.0\textwidth]{/uml/storage.png}
+    % \includegraphics[width=1.0\textwidth]{/uml/storage.png}
+    \includegraphics[width=1.0\textwidth]{/uml/er_storage.pdf}
   \end{center}
   \fonte{Elaborada pelo autor.}%
 \end{figure}
 
-
-Em relação às entidades mostradas na Figura~\ref{fig:uml_storage}, as tabelas \texttt{inscricaoSelecao\_sel}, \texttt{processoSeletivo\_pro} e \texttt{editalProcessoSeletivo\_eps} já existiam na base de dados. A primeira engloba os dados pessoais do candidato; as outras duas representam processos seletivos e seus respectivos editais. As demais entidades foram modeladas para atender aos requisitos 11 e 12 (vide Seção~\ref{sec:requisitos_funcionais}):
+As entidades \texttt{INSCRICAO}, \texttt{PROCESSO\_SELETIVO} e \texttt{EDITAL} já existiam na base de dados em forma de tabelas. A primeira engloba os dados pessoais do candidato; as outras duas representam processos seletivos e seus respectivos editais. As demais entidades foram modeladas para atender aos requisitos 11 e 12 (vide Seção~\ref{sec:requisitos_funcionais}):
 
 \begin{itemize}
-  \item \texttt{tipoDocInscricao\_tdi} - contém os tipos dos documentos obrigatórios para a inscrição nos diversos programas, \emph{e.g.}, histórico escolar, diploma de graduação, RG, \emph{etc}.
-  \item \texttt{inscricaoSelDocumento\_isd} - entidade que armazena o código dos documentos enviados por cada candidato. Os documentos propriamente ditos são armazenados em um repositório e seus identificadores salvos no campo \texttt{cd\_arquivoStorage\_isd}. Pode-se obter, por exemplo, uma lista de códigos de documentos enviados por um determinado candidato e, a partir da relação com a entidade \texttt{docProcessoSeletivo\_dps}, qual o tipo de cada documento e a qual processo seletivo pertence.
-  \item \texttt{docProcessoSeletivo\_dps} - entidade associativa entre as entidades \texttt{tipoDocInscricao\_tdi} e \texttt{editalProcessoSeletivo\_eps}, com chave própria.
+  \item \texttt{TIPO\_DOCUMENTO} - contém os tipos dos documentos obrigatórios para a inscrição nos diversos programas, \emph{e.g.}, histórico escolar, diploma de graduação, RG, \emph{etc}.
+  \item \texttt{DOCUMENTO\_INSCRICAO} - entidade que armazena o código dos documentos enviados por cada candidato. Os documentos propriamente ditos são armazenados em um repositório e seus identificadores salvos no campo \texttt{ID\_ARQUIVO}. Pode-se obter, por exemplo, uma lista de códigos de documentos enviados por um determinado candidato e, a partir da relação com a entidade \texttt{DOCUMENTO\_EDITAL}, qual o tipo de cada documento e a qual processo seletivo pertence.
+  \item \texttt{DOCUMENTO\_EDITAL} - entidade associativa entre as entidades \texttt{EDITAL} e \texttt{TIPO\_DOCUMENTO}, com chave própria.
 \end{itemize}
 
 % ---
@@ -926,7 +959,6 @@ Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer}
 % ---
 \section{Dispositivos móveis}\label{sec:mobile}
 % ---
-Não é novidade que a utilização de dispositivos móveis para a navegação na internet tem crescido nos últimos anos. Segundo dados obtidos na própria SeTIC, aproximadamente 30\% dos usuários que fizeram inscrição nos sistemas NDI (Núcleo de Desenvolvimento Infantil) e CAPL (Colégio da Aplicação) em 2017 utilizaram dispositivos móveis (celulares e tablets).
 
 A adaptação da interface do sistema para a utilização em dispositivos móveis é um requisito não-funcional, cuja implementação teve de levar em consideração duas abordagens:
 
@@ -944,54 +976,51 @@ Tendo em vista a manutenibilidade do código, optou-se pela segunda abordagem. A
 
 A Tabela~\ref{tab:casos-uso} mostra um mapeamento entre os casos de uso identificados para o ator Candidato (vide Seção~\ref{sec:casos_uso}) e as páginas nas quais foram implementados. A implementação de cada item está descrita nas subseções a seguir.
 
-
-\begin{table}[!htb]
+\begin{quadro}[!htb]
   \IBGEtab{%
     \caption{Casos de uso implementados e respectivas páginas envolvidas.}%
     \label{tab:casos-uso}
   }{
-    \begin{tabular}{ll}
-      \toprule
+    \begin{tabular}{|l|l|}
+      \hline
       \textbf{Caso de Uso} & \textbf{Página da Aplicação} \\
-      \midrule \midrule
+      \hline
       Listar programas     & \texttt{programas.xhtml} \\
-      \midrule 
+      \hline 
       Iniciar sessão       & \texttt{login.xhtml} \\
-      \midrule
+      \hline
       Encerrar sessão      & A partir de qualquer página \\
-      \midrule
+      \hline
       Listar inscrições    & \multirow{4}{*}{\texttt{inscricoes.xhtml}} \\
       Criar inscrição      & \\
       Editar inscrição     & \\
       Excluir inscrição    & \\
-      \midrule
+      \hline
       Enviar documento     & \texttt{enviar\_documento.xhtml} \\
-      \midrule
+      \hline
       Buscar documento     & \texttt{buscar\_documento.xhtml} \\
-      \midrule
-      Baixar documento     & \texttt{documentos\_enviados.hxtml} \\
-      \midrule
+      \hline
+      Baixar documento     & \texttt{documentos\_enviados.xhtml} \\
+      \hline
       Excluir documento    & \multirow{5}{*}{\texttt{inscricao.xhtml}} \\
       Importar dados       & \\
       Salvar inscrição     & \\
       Finalizar inscrição  & \\
       Verificar inscrição  & \\
-      \bottomrule
+      \hline
     \end{tabular} 
   }{
     \fonte{Elaborada pelo autor.}%
     %\nota{Utiliza a caixa de diálogo modal \boxcolor{\texttt{nome_da_caixa.html}}.}%
     %\nota[Anotações]{Uma anotação adicional, seguida de várias outras.}%
   }
-\end{table}
-
+\end{quadro}
 
 
 % ---
 \subsection{Lista de programas disponíveis}\label{sec:programas_disponiveis}
 % ---
-%Como pode ser visto na Tabela~\ref{tab:casos-uso}, a visualização dos programas disponíveis possui uma página própria, \texttt{programas.xhtml}.
-O acesso à lista de programas disponíveis para a inscrição é feita a partir da página inicial da aplicação, conforme destacado na Figura~\ref{fig:acesso_programas} por um retângulo verde. O candidato não precisa estar logado no sistema para acessá-la. A lista exibe os programas, os níveis e os polos que estão com inscrições abertas no momento do acesso à página (vide Figura~\ref{fig:programas_disponiveis}).
+O acesso à lista de programas disponíveis para a inscrição é feita a partir da página inicial da aplicação, conforme destacado na Figura~\ref{fig:acesso_programas} por um retângulo. O candidato não precisa estar logado no sistema para acessá-la. A lista exibe os programas, os níveis e os polos que estão com inscrições abertas no momento do acesso à página (vide Figura~\ref{fig:programas_disponiveis}).
 
 \begin{figure}[!ht]
   \caption{\label{fig:acesso_programas} Acesso à lista de programas disponíveis em destaque. }
@@ -1017,7 +1046,7 @@ O acesso à lista de programas disponíveis para a inscrição é feita a partir
 % ---
 \subsection{Autenticação no sistema}\label{sec:autenticacao}
 % ---
-Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode cadastrar-se e autenticar-se perante o sistema. Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
+Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode se cadastrar e autenticar-se perante o sistema. Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
 
 
 \begin{figure}[!ht]
@@ -1028,7 +1057,7 @@ Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o c
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-Após autenticado, o candidato é automaticamente transferido para a página de inscrições (vide Figura~\ref{fig:inscricoes}). Nesta, destaca-se o nome do usuário autenticado no sistema por um retângulo verde, e à sua direita o link para encerrar a sua sessão no sistema.
+Após autenticado, o candidato é automaticamente transferido para a página de inscrições (vide Figura~\ref{fig:inscricoes}). Nesta, destaca-se o nome do usuário autenticado no sistema por um retângulo, e à sua direita o link para encerrar a sua sessão no sistema.
 
 \begin{figure}[!ht]
   \caption{\label{fig:autenticacao} Cadastro e autenticação no CAS. }
@@ -1040,7 +1069,7 @@ Após autenticado, o candidato é automaticamente transferido para a página de 
 
 
 \begin{figure}[!ht]
-  \caption{\label{fig:inscricoes} Lista de inscrições do candidato. Em destaque: encerramento da sessão.}
+  \caption{\label{fig:inscricoes} Lista de inscrições do candidato.}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/inscricoes.png}
   \end{center}
@@ -1082,7 +1111,7 @@ Ressalta-se que a tabela com o histórico de inscrições não é visível para 
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-Nota-se que, com exceção da aba \texttt{Programa}, as demais estão desabilitadas no início do preenchimento de uma inscrição. Para habilitá-las, é preciso preencher os campos \texttt{Programa}, \texttt{Nível} e \texttt{Polo}, e clicar no botão \texttt{Salvar}. Após o salvamento, o candidato terá a opção de importar os dados da última inscrição por si realizada, caso exista (vide Figura~\ref{fig:importar_dados}). A partir deste ponto, os casos de uso \emph{criar inscrição} e \emph{editar inscrição} têm as mesmas funcionalidades.
+Com exceção da aba \texttt{Programa}, as demais estão desabilitadas no início do preenchimento de uma inscrição. Para habilitá-las, é preciso preencher os campos \texttt{Programa}, \texttt{Nível} e \texttt{Polo}, e clicar no botão \texttt{Salvar}. Após o salvamento, o candidato terá a opção de importar os dados da última inscrição por si realizada, caso exista (vide Figura~\ref{fig:importar_dados}). A partir deste ponto, os casos de uso \emph{criar inscrição} e \emph{editar inscrição} têm as mesmas funcionalidades.
 
 
 \begin{figure}[!ht]
@@ -1138,7 +1167,7 @@ O preenchimento da aba \texttt{Contato} depende do campo \texttt{País}. A Figur
   \fonte{Elaborada pelo autor.}
 \end{figure}
 %
-Ainda, os campos relacionados a números de telefone são automaticamente formatados conforme o usuário insere os números.
+Ainda, os campos relacionados a números de telefone são automaticamente formatados conforme o usuário os preenche.
 
 Os candidatos podem adicionar cursos de formação já concluídos ou em andamento na aba \texttt{Formação}, através do link \texttt{Adicionar curso} (vide Figuras~\ref{fig:formacao_desktop}~e~\ref{fig:adicionar_curso}). Nesta última, se a caixa \texttt{Instituição nacional} estiver selecionada, então o campo \texttt{Instituição} completa automaticamente o valor inserido pelo usuário (a partir de três caracteres).
 
@@ -1175,7 +1204,7 @@ Uma das principais funcionalidades providas por este sistema é permitir que o c
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-A partir da tabela, pode-se \emph{enviar} novos documentos (vide Figura~\ref{fig:enviar_documento_desktop}) e \emph{buscar} documentos de inscrições passadas realizadas pelo candidato (vide Figura~\ref{fig:buscar_documento_desktop}).
+A partir da tabela, pode-se \emph{enviar} novos documentos e \emph{buscar} documentos de inscrições passadas realizadas pelo candidato.
 %
 \begin{figure}[!ht]
   \caption{\label{fig:enviar_documento_desktop} Envio de documentos.}
@@ -1185,9 +1214,9 @@ A partir da tabela, pode-se \emph{enviar} novos documentos (vide Figura~\ref{fig
   \fonte{Elaborada pelo autor.}
 \end{figure}
 
-No envio de documentos, uma caixa de diálogo modal informa os formatos aceitos pela aplicação e o tamanho máximo de cada arquivo. Ao clicar no botão \texttt{Buscar}, abre-se uma janela de busca de documentos nativa ao sistema operacional do computador do candidato para que este possa escolher o documento a ser enviado. Os documentos enviados são armazenados em um repositório e os identificadores dos arquivos são armazenados em um banco de dados (vide Figura~\ref{fig:uml_storage}).
+No envio de documentos (vide Figura~\ref{fig:enviar_documento_desktop}), uma caixa de diálogo modal informa os formatos aceitos pela aplicação e o tamanho máximo de cada arquivo. Ao clicar no botão \texttt{Buscar}, abre-se uma janela de busca de documentos nativa ao sistema operacional do computador do candidato para que este possa escolher o documento a ser enviado. Os documentos enviados são armazenados em um repositório e os identificadores dos arquivos são armazenados em um banco de dados (vide Figura~\ref{fig:uml_storage}).
 
-Na busca de documentos, uma janela modal exibe uma lista de inscrições passadas nas quais esse mesmo tipo de documento foi utilizado. As colunas \texttt{Programa}, \texttt{Nível} e \texttt{Data do envio} auxiliam o candidato na escolha do documento a ser reutilizado na inscrição atual.
+Na busca de documentos (vide Figura~\ref{fig:buscar_documento_desktop}), uma janela modal exibe uma lista de inscrições passadas nas quais esse mesmo tipo de documento foi utilizado. As colunas \texttt{Programa}, \texttt{Nível} e \texttt{Data do envio} auxiliam o candidato na escolha do documento a ser reutilizado na inscrição atual.
 
 \begin{figure}[!ht]
   \caption{\label{fig:buscar_documento_desktop} Busca de documentos utilizados em inscrições passadas.}
@@ -1205,9 +1234,9 @@ Uma das preocupações que podem ser levantadas em relação ao envio de documen
 \subsection{Verificação de erros e finalização de uma inscrição}\label{sec:validacao}
 % ---
 
-Pode-se verificar a existência de erros e o não-preenchimento de campos obrigatórios em qualquer momento durante o preenchimento do formulário através do botão \texttt{Verificar}\footnote{Salvo a situação em que o usuário está criando uma nova inscrição e ainda não salvou o formulário.}.
+Pode-se verificar a existência de erros e o não-preenchimento de campos obrigatórios em qualquer momento durante o preenchimento do formulário por meio do botão \texttt{Verificar} (salvo a situação em que o usuário está criando uma nova inscrição e ainda não salvou o formulário).
 %
-Na presença de tais erros, uma mensagem é exibida para o usuário e as abas que possuem campos não-preenchidos ou com erros são destacadas com ícone de exclamação, como pode ser visto na Figura~\ref{fig:verificacao_msg} para as abas \texttt{Dados Pessoais} e \texttt{Contato}.
+Na presença de tais erros, uma mensagem é exibida para o usuário e as abas que possuem campos não-preenchidos ou com erros são destacadas com um ícone de exclamação, como pode ser visualizado na Figura~\ref{fig:verificacao_msg} para as abas \texttt{Dados Pessoais} e \texttt{Contato}.
 %
 \begin{figure}[!ht]
   \caption{\label{fig:verificacao_msg} Erros encontrados nas abas \texttt{Dados Pessoais} e \texttt{Contato}.}
@@ -1219,7 +1248,7 @@ Na presença de tais erros, uma mensagem é exibida para o usuário e as abas qu
 
 Ao abrir tais abas, os campos não-validados estão destacados na cor vermelha e com um ícone de exclamação ao lado de seus rótulos (vide Figura~\ref{fig:verificacao_aba}). Neste momento, tendo o usuário corrigido os erros ou não, se o formulário for salvo, os ícones de erro desaparecem.
 
-Quando o formulário for verificado e não houver mais erros, uma mensagem de sucesso é exibida para o usuário (vide Figura~\ref{fig:verificacao_sucesso}), e o botão \texttt{Finalizar} é habilitado. Ao clicar no botão \texttt{Finalizar}, disponibiliza-se um comprovante de inscrição em formato PDF para o candidato e a edição da inscrição deixa de ser possível a partir deste momento. O documento é automaticamente descarregado no navegador e também enviado para o e-mail cadastrado pelo usuário no preenchimento do formulário. Um exemplo de comprovante é mostrado no Anexo~\ref{anexo:comprovante}.
+Quando o formulário for verificado e não houver mais erros, uma mensagem de sucesso é exibida (vide Figura~\ref{fig:verificacao_sucesso}), e o botão \texttt{Finalizar} é habilitado. Ao clicar no botão \texttt{Finalizar}, disponibiliza-se um comprovante de inscrição em formato PDF e a edição da inscrição deixa de ser possível a partir deste momento. O documento é automaticamente descarregado no navegador e também enviado para o e-mail cadastrado pelo usuário no preenchimento do formulário. Um exemplo de comprovante é mostrado no Anexo~\ref{anexo:comprovante}.
 
 \begin{figure}[!ht]
   \caption{\label{fig:verificacao_aba} Campos não-preenchidos da aba \texttt{Dados Pessoais}.}
@@ -1258,9 +1287,9 @@ Todos os documentos enviados pelo candidato podem ser obtidos a partir da \emph{
 \chapter{Conclusões}
 % ----------------------------------------------------------
 
-O sistema de inscrição atual é utilizado por apenas alguns dos cursos de Pós-Graduação da UFSC. Alguns cursos utilizam seus próprios sistemas, dificultando a sua manutenibilidade e introduzindo duplicações de código e vulnerabilidades.
+As maneiras de inscrição nos cursos de Pós-Graduação da UFSC atualmente são variadas. Grande parte dos programas utiliza um sistema informatizado oficial, que não atende integralmente os requisitos existentes. Alguns cursos utilizam seus próprios sistemas, dificultando a sua manutenibilidade e introduzindo duplicações de código e vulnerabilidades.
 
-Torna-se imprescindível, portanto, o desenvolvimento de um novo sistema de inscrição unificado, que dê suporte a novas funcionalidades e que utilize as tecnologias atualmente em uso na SeTIC.
+Torna-se relevante, portanto, o desenvolvimento de um novo sistema de inscrição unificado, que dê suporte a novas funcionalidades e que utilize as tecnologias atualmente em uso na SeTIC.
 
 Ao longo deste projeto, diversas atividades previstas foram desenvolvidas, especificamente:
 \begin{itemize}
@@ -1273,24 +1302,10 @@ Ao longo deste projeto, diversas atividades previstas foram desenvolvidas, espec
   \item Adaptação da interface do sistema para sua utilização em dispositivos móveis de forma responsiva.
 \end{itemize}
 
-O sistema desenvolvido está atualmente no estágio de homologação. A identificação de \emph{bugs}, as aprimorações e a adição de novas funcionalidades serão feitas por funcionários da SeTIC.
+O sistema desenvolvido está atualmente no estágio de homologação. A identificação de \emph{bugs}, as aprimorações e a adição de novas funcionalidades serão feitas pela SeTIC em colaboração com a Pró-Reitoria de Pós-Graduação, bem como as secretarias dos cursos de Pós-Graduação.
 
 % ----------------------------------------------------------
 \bibliography{referencias}
-
-%\begin{thebibliography}{9}
-%
-%\bibitem{lamport94}
-%  Leslie Lamport,
-%  \emph{\LaTeX: a document preparation system},
-%  Addison Wesley, Massachusetts,
-%  2nd edition,
-%  1994.
-%\end{thebibliography}
-
-
-
-
 
 
 
@@ -1491,13 +1506,16 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \item \textbf{Controlar as mudanças feitas no software} --- A utilização de uma sistema de controle de mudanças é indispensável em um ambiente em que mudanças são inevitáveis. A identificação de quando uma mudança ocorreu e quem a realizou é muito útil para a sincronização e estabelecimento de áreas de trabalho seguras para os desenvolvedores.
 \end{enumerate}
 
+Uma \emph{stored procedure} é utilizada no salvamento de uma inscrição na base de dados Centura. Para o sucesso de sua execução, faz-se necessário o envio de \emph{todos} os campos do formulário de preenchimento obrigatório, tornando o desenvolvimento do software impraticável de ser realizado de forma iterativa. Não obstante, as partes do sistema não relacionadas ao preenchimento ou edição de um formulário foram desenvolvidas iterativamente.
+
+Embora o desenvolvimento guiado por testes\footnote{Processo de desenvolvimento de software em que as funcionalidades são adicionadas ao software somente após terem sido aprovadas em casos de teste que as validem.} tenha sido considerado, a sua adoção não foi feita devido à inexeperiência do autor com esse processo de desenvolvimento. A verificação da qualidade do software, através de testes de funcionalidade, integração e desempenho, deverá ser realizada pela SeTIC.
 
 
 \chapter{Exemplificação para dispositivos móveis}\label{anexo:mobile}
 % ----------------------------------------------------------
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_index_programas} À esquerda: página inicial do sistema, a partir da qual pode-se obter a lista de programas disponíveis para inscrição e iniciar a sessão. À direita: lista de programas disponíveis. }
+  \caption{\label{fig:mobile_index_programas} Página inicial do sistema (à esquerda) e lista de programas disponíveis (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_index_programas.png}
   \end{center}
@@ -1506,7 +1524,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_inscricoes} À esquerda: \emph{view} inscrições após a autenticação. À direita: detalhe para os dois tipos de inscrição. As linhas de uma tabela comum se transformam em pequenos blocos cujo número de linhas é igual ao número de colunas da tabela no modo \emph{desktop}.}
+  \caption{\label{fig:mobile_inscricoes} \emph{View} inscrições após a autenticação (à esquerda) e detalhe para os dois tipos de inscrição (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_inscricoes.png}
   \end{center}
@@ -1514,7 +1532,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \end{figure}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_criar_inscricao} À esquerda: criação de uma nova inscrição. Em detalhe: aba \texttt{Programa} vazia. À direita: mensagem de importar dados da última inscrição realizada.}
+  \caption{\label{fig:mobile_criar_inscricao} Criação de uma nova inscrição (à esquerda) e mensagem de importação de dados (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_criar_inscricao.png}
   \end{center}
@@ -1522,7 +1540,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \end{figure}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_dados_pessoais_contato} Preenchimento do formulário com dados fictícios. À esquerda: campos da aba \texttt{Dados Pessoais}. À direita: campos da aba \texttt{Contato}.}
+  \caption{\label{fig:mobile_dados_pessoais_contato} Campos da aba \texttt{Dados Pessoais} (à esquerda) e campos da aba \texttt{Contato} (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_dados_pessoais_contato.png}
   \end{center}
@@ -1530,7 +1548,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \end{figure}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_formacao} Preenchimento do formulário com dados fictícios. À esquerda: aba \texttt{Formação} com um curso de formação em andamento. À direita: caixa de diálogo modal de inclusão de um curso de formação.}
+  \caption{\label{fig:mobile_formacao} Aba \texttt{Formação} (à esquerda) e inclusão de um curso de formação (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_formacao.png}
   \end{center}
@@ -1538,7 +1556,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \end{figure}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_documentos} À esquerda: mensagens informativas da aba \texttt{Documentos}. À direita: caixa de diálogo modal para a reutilização de documentos enviados em inscrições passadas mostrando dois documentos do tipo RG.}
+  \caption{\label{fig:mobile_documentos} Mensagens informativas da aba \texttt{Documentos} (à esquerda) e reutilização de documentos enviados (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_documentos.png}
   \end{center}
@@ -1547,7 +1565,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_verificacao_erros} À esquerda: erros encontrados no preenchimento do formulário. À direita: destaque para o campo não-preenchido na aba \texttt{Dados pessoais}.}
+  \caption{\label{fig:mobile_verificacao_erros} Erros encontrados no preenchimento do formulário.}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_verificacao_erros.png}
   \end{center}
@@ -1555,7 +1573,7 @@ Com o intuito de minimizar as falhas e aumentar a produtividade no desenvolvimen
 \end{figure}
 
 \begin{figure}[!ht]
-  \caption{\label{fig:mobile_verificacao_sucesso_documentos_enviados} À esquerda: formulário verificado e sem erros. Botão \texttt{Finalizar} habilitado. À direita: tela de documentos enviados pelo candidato.}
+  \caption{\label{fig:mobile_verificacao_sucesso_documentos_enviados} Formulário verificado e sem erros (à esquerda) e tela de documentos enviados (à direita).}
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/app/mobile_verificacao_sucesso_documentos_enviados.png}
   \end{center}
