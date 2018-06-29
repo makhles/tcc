@@ -520,7 +520,7 @@ Segundo o modelo Java EE, as aplicações são distribuídas em camadas (\emph{t
   \begin{center}
     \includegraphics[width=0.75\textwidth]{multitiered_applications.png}
   \end{center}
-  \fonte{adaptado de \citetext{javaee7}}
+  \fonte{adaptado de \citeonline{javaee7}}
 \end{figure}
 
 % ---
@@ -566,7 +566,7 @@ A camada de negócios possui componentes que provêm a lógica do negócio da ap
 \subsubsection{Camada EIS}
 % ---
 
-A camada EIS (\emph{Enterprise Information System}) consiste de servidores de bancos de dados, sistemas de planejamento de recursos empresariais e outras fontes de dados legados. Esses recursos geralmente se localizam em suas próprias máquinas e são acessados pela camada de negócios. As tecnologias utilizadas nessa camada são:
+A camada EIS (\emph{Enterprise Information System}) consiste de servidores de bancos de dados, sistemas de planejamento de recursos empresariais e outras fontes de dados legados \cite{javaee7}. Esses recursos geralmente se localizam em suas próprias máquinas e são acessados pela camada de negócios. As tecnologias utilizadas nessa camada são:
 \begin{itemize}
   \item Java Database Connetivity API (JDBC) - uma interface que permite a conexão às bases de dados.
   \item Java Persistence API (JPA).
@@ -610,7 +610,7 @@ Quando se utiliza um \emph{framework} baseado em ação (\emph{e.g.}, SpringMVC,
   \begin{center}
     \includegraphics[width=0.75\textwidth]{/mvc/action-based.png}
   \end{center}
-  \fonte{Caelum. Adaptado de \citetext{caelum}}
+  \fonte{Caelum. Adaptado de \citeonline{caelum}}
 \end{figure}
 
 O JSF é um \emph{framework} baseado em componentes. Como tal, possui um controlador frontal, o \texttt{FacesServlet}, que é o \emph{servlet} responsável por gerenciar o ciclo de vida do processamento de requisições. Dessa forma, o desenvolvedor da aplicação não precisa se preocupar em escrever código \emph{boilerplate}\footnote{Trechos de código que são incluídos em diversos lugares com um mínimo de alteração.}, tal como no caso de um framework baseado em ações.
@@ -622,7 +622,7 @@ Resumidamente, a requisição feita pelo usuário da aplicação é recebida pel
   \begin{center}
     \includegraphics[width=0.75\textwidth]{/mvc/component-based.png}
   \end{center}
-  \fonte{Caelum. Adaptado de \citetext{caelum}}
+  \fonte{Caelum. Adaptado de \citeonline{caelum}}
 \end{figure}
 
 O ciclo de vida do processamento de requisições do JSF é, na verdade, bem mais complexo do que o apresentado, pois envolve a criação de uma árvore de componentes, a conversão e validação dos dados obtidos destes componentes, o gerenciamento de eventos oriundos destes componentes e a propagação dos dados para os \emph{beans}.
@@ -658,7 +658,7 @@ Com esta tecnologia, as páginas web são criadas em XHTML e os componentes são
 \fonte{Adaptado de \citeonline{javaee7}.}
 
 
-Dentre suas vantagens, \cite{javaee7} destacam:
+Dentre suas vantagens, \citeonline{javaee7} destacam:
 \begin{itemize}
   \item Reuso de código através de \emph{templates} e da composição de componentes.
   \item Redução do tempo de compilação.
@@ -676,7 +676,7 @@ Bibliotecas de componentes oferecem funcionalidades previamente  testadas e even
   \begin{center}
     \includegraphics[width=0.75\textwidth]{/primefaces/datatable.png}
   \end{center}
-  \fonte{PrimeFaces. Disponível em \url{https://www.primefaces.org/showcase/}}
+  \fonte{\citeonline{primefaces}.}
 \end{figure}
 
 % ---
@@ -747,7 +747,7 @@ Ressalta-se que o desenvolvimento teve como inspiração o sistema existente. Fe
 
 O desenvolvimento de um software/sistema segundo o modelo adotado pode ser dividido em diversos estágios. O primeiro consiste na elicitação, análise e definição de requisitos. Segundo \citeonline{sommerville2011}, os requisitos de um sistema são as descrições do que o sistema deve fazer, os serviços que oferece e as restrições a seu funcionamento. Esses requisitos refletem as necessidades dos clientes para um sistema que serve a uma finalidade determinada, como controlar um dispositivo, fazer um pedido ou encontrar informações. Esta etapa é muito importante pois, além de servir de base para as demais etapas, fornece um rumo a ser seguido e um objetivo a ser alcançado. Não menos importante, evita a implementação de funcionalidades desnecessárias.
 
-A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada aqui, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realização de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto à Pró-Reitoria de Pós-Gradução (PROPG), o cliente deste projeto. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
+A elicitação ou descoberta dos requisitos do sistema pode ser feita de diversas maneiras: entrevistas, cenários, casos de uso, etnografia, etc. A abordagem adotada, comum aos demais sistemas desenvolvidos na SeTIC, foi a de realizar de entrevistas abertas, isto é, uma série de questões relacionadas ao uso do sistema foi explorada junto à Pró-Reitoria de Pós-Gradução (PROPG), o cliente deste projeto. Dessa forma, pôde-se obter uma melhor compreensão de suas necessidades.
 
 Um conjunto de \emph{wireframes}, ou protótipos, das páginas do sistema foi desenvolvido\footnote{Utilizou-se um \emph{plugin} do WireframeSketcher feito para o Eclipse.} e apresentado com o objetivo de validar a estrutura, o conteúdo, as diversas funções e os diversos caminhos de interações dos usuários com o sistema. A confecção deste conjunto de \emph{wireframes} teve como base o sistema informatizado atualmente em uso. Em cima deste foram aplicadas todas as mudanças que se faziam necessárias e que justificam o desenvolvimento do novo sistema. A Figura~\ref{fig:wireframe} fornece um exemplo retirado deste conjunto: após o início da sessão no sistema, a página inicial exibida para o usuário Fulano apresenta um histórico de inscrições já realizadas por este usuário. Evidencia-se o uso de balões explicativos para agilizar o entendimento dos diversos elementos da página. Ressalta-se que o visual da página não é o foco do \emph{wireframe}, e sim o que ela permite que o usuário realize.
 
@@ -756,7 +756,7 @@ Um conjunto de \emph{wireframes}, ou protótipos, das páginas do sistema foi de
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/wireframe.png}
   \end{center}
-  \fonte{Produzido pelo autor.}
+  \fonte{Elaborada pelo autor.}
 \end{figure}
 
 Na reunião com o cliente, os requisitos propostos e exemplificados nos \emph{wireframes} foram analisados. Destes, alguns foram removidos, outros adicionados. No fim, um conjunto de requisitos iniciais
@@ -855,14 +855,14 @@ Identificam-se os seguintes elementos:
 
 Um diagrama de classes é responsável por mostrar as diversas classes de uma aplicação e as associações (agregação, composição, generalização e dependências) entre elas.
 
-O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_er1} mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
+O diagrama de classes do sistema foi dividido em duas imagens por questão de espaço. A Figura~\ref{fig:uml_er1} foi desenvolvida com a ferramenta ObjectAid UML Explorer e mostra as classes envolvidas na obtenção dos programas disponíveis em uma determinada data. Pode-se perceber uma associação de generalização entre as classes \texttt{ProgramasService} e \texttt{ProgramasServiceImpl} e dependências entre as classes \texttt{ProgramasBean} e \texttt{ProgramaAux}, e \texttt{ProgramasBean} e \texttt{ProgramasService}.
 
 \begin{figure}[!ht]
   \caption{\label{fig:uml_er1} Diagrama de classes relacionado à obtenção de programas. }
   \begin{center}
     \includegraphics[width=1.0\textwidth]{/uml/programas.png}
   \end{center}
-  \fonte{Elaborada pelo autor com a ferramenta ObjectAid UML Explorer.}%
+  \fonte{Elaborada pelo autor.}%
 \end{figure}
 
 A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas das suas associações de dependência. As classes \texttt{Curso} e \texttt{Nivel} são entidades e estão relacionadas entre si. \texttt{InscricoesService} é uma interface que provê serviços à classe \texttt{InscricoesBean}. Finalmente, \texttt{InscricaoAux} é uma classe auxiliar que é utilizada junto à \emph{view} para exibir informações das inscrições cadastradas para um determinado usuário.
@@ -873,7 +873,7 @@ A Figura~\ref{fig:uml_er2} ilustra a classe \texttt{InscricoesBean} e algumas da
   \begin{center}
     \includegraphics[scale=0.40]{/uml/inscricoes.png}
   \end{center}
-  \fonte{Elaborada pelo autor com a ferramenta ObjectAid UML Explorer.}%
+  \fonte{Elaborada pelo autor.}%
 \end{figure}
 \end{landscape}
 
@@ -905,7 +905,7 @@ As entidades \texttt{INSCRICAO}, \texttt{PROCESSO\_SELETIVO} e \texttt{EDITAL} j
 % ----------------------------------------------------------
 
 % ---
-\section{Configuração do projeto}\label{sec:config}
+\section{Configuração do Projeto}\label{sec:config}
 % ---
 
 Após definida a estrutura inicial do sistema, deu-se início ao processo de implementação. O projeto foi configurado para atender às necessidades do sistema. Além de arquivos de configuração, diversos pacotes foram criados para a separação lógica das classes, como pode ser visto na Figura~\ref{fig:src_explorer}.
@@ -957,7 +957,7 @@ Ressalta-se que a maioria das classes presentes na Figura~\ref{fig:src_explorer}
 
 
 % ---
-\section{Dispositivos móveis}\label{sec:mobile}
+\section{Dispositivos Móveis}\label{sec:mobile}
 % ---
 
 A adaptação da interface do sistema para a utilização em dispositivos móveis é um requisito não-funcional, cuja implementação teve de levar em consideração duas abordagens:
@@ -1018,7 +1018,7 @@ A Tabela~\ref{tab:casos-uso} mostra um mapeamento entre os casos de uso identifi
 
 
 % ---
-\subsection{Lista de programas disponíveis}\label{sec:programas_disponiveis}
+\subsection{Lista de Programas Disponíveis}\label{sec:programas_disponiveis}
 % ---
 O acesso à lista de programas disponíveis para a inscrição é feita a partir da página inicial da aplicação, conforme destacado na Figura~\ref{fig:acesso_programas} por um retângulo. O candidato não precisa estar logado no sistema para acessá-la. A lista exibe os programas, os níveis e os polos que estão com inscrições abertas no momento do acesso à página (vide Figura~\ref{fig:programas_disponiveis}).
 
@@ -1044,7 +1044,7 @@ O acesso à lista de programas disponíveis para a inscrição é feita a partir
 
 
 % ---
-\subsection{Autenticação no sistema}\label{sec:autenticacao}
+\subsection{Autenticação no Sistema}\label{sec:autenticacao}
 % ---
 Como pode ser visto no diagrama de casos de uso, Figura~\ref{fig:use_cases}, o cadastro e a autenticação no sistema são feitos através do Sistema de Autenticação Centralizada (CAS), que permite a navegação entre os diversos sistemas da UFSC com apenas uma autenticação. Ao clicar nos links de acesso (vide destaque na Figura~\ref{fig:acesso_sistema}), o candidato é automaticamente transferido à página do CAS (vide Figura~\ref{fig:autenticacao}), onde pode se cadastrar e autenticar-se perante o sistema. Salienta-se que o CAS é um sistema já existente e utilizado por diversos outros sistemas da UFSC, e que o CAPG Inscrição atua apenas como cliente.
 
@@ -1077,7 +1077,7 @@ Após autenticado, o candidato é automaticamente transferido para a página de 
 \end{figure}
 
 % ---
-\subsection{Gerenciamento de inscrições}\label{sec:gerenciamento_inscricoes}
+\subsection{Gerenciamento de Inscrições}\label{sec:gerenciamento_inscricoes}
 % ---
 
 O usuário autenticado no sistema tem acesso ao histórico de inscrições realizadas. Neste histórico, identificam-se o programa, o nível e a data de finalização da inscrição, como pode ser visto na tabela da Figura~\ref{fig:inscricoes}. Cada inscrição possui ainda um \emph{status}: 
@@ -1091,7 +1091,7 @@ Ressalta-se que a tabela com o histórico de inscrições não é visível para 
 
 
 % ---
-\subsection{Criação de uma inscrição}\label{sec:criacao_inscricao}
+\subsection{Criação de Uma Inscrição}\label{sec:criacao_inscricao}
 % ---
 
 É possível criar uma nova inscrição a partir da tela de inscrições. Ao fazê-lo, o candidato se depara com uma tela tal qual a da Figura~\ref{fig:criar_inscricao}, na qual identificam-se alguns pontos:
@@ -1124,7 +1124,7 @@ Com exceção da aba \texttt{Programa}, as demais estão desabilitadas no iníci
 
 
 % ---
-\subsection{Edição de uma inscrição}\label{sec:edicao_inscricao}
+\subsection{Edição de Uma Inscrição}\label{sec:edicao_inscricao}
 % ---
 
 A Figura~\ref{fig:importar_dados} ilustra uma página típica de quando se inicia a edição de uma inscrição, com exceção da mensagem de importação de dados. Nota-se que, ao contrário da página inicial da criação de uma nova inscrição, o número da inscrição e a data limítrofe para a finalização da inscrição são exibidas no cabeçalho da página.
@@ -1191,7 +1191,7 @@ Os candidatos podem adicionar cursos de formação já concluídos ou em andamen
 
 
 % ---
-\subsection{Envio de documentos}\label{sec:envio_documentos}
+\subsection{Envio de Documentos}\label{sec:envio_documentos}
 % ---
 
 Uma das principais funcionalidades providas por este sistema é permitir que o candidato faça o envio de documentos. Não somente se reduz a quantidade de papéis que ficariam armazenados nas secretarias dos cursos (economizando espaço), como também potencializa-se a segurança dos documentos (documentos em papel estão sempre sujeitos a danos e avarias) e facilita-se a sua busca. Essa funcionalidade está implementada na aba \texttt{Documentos}, como pode ser visto na Figura~\ref{fig:documentos_desktop}. As linhas da tabela representam os documentos que são exigidos pela secretaria a qual o programa escolhido está vinculado. No exemplo fictício mostrado, são exigidos três documentos, dois dos quais já foram enviados, e um está pendente.
@@ -1231,7 +1231,7 @@ Uma das preocupações que podem ser levantadas em relação ao envio de documen
 
 
 % ---
-\subsection{Verificação de erros e finalização de uma inscrição}\label{sec:validacao}
+\subsection{Verificação de Erros e Finalização de Uma Inscrição}\label{sec:validacao}
 % ---
 
 Pode-se verificar a existência de erros e o não-preenchimento de campos obrigatórios em qualquer momento durante o preenchimento do formulário por meio do botão \texttt{Verificar} (salvo a situação em que o usuário está criando uma nova inscrição e ainda não salvou o formulário).
@@ -1268,7 +1268,7 @@ Quando o formulário for verificado e não houver mais erros, uma mensagem de su
 \end{figure}
 
 % ---
-\subsection{Documentos enviados}\label{sec:documentos_enviados}
+\subsection{Documentos Enviados}\label{sec:documentos_enviados}
 % ---
 
 Todos os documentos enviados pelo candidato podem ser obtidos a partir da \emph{view documentos enviados}, a qual pode ser acessada através do item de menu \texttt{Documentos enviados}. O usuário pode baixar os documentos desejados clicando no ícone de \emph{download} da linha respectiva (vide Figura~\ref{fig:documentos_enviados}). Informações tais como número de inscrição, programa, nível, tipo de documento e data de envio também estão presentes para auxiliar o usuário a encontrar o documento desejado.
